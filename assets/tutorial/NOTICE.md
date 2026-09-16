@@ -1,6 +1,8 @@
 # 使用与许可
 
-作者：[Ziyu Peng](https://github.com/pzy54154631-hub)，University of Colorado Boulder, Boulder, CO 80309, USA；[刘毅涵](https://pzy54154631-hub.github.io/liuyihan/)，暨南大学经济学院。
+作者：[Ziyu Peng](https://github.com/pzy54154631-hub)，Statistics and Data Science, College of Arts and Sciences, University of Colorado Boulder, Boulder, CO 80309, USA；[刘毅涵](https://pzy54154631-hub.github.io/liuyihan/)，暨南大学经济学院。
+
+Ziyu Peng 邮箱：[Ziyu.PengSr@colorado.edu](mailto:Ziyu.PengSr@colorado.edu)。
 
 Copyright (c) 2026 Ziyu Peng and 刘毅涵。
 

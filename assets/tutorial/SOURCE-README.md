@@ -1,6 +1,8 @@
 # LaTeX 学习手记 · 完整源码
 
-作者：[Ziyu Peng](https://github.com/pzy54154631-hub)，University of Colorado Boulder, Boulder, CO 80309, USA；[刘毅涵](https://pzy54154631-hub.github.io/liuyihan/)，暨南大学经济学院。
+作者：[Ziyu Peng](https://github.com/pzy54154631-hub)，Statistics and Data Science, College of Arts and Sciences, University of Colorado Boulder, Boulder, CO 80309, USA；[刘毅涵](https://pzy54154631-hub.github.io/liuyihan/)，暨南大学经济学院。
+
+Ziyu Peng 邮箱：[Ziyu.PengSr@colorado.edu](mailto:Ziyu.PengSr@colorado.edu)。
 
 本源码包对应 15 章完整教程，包含教程书稿与 17 份可独立编译的章节示例。线上目录：<https://pzy54154631-hub.github.io/liuyihan/blog/latex/>。
 

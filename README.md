@@ -54,7 +54,7 @@ stage = "第四阶段 · 带进经管课堂"
 
 ### 完整 PDF 与源码
 
-教程目录的“把整本手记带走”提供完整 PDF、单文件 LaTeX 源码和源码 ZIP；各章页尾也可下载整本。作者 **[Ziyu Peng](https://github.com/pzy54154631-hub)** 与 **[刘毅涵](https://pzy54154631-hub.github.io/liuyihan/)** 的姓名分别链接到 Ziyu Peng 的 GitHub 主页和刘毅涵的个人主页。下载版按姓名及学校分行署名。
+教程目录的“把整本手记带走”提供完整 PDF、单文件 LaTeX 源码和源码 ZIP；各章页尾也可下载整本。作者 **[Ziyu Peng](https://github.com/pzy54154631-hub)** 与 **[刘毅涵](https://pzy54154631-hub.github.io/liuyihan/)** 的姓名分别链接到 Ziyu Peng 的 GitHub 主页和刘毅涵的个人主页。下载版按姓名及学校分行署名，并补充 Ziyu Peng 的学院、专业、地址和邮箱。
 
 - `assets/tutorial/latex-tutorial-complete.pdf`：15 章完整书稿。
 - `assets/tutorial/latex-tutorial-complete.tex`：可直接使用 XeLaTeX 编译的单文件源码。

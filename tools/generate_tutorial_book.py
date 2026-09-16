@@ -122,7 +122,9 @@ PREAMBLE = r'''% !TeX program = xelatex
 \vspace{24mm}
 {\large\textit{\href{https://github.com/pzy54154631-hub}{Ziyu Peng}, University of Colorado Boulder}\par}
 \vspace{1mm}
-{\large\textit{Boulder, CO 80309, USA}\par}
+{\normalsize\textit{College of Arts and Sciences \enspace / \enspace Statistics and Data Science}\par}
+{\normalsize\textit{Boulder, CO 80309, USA}\par}
+{\normalsize\href{mailto:Ziyu.PengSr@colorado.edu}{Ziyu.PengSr@colorado.edu}\par}
 \vspace{3mm}
 {\large\href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院\par}
 \vfill
@@ -219,7 +221,7 @@ def main():
     for path in args.posts.glob('latex-*.md'):
         _opening, header, body = path.read_text().split('+++', 2)
         meta = tomllib.loads(header)
-        chapters.append((meta['order'], path, meta, body.replace('Ziyu.Peng', 'Ziyu Peng')))
+        chapters.append((meta['order'], path, meta, body))
     chapters.sort()
     if not chapters or [order for order, *_ in chapters] != list(range(1, len(chapters) + 1)):
         raise ValueError('Expected tutorial chapter orders to be unique and consecutive, starting at 1')
@@ -240,7 +242,9 @@ def main():
     out += ['\n\\backmatter\n\\chapter*{继续写下去}\n',
             '从一页笔记开始，把结构、公式和资料来源逐步写清楚，再把能重复使用的部分积累成自己的工作方法。\\par\n',
             '\\noindent \\textit{\\href{'+AUTHOR_URL+'}{Ziyu Peng}, University of Colorado Boulder}\\par\n',
+            '\\noindent \\textit{College of Arts and Sciences \\enspace / \\enspace Statistics and Data Science}\\par\n',
             '\\noindent \\textit{Boulder, CO 80309, USA}\\par\n',
+            '\\noindent \\href{mailto:Ziyu.PengSr@colorado.edu}{Ziyu.PengSr@colorado.edu}\\par\n',
             '\\noindent \\href{'+SECOND_AUTHOR_URL+'}{刘毅涵}，暨南大学经济学院\\par\n',
             '\\noindent 在线目录：\\url{'+SITE+'/liuyihan/blog/latex/}\\par\n',
             '\\end{document}\n']

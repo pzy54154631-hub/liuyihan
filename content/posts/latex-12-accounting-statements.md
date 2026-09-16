@@ -69,7 +69,9 @@ $$
 \usepackage[hidelinks]{hyperref}
 \title{会计分录与报表：让同一组数字相互勾稽}
 \author{\href{https://github.com/pzy54154631-hub}{\textit{Ziyu Peng}}, University of Colorado Boulder,
+  \\[0.1em]College of Arts and Sciences, Statistics and Data Science
   \\[0.1em]Boulder, CO 80309, USA
+  \\[0.1em]\href{mailto:Ziyu.PengSr@colorado.edu}{Ziyu.PengSr@colorado.edu}
   \\[0.35em]
   \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
