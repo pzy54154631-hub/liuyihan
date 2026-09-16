@@ -1,0 +1,48 @@
+% !TeX program = xelatex
+% SPDX-License-Identifier: MIT
+% Copyright (c) 2026 Ziyu Peng and 刘毅涵
+% Author: https://github.com/pzy54154631-hub?tab=repositories
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\title{我的第一份 Overleaf 课程笔记}
+\author{Ziyu Peng \and 刘毅涵}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{先说明数据}
+以下是虚构的活动预算数据，单位为元。
+差异定义为实际支出减预算，负数表示低于预算。
+
+\begin{table}[htbp]
+\centering
+\caption{活动支出记录（虚构教学数据，单位：元）}
+\label{tab:expense}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+项目 & 预算 & 实际 \\
+\midrule
+印刷 & 120 & 110 \\
+交通 & 80 & 85 \\
+物资 & 200 & 195 \\
+\midrule
+合计 & 400 & 390 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{再解释结果}
+表~\ref{tab:expense}~中的实际支出合计为 390 元。
+总差异率为
+\begin{equation}
+  d=\frac{390-400}{400}\times100\%=-2.5\%.
+  \label{eq:change}
+\end{equation}
+式~\eqref{eq:change}~说明总支出低于预算，
+但不能据此推断每个项目都节省了支出。
+
+\end{document}

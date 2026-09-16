@@ -2,15 +2,15 @@
 
 第一作者：[Ziyu Peng](https://github.com/pzy54154631-hub?tab=repositories)；第二作者：刘毅涵。
 
-本源码包对应 14 章完整教程，包含教程书稿与 16 份可独立编译的章节示例。线上目录：<https://pzy54154631-hub.github.io/liuyihan/blog/latex/>。
+本源码包对应 15 章完整教程，包含教程书稿与 17 份可独立编译的章节示例。线上目录：<https://pzy54154631-hub.github.io/liuyihan/blog/latex/>。
 
 ## 文件说明
 
 - `main.tex`：完整教程的 LaTeX 主文件。
-- `examples/`：各章可独立编译的示例。第 08 章含演示文稿与两种海报示例，因此共有 16 份 `.tex` 文件。
+- `examples/`：各章可独立编译的示例。第 08 章含演示文稿与两种海报示例，因此共有 17 份 `.tex` 文件。
 - `LICENSE.txt`：完整 MIT 许可证。
 - `NOTICE.md`：作者、许可范围与第三方内容说明。
-- `chapters-md/`：14 章网页正文的 Markdown 原稿。
+- `chapters-md/`：15 章网页正文的 Markdown 原稿。
 - `generate_book.py`：可选的重新生成脚本；仅编辑或编译 `main.tex` 不需要运行它。
 
 ## 编译完整教程
@@ -31,6 +31,8 @@ xelatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
 教程内的代码框是讲解内容，不会在编译教程书稿时逐一执行。要运行某一章的示例，请单独编译 `examples/` 中对应文件。
+
+Overleaf 的逐步操作、主文件选择与排错见[第 15 章：在 Overleaf 中编译与导出](https://pzy54154631-hub.github.io/liuyihan/blog/latex-15-overleaf-workflow/)。
 
 ## 编译章节示例
 

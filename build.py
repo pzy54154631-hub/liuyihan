@@ -35,8 +35,9 @@ def author_name(name):
 def tutorial_license():
     return f'''<aside class="tutorial-license"><span class="license-badge">MIT · 开源教程</span><p>本教程的正文、PDF、LaTeX 源码与原创示例采用 <a href="https://opensource.org/license/mit" rel="license">MIT 协议</a>。你可以自由编辑、复制、再发布及商用；再发布时请保留版权与许可声明。</p><p class="license-credit">© 2026 {author_name('Ziyu Peng')} · 刘毅涵 <span aria-hidden="true">/</span> <a href="{TUTORIAL_ASSETS}/LICENSE.txt">阅读完整许可</a> · <a href="{TUTORIAL_ASSETS}/NOTICE.md">许可适用范围</a></p></aside>'''
 
-def full_downloads():
-    return f'''<section class="full-downloads" id="downloads" aria-labelledby="download-title"><div class="download-heading"><span class="eyebrow">TAKE THE WHOLE NOTEBOOK</span><h2 id="download-title">把整本手记带走</h2><p>14 章完整正文、公式、代码与练习，离线阅读，也可以继续改写。</p></div><div class="download-grid"><a class="download-card" href="{TUTORIAL_ASSETS}/latex-tutorial-complete.pdf" download><span class="download-kind">PDF</span><div><h3>下载完整教程</h3><p>含封面、可点击目录与全部章节。</p></div><span aria-hidden="true">↓</span></a><a class="download-card" href="{TUTORIAL_ASSETS}/latex-tutorial-source.zip" download><span class="download-kind">TEX</span><div><h3>下载完整 LaTeX 源码</h3><p>完整主文件、16 份示例、编译说明与许可。</p></div><span aria-hidden="true">↓</span></a></div><div class="download-secondary"><a href="{TUTORIAL_ASSETS}/latex-tutorial-complete.tex" download>只下载整本 .tex 文件 ↓</a><a href="{TUTORIAL_ASSETS}/latex-examples.zip" download>只下载配套示例 ↓</a></div>{tutorial_license()}</section>'''
+def full_downloads(chapters):
+    example_count = len(list((ROOT / 'assets/tutorial/examples').glob('*.tex')))
+    return f'''<section class="full-downloads" id="downloads" aria-labelledby="download-title"><div class="download-heading"><span class="eyebrow">TAKE THE WHOLE NOTEBOOK</span><h2 id="download-title">把整本手记带走</h2><p>{len(chapters)} 章完整正文、公式、代码与练习，离线阅读，也可以继续改写。</p></div><div class="download-grid"><a class="download-card" href="{TUTORIAL_ASSETS}/latex-tutorial-complete.pdf" download><span class="download-kind">PDF</span><div><h3>下载完整教程</h3><p>含封面、可点击目录与全部章节。</p></div><span aria-hidden="true">↓</span></a><a class="download-card" href="{TUTORIAL_ASSETS}/latex-tutorial-source.zip" download><span class="download-kind">TEX</span><div><h3>下载完整 LaTeX 源码</h3><p>完整主文件、{example_count} 份示例、编译说明与许可。</p></div><span aria-hidden="true">↓</span></a></div><div class="download-secondary"><a href="{TUTORIAL_ASSETS}/latex-tutorial-complete.tex" download>只下载整本 .tex 文件 ↓</a><a href="{TUTORIAL_ASSETS}/latex-examples.zip" download>只下载配套示例 ↓</a></div>{tutorial_license()}</section>'''
 
 def compact_downloads():
     return f'''<aside class="complete-book-links"><span>想离线阅读整套教程？</span><a href="{TUTORIAL_ASSETS}/latex-tutorial-complete.pdf" download>完整 PDF ↓</a><a href="{TUTORIAL_ASSETS}/latex-tutorial-source.zip" download>完整 LaTeX 源码 ↓</a></aside>'''
@@ -61,6 +62,20 @@ def example_links(p):
 def e(value):
     return escape(str(value), quote=True)
 
+def date_label(value):
+    parts = value.split('-')
+    if len(parts) == 2:
+        return f'{parts[0]} 年 {int(parts[1])} 月'
+    return value.replace('-', '.')
+
+def post_dates(p):
+    published = f'<time datetime="{p["date"]}">{"首发于" if p.get("updated") else "发布于"} {date_label(p["date"])}</time>'
+    if p.get('updated'):
+        published += f'<time datetime="{p["updated"]}">合集整理 {date_label(p["updated"])}</time>'
+    elif p.get('series') == 'latex':
+        published = f'<time datetime="{p["date"]}">合集收录 {date_label(p["date"])}</time>'
+    return published
+
 def post_data():
     result = []
     for path in (ROOT / 'content/posts').glob('*.md'):
@@ -74,7 +89,11 @@ def post_data():
         for field in ('title', 'date', 'tag', 'summary'):
             if not isinstance(p.get(field), str) or not p[field].strip():
                 raise ValueError(f'{path.name}: invalid {field}')
-        date.fromisoformat(p['date'])
+        if re.fullmatch(r'\d{4}-\d{2}', p['date']):
+            date.fromisoformat(p['date']+'-01')
+        else:
+            date.fromisoformat(p['date'])
+        if p.get('updated'): date.fromisoformat(p['updated'])
         if not re.fullmatch(r'[a-z0-9-]+', path.stem):
             raise ValueError('Post filenames must use lowercase English letters, digits and hyphens')
         p['slug'] = path.stem
@@ -98,21 +117,21 @@ def page(title, description, body, path='', active='', og_type='website', tutori
         blog_current='aria-current="page"' if active == 'blog' else '')
 
 def cards(posts):
-    return ''.join(f'''<a class="post-card" href="{p['url']}"><div class="post-label"><span class="post-tag">{e(p['tag'])}</span><time class="post-date" datetime="{p['date']}">{p['date'].replace('-', '.')}</time></div><div><h3>{e(p['title'])}</h3><p>{e(p['summary'])}</p></div><span class="post-arrow" aria-hidden="true">↗</span></a>''' for p in posts)
+    return ''.join(f'''<a class="post-card" href="{p['url']}"><div class="post-label"><span class="post-tag">{e(p['tag'])}</span><time class="post-date" datetime="{p['date']}">{date_label(p['date'])}</time></div><div><h3>{e(p['title'])}</h3><p>{e(p['summary'])}</p></div><span class="post-arrow" aria-hidden="true">↗</span></a>''' for p in posts)
 
 def series_card(posts):
     count = len([p for p in posts if p.get('series') == 'latex'])
     if not count: return ''
-    return f'''<a class="series-feature" href="{SERIES_URL}"><div class="series-art" aria-hidden="true"><span class="paper-formula">Aa<br><i>∑ xᵢ</i></span><span class="paper-star">✦</span></div><div><span class="eyebrow">LATEX · A LEARNING NOTEBOOK</span><h2>{SERIES_TITLE}</h2><p>从第一份中文文档，到经济模型、金融现金流和会计报表。把一个假期的学习，安排成 {count} 个小章节。</p><span class="series-caption">{count} 章 · 完整 PDF · 可编辑 LaTeX 源码 <span aria-hidden="true">↗</span></span></div></a>'''
+    return f'''<a class="series-feature" href="{SERIES_URL}"><div class="series-art" aria-hidden="true"><span class="paper-formula">Aa<br><i>∑ xᵢ</i></span><span class="paper-star">✦</span></div><div><span class="eyebrow">LATEX · A LEARNING NOTEBOOK</span><h2>{SERIES_TITLE}</h2><p>从第一份中文文档，到经济模型、金融现金流和会计报表。从 7 月的第一篇，逐步补充成 {count} 章学习手记，9 月中旬整理成册。</p><span class="series-caption">{count} 章 · 完整 PDF · 可编辑 LaTeX 源码 <span aria-hidden="true">↗</span></span></div></a>'''
 
 def series_index(chapters):
     groups = {}
     for p in chapters: groups.setdefault(p['stage'], []).append(p)
     contents = ''
     for stage, entries in groups.items():
-        rows = ''.join(f'''<a class="chapter-card" href="{p['url']}"><span class="chapter-no">{p['order']:02}</span><div><h3>{e(p['title'])}</h3><p>{e(p['summary'])}</p><span class="small-note">约 {p['minutes']} 分钟阅读 · 配套练习</span></div><span aria-hidden="true">↗</span></a>''' for p in entries)
+        rows = ''.join(f'''<a class="chapter-card" href="{p['url']}"><span class="chapter-no">{p['order']:02}</span><div><h3>{e(p['title'])}</h3><p>{e(p['summary'])}</p><span class="small-note">{(date_label(p["date"])+" · " if len(p["date"]) == 7 else "")}约 {p['minutes']} 分钟阅读 · 配套练习</span></div><span aria-hidden="true">↗</span></a>''' for p in entries)
         contents += f'<section class="chapter-group"><h2>{e(stage)}</h2>{rows}</section>'
-    return f'''<main class="wrap" id="main"><div class="series-wrap"><nav class="breadcrumb"><a href="{BASE}/blog/">所有手记</a> / LaTeX 学习系列</nav><header class="series-header"><span class="hello">一页一页，把想法写清楚。</span><h1>{SERIES_TITLE}</h1><p class="series-subtitle">LaTeX 入门与经管专业排版手记</p><div class="article-meta"><span>第一作者 {author_name("Ziyu Peng")} · 第二作者 刘毅涵</span><span>{len(chapters)} 章 · 从入门到完整作品</span></div><p class="series-intro">写公式、整理数据、解释一个经济模型，最后把它们放进一份读起来舒服的报告。这套手记从原有的 LaTeX 教程展开，保留基础与进阶内容，也加入经济学、金融和会计中的常用表达，以及用 AI 辅助写作、修改和排错的方法。</p><div class="series-actions"><a class="button button-primary" href="{chapters[0]['url']}">从第一章开始 ↗</a><a class="button button-secondary" href="#downloads">整本下载与开源许可 ↓</a></div></header>{full_downloads()}<aside class="reading-plan"><strong>给一个假期的学习安排</strong><p>可以每周完成一个阶段：先写出文档，再练公式图表，接着整理引用与展示，最后做一份经管课程报告。每天改一个小例子，隔几天把旧例子重新写一遍；节奏也可以按自己的课程调整。</p><span class="small-note">这是建议学习路线。全系列于 2026 年 9 月 16 日整理发布。</span></aside><div class="series-contents">{contents}</div><aside class="reading-plan"><strong>怎么使用这些手记</strong><p>先看网页中的效果与解释，再下载本章完整源文件，用 XeLaTeX 编译。代码框提供复制按钮；片段需按章节说明放入导言区或正文。第 07 章的参考文献还需要 Biber。经济、金融与会计章节均使用明确标注的教学示例。</p></aside></div></main>'''
+    return f'''<main class="wrap" id="main"><div class="series-wrap"><nav class="breadcrumb"><a href="{BASE}/blog/">所有手记</a> / LaTeX 学习系列</nav><header class="series-header"><span class="hello">一页一页，把想法写清楚。</span><h1>{SERIES_TITLE}</h1><p class="series-subtitle">LaTeX 入门与经管专业排版手记</p><div class="article-meta"><span>第一作者 {author_name("Ziyu Peng")} · 第二作者 刘毅涵</span><span>{len(chapters)} 章 · 从入门到完整作品</span></div><p class="series-intro">写公式、整理数据、解释一个经济模型，最后把它们放进一份读起来舒服的报告。这套手记从原有的 LaTeX 教程展开，保留基础与进阶内容，也加入经济学、金融和会计中的常用表达，以及用 AI 辅助写作、修改和排错的方法。新增的 Overleaf 实操章，把建立项目、在线编译与导出串成一条完整流程。</p><div class="series-actions"><a class="button button-primary" href="{chapters[0]['url']}">从第一章开始 ↗</a><a class="button button-secondary" href="#downloads">整本下载与开源许可 ↓</a></div></header>{full_downloads(chapters)}<aside class="reading-plan"><strong>从七月的一页，到九月的一本</strong><p>首篇记于 2026 年 7 月，随后围绕公式、图表、经管课程与写作工具逐章补充。2026 年 9 月 16 日，将这些手记统一整理成合集，并提供完整 PDF 与源码。</p><span class="small-note">从第一章开始建立文档骨架；需要先熟悉在线编译时，可以先看<a href="{BASE}/blog/latex-15-overleaf-workflow/">第 15 章 Overleaf 实操</a>。</span></aside><div class="series-contents">{contents}</div><aside class="reading-plan"><strong>怎么使用这些手记</strong><p>先看网页中的效果与解释，再下载本章完整源文件，用 XeLaTeX 编译。代码框提供复制按钮；片段需按章节说明放入导言区或正文。第 07 章的参考文献还需要 Biber。经济、金融与会计章节均使用明确标注的教学示例。</p></aside></div></main>'''
 
 def chapter_navigation(p, chapters):
     index = chapters.index(p)
@@ -183,7 +202,7 @@ def build():
         series_link = f'<a href="{SERIES_URL}">LaTeX 学习系列</a> / 第 {p["order"]:02} 章' if tutorial else e(p['title'])
         toc = ('<details class="article-toc"><summary>本章目录</summary><ol>'+''.join(f'<li><a href="#{a}">{e(t)}</a></li>' for a,t,level in p['toc'] if level == 'h2')+'</ol></details>'+example_links(p)) if tutorial else ''
         chapter_label = f'<span class="chapter-kicker">CHAPTER {p["order"]:02} / {len(chapters):02}</span>' if tutorial else ''
-        body = f'''<main id="main" class="wrap"><article class="article-wrap"><nav class="breadcrumb" aria-label="面包屑"><a href="{BASE}/blog/">所有手记</a> / {series_link}</nav><header class="article-header">{chapter_label}<span class="post-tag">{e(p['tag'])}</span><h1>{e(p['title'])}</h1><p class="article-summary">{e(p['summary'])}</p><div class="article-meta"><span>{authors}</span><time datetime="{p['date']}">发布于 {p['date'].replace('-', '.')}</time><span>约 {p['minutes']} 分钟阅读</span></div></header>{toc}<div class="article-body">{p['html']}</div>{compact_downloads()+tutorial_license()+chapter_navigation(p, chapters) if tutorial else ''}<footer class="article-end"><a class="text-link" href="{SERIES_URL if tutorial else BASE+'/blog/'}">← {'回到系列目录' if tutorial else '回到所有手记'}</a><a class="text-link" href="mailto:{e(profile['email'])}">读后想聊聊？写信给我 ↗</a></footer></article></main>'''
+        body = f'''<main id="main" class="wrap"><article class="article-wrap"><nav class="breadcrumb" aria-label="面包屑"><a href="{BASE}/blog/">所有手记</a> / {series_link}</nav><header class="article-header">{chapter_label}<span class="post-tag">{e(p['tag'])}</span><h1>{e(p['title'])}</h1><p class="article-summary">{e(p['summary'])}</p><div class="article-meta"><span>{authors}</span>{post_dates(p)}<span>约 {p['minutes']} 分钟阅读</span></div></header>{toc}<div class="article-body">{p['html']}</div>{compact_downloads()+tutorial_license()+chapter_navigation(p, chapters) if tutorial else ''}<footer class="article-end"><a class="text-link" href="{SERIES_URL if tutorial else BASE+'/blog/'}">← {'回到系列目录' if tutorial else '回到所有手记'}</a><a class="text-link" href="mailto:{e(profile['email'])}">读后想聊聊？写信给我 ↗</a></footer></article></main>'''
         write(PUBLIC / f"blog/{p['slug']}/index.html", page(p['title']+' · 毅涵的小站', p['summary'], body, f"blog/{p['slug']}/", 'blog', 'article', tutorial=tutorial))
     not_found = f'<main class="wrap not-found" id="main"><p class="eyebrow">迷路了也没关系</p><h1>404</h1><p>这一页暂时找不到，回小站首页看看吧。</p><a class="button button-primary" href="{BASE}/">回到首页</a></main>'
     write(PUBLIC / '404.html', page('页面未找到 · 毅涵的小站', '回到毅涵的小站首页。', not_found, '404.html'))
@@ -192,7 +211,11 @@ def build():
     for tag, val in [('title',profile['site_name']),('link',ORIGIN+BASE+'/'),('description','刘毅涵的学习与生活手记'),('language','zh-cn')]: ET.SubElement(channel,tag).text=val
     for p in posts:
         item=ET.SubElement(channel,'item')
-        for tag,val in [('title',p['title']),('link',ORIGIN+p['url']),('guid',ORIGIN+p['url']),('description',p['summary']),('pubDate',format_datetime(datetime.fromisoformat(p['date']).replace(tzinfo=timezone.utc)))]: ET.SubElement(item,tag).text=val
+        fields = [('title',p['title']),('link',ORIGIN+p['url']),('guid',ORIGIN+p['url']),('description',p['summary'])]
+        # RSS pubDate requires a complete day; a month-only date must not invent one.
+        if len(p['date']) == 10:
+            fields.append(('pubDate', format_datetime(datetime.fromisoformat(p['date']).replace(tzinfo=timezone.utc))))
+        for tag,val in fields: ET.SubElement(item,tag).text=val
     write(PUBLIC / 'feed.xml', ET.tostring(feed, encoding='unicode', xml_declaration=True))
     sitemap = ET.Element('urlset', {'xmlns':'http://www.sitemaps.org/schemas/sitemap/0.9'})
     for url in [BASE+'/',BASE+'/blog/']+([SERIES_URL] if chapters else [])+[p['url'] for p in posts]: ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text=ORIGIN+url

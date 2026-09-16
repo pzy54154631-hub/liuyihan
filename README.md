@@ -35,7 +35,7 @@ summary = "一两句话介绍这篇文章。"
 
 ## LaTeX 学习系列
 
-目录位于 `/liuyihan/blog/latex/`。14 章按 4 个阶段排列，覆盖入门、公式图表、引用与展示、经管应用和 AI 辅助写作。署名顺序为 Ziyu Peng、刘毅涵；各篇实际发布日期为 2026-09-16，假期安排是建议学习路线。
+目录位于 `/liuyihan/blog/latex/`。15 章按 5 个阶段排列，覆盖入门、公式图表、引用与展示、经管应用、AI 辅助写作和 Overleaf 实操。署名顺序为 Ziyu Peng、刘毅涵；首篇按作者提供的时间标为 2026 年 7 月，合集整理日保持 2026-09-16。其余篇章显示合集收录时间，不补造中间的具体日。`date` 支持 `YYYY-MM` 的月精度，`updated` 可记录合集整理日；RSS 对缺少日的日期不生成 `pubDate`。
 
 章节正文在 `content/posts/latex-*.md`，可以直接在 GitHub 编辑。除了普通文章字段，系列文章还包含：
 
@@ -56,12 +56,12 @@ stage = "第四阶段 · 带进经管课堂"
 
 教程目录的“把整本手记带走”提供完整 PDF、单文件 LaTeX 源码和源码 ZIP；各章页尾也可下载整本。作者 **[Ziyu Peng](https://github.com/pzy54154631-hub?tab=repositories)** 的署名链接指向其 GitHub 页面。
 
-- `assets/tutorial/latex-tutorial-complete.pdf`：14 章完整书稿。
+- `assets/tutorial/latex-tutorial-complete.pdf`：15 章完整书稿。
 - `assets/tutorial/latex-tutorial-complete.tex`：可直接使用 XeLaTeX 编译的单文件源码。
 - `assets/tutorial/SOURCE-README.md`：源码包使用说明。
 - `tools/generate_tutorial_book.py`：从网页 Markdown 重新生成书稿的维护工具。
 
-完整源码 ZIP 由 `build.py` 自动打包，包含 `main.tex`、16 份独立示例、14 章 Markdown、重新生成脚本和许可说明。修改网页版章节后，若需要同步整本 PDF，请重新生成并编译书稿，再替换上述 `.tex` 和 `.pdf`；网站日常构建不会自动运行 TeX。
+完整源码 ZIP 由 `build.py` 自动打包，包含 `main.tex`、17 份独立示例、15 章 Markdown、重新生成脚本和许可说明。修改网页版章节后，若需要同步整本 PDF，请重新生成并编译书稿，再替换上述 `.tex` 和 `.pdf`；网站日常构建不会自动运行 TeX。
 
 ```sh
 python -m pip install pypandoc_binary

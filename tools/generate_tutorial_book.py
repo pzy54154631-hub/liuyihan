@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate the editable book from the 14 tutorial Markdown posts.
+"""Regenerate the editable book from all ordered tutorial Markdown posts.
 
 Requires Python 3.11+ and pypandoc_binary. The generated main.tex itself does
 not depend on Python or Pandoc; compile it directly with XeLaTeX twice.
@@ -40,7 +40,7 @@ SOFTWARE.
 '''
 
 PREAMBLE = r'''% !TeX program = xelatex
-% Generated from the complete 14-chapter web tutorial; editable standalone source.
+% Generated from the complete CHAPTER_COUNT-chapter web tutorial; editable standalone source.
 % MIT License. Copyright (c) 2026 Ziyu Peng and 刘毅涵.
 \documentclass[UTF8,a4paper,11pt,fontset=fandol,oneside,openany]{ctexbook}
 \usepackage[margin=23mm,top=22mm,bottom=23mm,headheight=15pt,headsep=8mm]{geometry}
@@ -53,7 +53,7 @@ PREAMBLE = r'''% !TeX program = xelatex
 \usepackage[unicode,colorlinks=true,linkcolor=InkPurple,urlcolor=InkPurple,
   pdftitle={LaTeX 学习手记：从中文笔记到经管报告},
   pdfauthor={Ziyu Peng; 刘毅涵},
-  pdfsubject={完整十四章教程与可编辑示例；MIT License}]{hyperref}
+  pdfsubject={完整CHAPTER_COUNT_ZH章教程与可编辑示例；MIT License}]{hyperref}
 \usepackage{bookmark}
 \definecolor{InkPurple}{HTML}{5A427A}
 \definecolor{SoftPurple}{HTML}{EDE6F6}
@@ -115,13 +115,13 @@ PREAMBLE = r'''% !TeX program = xelatex
 \vspace{7mm}
 {\LARGE 从中文笔记到经管报告\par}
 \vspace{8mm}
-{\large 十四章完整教程 · 公式 · 表格 · 专业写作 · AI 协作\par}
+{\large CHAPTER_COUNT_ZH章完整教程 · 公式 · 表格 · 专业写作 · AI 协作\par}
 \vspace{24mm}
 {\large\href{https://github.com/pzy54154631-hub?tab=repositories}{Ziyu Peng}\enspace 第一作者\par}
 \vspace{3mm}
 {\large 刘毅涵\enspace 第二作者\par}
 \vfill
-{\small\color{Muted}2026 年 9 月 16 日\quad / \quad MIT License\par}
+{\small\color{Muted}合集整理：2026 年 9 月 16 日\quad / \quad MIT License\par}
 \vspace{4mm}
 {\small\href{https://pzy54154631-hub.github.io/liuyihan/blog/latex/}{在线阅读 · 章节目录与示例下载}\par}
 \vspace*{11mm}
@@ -130,9 +130,11 @@ PREAMBLE = r'''% !TeX program = xelatex
 \frontmatter
 \chapter*{这本手记怎么读}
 \addcontentsline{toc}{chapter}{这本手记怎么读}
-这是一份从零起步、逐步写出完整课程报告的 LaTeX 教程。本书收录网站上十四章的完整正文、公式、代码、练习与延伸阅读。读者可以顺序学习，也可以按当前任务查阅。
+这是一份从零起步、逐步写出完整课程报告的 LaTeX 教程。本书收录网站上CHAPTER_COUNT_ZH章的完整正文、公式、代码、练习与延伸阅读。读者可以顺序学习，也可以按当前任务查阅。
 
-前四章建立中文文档、结构、公式与数学笔记的基础；第五至八章处理图片、表格、版式、引用与展示；第九至十二章把这些方法用于经济学模型、计量结果、金融现金流与会计报表；最后两章完成课程报告，并学习怎样与 AI 协作写作和排错。
+本系列于 2026 年 7 月发布首篇，随后逐章补充，于 2026 年 9 月 16 日整理成合集。
+
+前四章建立中文文档、结构、公式与数学笔记的基础；第五至八章处理图片、表格、版式、引用与展示；第九至十二章把这些方法用于经济学模型、计量结果、金融现金流与会计报表；随后完成课程报告，学习怎样与 AI 协作写作和排错，并在 Overleaf 中导入、编译、协作与导出完整项目。
 
 书中数学公式与示例代码承担不同作用：正文公式用于阅读，等宽字体中的代码用于复制和修改。部分代码是需要插入现有文档的片段；标注为完整示例的代码包含文档类与正文，可以另存为独立文件编译。经济、金融与会计中的教学数值和模拟情景，均应按各章说明理解。
 
@@ -192,6 +194,15 @@ def escape(value):
     replacements = {'\\': r'\textbackslash{}', '&': r'\&', '%': r'\%', '$': r'\$', '#': r'\#', '_': r'\_', '{': r'\{', '}': r'\}', '^': r'\textasciicircum{}', '~': r'\textasciitilde{}'}
     return ''.join(replacements.get(char, char) for char in value)
 
+def chinese_count(value):
+    digits = '零一二三四五六七八九'
+    if value < 10:
+        return digits[value]
+    if value < 100:
+        tens, units = divmod(value, 10)
+        return (digits[tens] if tens > 1 else '') + '十' + (digits[units] if units else '')
+    return str(value)
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--posts', type=Path, default=(HERE/'chapters-md' if (HERE/'chapters-md').is_dir() else HERE.parent/'content/posts'))
@@ -203,16 +214,17 @@ def main():
         meta = tomllib.loads(header)
         chapters.append((meta['order'], path, meta, body.replace('Ziyu.Peng', 'Ziyu Peng')))
     chapters.sort()
-    if [order for order, *_ in chapters] != list(range(1, 15)):
-        raise ValueError('Expected exactly fourteen ordered tutorial chapters')
-    out = [PREAMBLE]
+    if not chapters or [order for order, *_ in chapters] != list(range(1, len(chapters) + 1)):
+        raise ValueError('Expected tutorial chapter orders to be unique and consecutive, starting at 1')
+    preamble = PREAMBLE.replace('CHAPTER_COUNT_ZH', chinese_count(len(chapters))).replace('CHAPTER_COUNT', str(len(chapters)))
+    out = [preamble]
     report = []
     for order, path, meta, body in chapters:
         doc = json.loads(pypandoc.convert_text(body, 'json', format='markdown+tex_math_dollars+tex_math_single_backslash+pipe_tables-raw_tex'))
         doc = transform(doc, f'c{order:02d}-')
         tex = pypandoc.convert_text(json.dumps(doc), 'latex', format='json', extra_args=['--wrap=preserve', '--top-level-division=section'])
         title = escape(meta['title'])
-        title_display = title.replace('：', '：\\\\', 1) if order in (9, 14) else title
+        title_display = title.replace('：', '：\\\\', 1) if order in (9, 14, 15) else title
         out += [f'\n\\chapter[{title}]{{{title_display}}}\n',
                 f'\\label{{chapter:{order:02d}}}\n',
                 '\\noindent{\\small\\color{Muted}'+escape(meta['stage'])+'\\quad / \\href{'+SITE+'/liuyihan/blog/'+path.stem+'/}{网页版}}\\par\\medskip\n', tex]

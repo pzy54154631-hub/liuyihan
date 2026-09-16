@@ -7,6 +7,7 @@ import json
 import re
 import subprocess
 import sys
+import tomllib
 import zipfile
 
 ROOT = Path(__file__).parent
@@ -38,6 +39,9 @@ class Page(HTMLParser):
 
 pages = {path: Page(path.read_text()) for path in PUBLIC.rglob('*.html')}
 errors, formulas = [], []
+chapter_numbers = sorted(tomllib.loads(path.read_text()[4:].split('\n+++',1)[0])['order']
+                         for path in (ROOT / 'content/posts').glob('latex-*.md'))
+example_files = sorted((ROOT / 'assets/tutorial/examples').glob('*.tex'))
 for path, parsed in pages.items():
     for url in parsed.links:
         link = urlsplit(url)
@@ -84,16 +88,16 @@ else:
     with zipfile.ZipFile(source_bundle) as archive:
         names = set(archive.namelist())
         required = {'main.tex', 'LICENSE.txt', 'NOTICE.md', 'README.md'}
-        required.update(f'examples/latex-{number:02}.tex' for number in range(1, 15))
+        required.update(f'examples/latex-{number:02}.tex' for number in chapter_numbers)
         required.update({'examples/latex-08-tikzposter.tex', 'examples/latex-08-beamerposter.tex'})
         if not required.issubset(names): errors.append('Complete source bundle missing: '+str(required-names))
         if archive.testzip(): errors.append('Complete source bundle is corrupt')
         if archive.read('main.tex') != (PUBLIC / 'assets/tutorial/latex-tutorial-complete.tex').read_bytes():
             errors.append('Single-file source differs from the source bundle')
         chapter_labels = re.findall(r'\\label\{chapter:(\d+)\}', archive.read('main.tex').decode())
-        if chapter_labels != [f'{number:02}' for number in range(1, 15)]:
-            errors.append('Complete source does not contain all 14 chapters in order')
-        print('Complete book source, 16 examples, and license files verified')
+        if chapter_labels != [f'{number:02}' for number in chapter_numbers]:
+            errors.append('Complete source does not contain all current chapters in order')
+        print(f'Complete book source, {len(example_files)} examples, and license files verified')
 book_pdf = PUBLIC / 'assets/tutorial/latex-tutorial-complete.pdf'
 if not book_pdf.exists() or not book_pdf.read_bytes().startswith(b'%PDF-'):
     errors.append('Complete tutorial PDF is missing or invalid')
