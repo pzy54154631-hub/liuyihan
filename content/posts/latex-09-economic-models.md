@@ -67,8 +67,11 @@ $$
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath,amssymb,pgfplots}
 \pgfplotsset{compat=1.18}
+\usepackage[hidelinks]{hyperref}
 \title{经济学模型：预算、选择与市场}
-\author{Ziyu Peng \and 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 \begin{document}
 \maketitle

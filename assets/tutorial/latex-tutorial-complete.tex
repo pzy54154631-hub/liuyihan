@@ -28,6 +28,8 @@
 \linespread{1.25}
 \setlength{\parindent}{2em}
 \setlength{\parskip}{0.25em}
+\widowpenalty=10000
+\clubpenalty=10000
 \setlength{\emergencystretch}{3em}
 \setlength{\LTpre}{0.5em}
 \setlength{\LTpost}{0.8em}
@@ -76,7 +78,9 @@
 \vspace{8mm}
 {\large 十五章完整教程 · 公式 · 表格 · 专业写作 · AI 协作\par}
 \vspace{24mm}
-{\large\href{https://github.com/pzy54154631-hub?tab=repositories}{Ziyu Peng}\qquad 刘毅涵\par}
+{\large\textit{\href{https://pzy54154631-hub.github.io/homepage/}{Ziyu Peng}, University of Colorado Boulder}\par}
+\vspace{3mm}
+{\large\href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院\par}
 \vfill
 {\small\color{Muted}合集整理：2026 年 9 月 16 日\quad / \quad MIT License\par}
 \vspace{4mm}
@@ -147,7 +151,9 @@ LaTeX 的工作方式是写下内容与结构，再由程序排版。输入 \tex
 \usepackage[hidelinks]{hyperref}
 
 \title{一页学习笔记}
-\author{Ziyu Peng \and 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 
 \begin{document}
@@ -266,7 +272,9 @@ LaTeX 的工作方式是写下内容与结构，再由程序排版。输入 \tex
 \setcounter{secnumdepth}{2}
 
 \title{课程报告的结构练习}
-\author{Ziyu Peng \and 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 
 \begin{document}
@@ -438,7 +446,9 @@ f(x)=
 \usepackage{amsmath,amssymb}
 \usepackage[hidelinks]{hyperref}
 \title{公式与对齐练习}
-\author{Ziyu Peng \and 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 \begin{document}
 \maketitle
@@ -584,7 +594,9 @@ f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}.
 \usepackage{amsmath,amssymb}
 \usepackage[hidelinks]{hyperref}
 \title{微积分学习卡片}
-\author{Ziyu Peng \and 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 \begin{document}
 \maketitle
@@ -1082,7 +1094,9 @@ xelatex citation-demo.tex
 \usetheme{Madrid}
 \setbeamertemplate{navigation symbols}{}
 \title{怎样把一页报告讲清楚}
-\author{Ziyu Peng \and 刘毅涵}
+\author[Ziyu Peng, 刘毅涵]{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \texorpdfstring{\\[0.35em]}{; }
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 
 \begin{document}
@@ -1156,8 +1170,11 @@ One question, one main message.
 % 作者：Ziyu Peng、刘毅涵
 \documentclass[25pt,a0paper,portrait]{tikzposter}
 \usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage[hidelinks]{hyperref}
 \title{从问题到表达：一张学习海报}
-\author{Ziyu Peng \quad 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \institute{LaTeX 学习手记 · 教学示例}
 % tikzposter 2.0 的标题缩放键兼容修正。
 \makeatletter
@@ -1201,7 +1218,9 @@ One question, one main message.
   \begin{center}
     {\LARGE\bfseries 从问题到表达\par}
     \bigskip
-    Ziyu Peng \quad 刘毅涵
+    \href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院
   \end{center}
   \vspace{1cm}
   \begin{columns}[t,totalwidth=\textwidth]
@@ -1289,8 +1308,11 @@ x^*=\frac{\alpha m}{p_x},\qquad y^*=\frac{(1-\alpha)m}{p_y}.
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath,amssymb,pgfplots}
 \pgfplotsset{compat=1.18}
+\usepackage[hidelinks]{hyperref}
 \title{经济学模型：预算、选择与市场}
-\author{Ziyu Peng \and 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 \begin{document}
 \maketitle
@@ -1421,8 +1443,11 @@ c_i=\beta_0+\beta_1y_i+\beta_2s_i+u_i.
 \documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath,amssymb,booktabs,array}
+\usepackage[hidelinks]{hyperref}
 \title{计量经济学：结果表的组织}
-\author{Ziyu Peng \and 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 \begin{document}
 \maketitle
@@ -1553,8 +1578,11 @@ B_0=\sum_{t=1}^{3}\frac{40}{1.05^t}+\frac{1000}{1.05^3}\approx972.77.
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath,amssymb,booktabs,siunitx}
 \sisetup{group-separator={,},group-minimum-digits=4}
+\usepackage[hidelinks]{hyperref}
 \title{金融公式：让现金流与时间对齐}
-\author{Ziyu Peng \and 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 \begin{document}
 \maketitle
@@ -1686,8 +1714,11 @@ $t=0$ 表示期初；$t=1,2,3$ 分别表示第 1、2、3 年末。
 \documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
 \usepackage[margin=2.2cm]{geometry}
 \usepackage{amsmath,amssymb,booktabs,longtable,array}
+\usepackage[hidelinks]{hyperref}
 \title{会计分录与报表：让同一组数字相互勾稽}
-\author{Ziyu Peng \and 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 \begin{document}
 \maketitle
@@ -2059,7 +2090,9 @@ course-report/
 \usepackage[hidelinks]{hyperref}
 
 \title{活动预算差异说明}
-\author{Ziyu Peng \and 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 
 \begin{document}
@@ -2194,14 +2227,17 @@ course-report/
 % !TeX program = xelatex
 % SPDX-License-Identifier: MIT
 % Copyright (c) 2026 Ziyu Peng and 刘毅涵
-% Author: https://github.com/pzy54154631-hub?tab=repositories
+% Author: https://pzy54154631-hub.github.io/homepage/
+% Author: https://pzy54154631-hub.github.io/liuyihan/
 \documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath,booktabs}
 \usepackage[hidelinks]{hyperref}
 
 \title{我的第一份 Overleaf 课程笔记}
-\author{Ziyu Peng \and 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 
 \begin{document}
@@ -2315,6 +2351,7 @@ course-report/
 \backmatter
 \chapter*{继续写下去}
 从一页笔记开始，把结构、公式和资料来源逐步写清楚，再把能重复使用的部分积累成自己的工作方法。\par
-\noindent \href{https://github.com/pzy54154631-hub?tab=repositories}{Ziyu Peng}\qquad 刘毅涵\par
+\noindent \textit{\href{https://pzy54154631-hub.github.io/homepage/}{Ziyu Peng}, University of Colorado Boulder}\par
+\noindent \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院\par
 \noindent 在线目录：\url{https://pzy54154631-hub.github.io/liuyihan/blog/latex/}\par
 \end{document}

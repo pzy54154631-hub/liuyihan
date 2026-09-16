@@ -14,7 +14,8 @@ import pypandoc
 
 HERE = Path(__file__).resolve().parent
 SITE = 'https://pzy54154631-hub.github.io'
-AUTHOR_URL = 'https://github.com/pzy54154631-hub?tab=repositories'
+AUTHOR_URL = 'https://pzy54154631-hub.github.io/homepage/'
+SECOND_AUTHOR_URL = 'https://pzy54154631-hub.github.io/liuyihan/'
 
 LICENSE = '''MIT License
 
@@ -69,6 +70,8 @@ PREAMBLE = r'''% !TeX program = xelatex
 \linespread{1.25}
 \setlength{\parindent}{2em}
 \setlength{\parskip}{0.25em}
+\widowpenalty=10000
+\clubpenalty=10000
 \setlength{\emergencystretch}{3em}
 \setlength{\LTpre}{0.5em}
 \setlength{\LTpost}{0.8em}
@@ -117,7 +120,9 @@ PREAMBLE = r'''% !TeX program = xelatex
 \vspace{8mm}
 {\large CHAPTER_COUNT_ZH章完整教程 · 公式 · 表格 · 专业写作 · AI 协作\par}
 \vspace{24mm}
-{\large\href{https://github.com/pzy54154631-hub?tab=repositories}{Ziyu Peng}\qquad 刘毅涵\par}
+{\large\textit{\href{https://pzy54154631-hub.github.io/homepage/}{Ziyu Peng}, University of Colorado Boulder}\par}
+\vspace{3mm}
+{\large\href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院\par}
 \vfill
 {\small\color{Muted}合集整理：2026 年 9 月 16 日\quad / \quad MIT License\par}
 \vspace{4mm}
@@ -232,7 +237,8 @@ def main():
                        'source_characters': len(body), 'code_blocks': body.count('```')//2})
     out += ['\n\\backmatter\n\\chapter*{继续写下去}\n',
             '从一页笔记开始，把结构、公式和资料来源逐步写清楚，再把能重复使用的部分积累成自己的工作方法。\\par\n',
-            '\\noindent \\href{'+AUTHOR_URL+'}{Ziyu Peng}\\qquad 刘毅涵\\par\n',
+            '\\noindent \\textit{\\href{'+AUTHOR_URL+'}{Ziyu Peng}, University of Colorado Boulder}\\par\n',
+            '\\noindent \\href{'+SECOND_AUTHOR_URL+'}{刘毅涵}，暨南大学经济学院\\par\n',
             '\\noindent 在线目录：\\url{'+SITE+'/liuyihan/blog/latex/}\\par\n',
             '\\end{document}\n']
     args.output.parent.mkdir(parents=True, exist_ok=True)

@@ -26,16 +26,19 @@ STYLE_VERSION = hashlib.sha256((ROOT / 'assets/site.css').read_bytes() + (ROOT /
 md = MarkdownIt('commonmark', {'html': False}).enable('table').use(dollarmath_plugin, allow_labels=False)
 SERIES_URL = f'{BASE}/blog/latex/'
 SERIES_TITLE = '把想法写成漂亮的一页'
-AUTHOR_GITHUB = 'https://github.com/pzy54154631-hub?tab=repositories'
+AUTHOR_HOME = 'https://pzy54154631-hub.github.io/homepage/'
+YIHAN_HOME = 'https://pzy54154631-hub.github.io/liuyihan/'
 TUTORIAL_ASSETS = f'{BASE}/assets/tutorial'
 
 def author_name(name):
     if name in ('Ziyu.Peng', 'Ziyu Peng'):
-        return f'<a class="author-link" href="{AUTHOR_GITHUB}" rel="author">Ziyu Peng ↗</a>'
+        return f'<a class="author-link" href="{AUTHOR_HOME}" rel="author">Ziyu Peng ↗</a>'
+    if name == "刘毅涵":
+        return f'<a class="author-link" href="{YIHAN_HOME}" rel="author">刘毅涵 ↗</a>'
     return e(name)
 
 def tutorial_license():
-    return f'''<aside class="tutorial-license"><span class="license-badge">MIT · 开源教程</span><p>本教程的正文、PDF、LaTeX 源码与原创示例采用 <a href="https://opensource.org/license/mit" rel="license">MIT 协议</a>。你可以自由编辑、复制、再发布及商用；再发布时请保留版权与许可声明。</p><p class="license-credit">© 2026 {author_name('Ziyu Peng')} · 刘毅涵 <span aria-hidden="true">/</span> <a href="{TUTORIAL_ASSETS}/LICENSE.txt">阅读完整许可</a> · <a href="{TUTORIAL_ASSETS}/NOTICE.md">许可适用范围</a></p></aside>'''
+    return f'''<aside class="tutorial-license"><span class="license-badge">MIT · 开源教程</span><p>本教程的正文、PDF、LaTeX 源码与原创示例采用 <a href="https://opensource.org/license/mit" rel="license">MIT 协议</a>。你可以自由编辑、复制、再发布及商用；再发布时请保留版权与许可声明。</p><p class="license-credit">© 2026 {author_name('Ziyu Peng')} · {author_name('刘毅涵')} <span aria-hidden="true">/</span> <a href="{TUTORIAL_ASSETS}/LICENSE.txt">阅读完整许可</a> · <a href="{TUTORIAL_ASSETS}/NOTICE.md">许可适用范围</a></p></aside>'''
 
 def full_downloads(chapters):
     example_count = len(list((ROOT / 'assets/tutorial/examples').glob('*.tex')))
@@ -133,7 +136,7 @@ def series_index(chapters):
     for stage, entries in groups.items():
         rows = ''.join(f'''<a class="chapter-card" href="{p['url']}"><span class="chapter-no">{p['order']:02}</span><div><h3>{e(p['title'])}</h3><p>{e(p['summary'])}</p><span class="small-note">{(date_label(p["date"])+" · " if len(p["date"]) == 7 else "")}约 {p['minutes']} 分钟阅读 · 配套练习</span></div><span aria-hidden="true">↗</span></a>''' for p in entries)
         contents += f'<section class="chapter-group"><h2>{e(stage)}</h2>{rows}</section>'
-    return f'''<main class="wrap" id="main"><div class="series-wrap"><nav class="breadcrumb"><a href="{BASE}/blog/">所有手记</a> / LaTeX 学习系列</nav><header class="series-header"><span class="hello">一页一页，把想法写清楚。</span><h1>{SERIES_TITLE}</h1><p class="series-subtitle">LaTeX 入门与经管专业排版手记</p><div class="article-meta"><span>{author_name("Ziyu Peng")} · 刘毅涵</span><span>{len(chapters)} 章 · 从入门到完整作品</span></div><p class="series-intro">写公式、整理数据、解释一个经济模型，最后把它们放进一份读起来舒服的报告。这套手记从原有的 LaTeX 教程展开，保留基础与进阶内容，也加入经济学、金融和会计中的常用表达，以及用 AI 辅助写作、修改和排错的方法。新增的 Overleaf 实操章，把建立项目、在线编译与导出串成一条完整流程。</p><div class="series-actions"><a class="button button-primary" href="{chapters[0]['url']}">从第一章开始 ↗</a><a class="button button-secondary" href="#downloads">整本下载与开源许可 ↓</a></div></header>{full_downloads(chapters)}<aside class="reading-plan"><strong>从七月的一页，到九月的一本</strong><p>首篇记于 2026 年 7 月，随后围绕公式、图表、经管课程与写作工具逐章补充。2026 年 9 月 16 日，将这些手记统一整理成合集，并提供完整 PDF 与源码。</p><span class="small-note">从第一章开始建立文档骨架；需要先熟悉在线编译时，可以先看<a href="{BASE}/blog/latex-15-overleaf-workflow/">第 15 章 Overleaf 实操</a>。</span></aside><div class="series-contents">{contents}</div><aside class="reading-plan"><strong>怎么使用这些手记</strong><p>先看网页中的效果与解释，再下载本章完整源文件，用 XeLaTeX 编译。代码框提供复制按钮；片段需按章节说明放入导言区或正文。第 07 章的参考文献还需要 Biber。经济、金融与会计章节均使用明确标注的教学示例。</p></aside></div></main>'''
+    return f'''<main class="wrap" id="main"><div class="series-wrap"><nav class="breadcrumb"><a href="{BASE}/blog/">所有手记</a> / LaTeX 学习系列</nav><header class="series-header"><span class="hello">一页一页，把想法写清楚。</span><h1>{SERIES_TITLE}</h1><p class="series-subtitle">LaTeX 入门与经管专业排版手记</p><div class="article-meta"><span>{author_name("Ziyu Peng")} · {author_name("刘毅涵")}</span><span>{len(chapters)} 章 · 从入门到完整作品</span></div><p class="series-intro">写公式、整理数据、解释一个经济模型，最后把它们放进一份读起来舒服的报告。这套手记从原有的 LaTeX 教程展开，保留基础与进阶内容，也加入经济学、金融和会计中的常用表达，以及用 AI 辅助写作、修改和排错的方法。新增的 Overleaf 实操章，把建立项目、在线编译与导出串成一条完整流程。</p><div class="series-actions"><a class="button button-primary" href="{chapters[0]['url']}">从第一章开始 ↗</a><a class="button button-secondary" href="#downloads">整本下载与开源许可 ↓</a></div></header>{full_downloads(chapters)}<aside class="reading-plan"><strong>从七月的一页，到九月的一本</strong><p>首篇记于 2026 年 7 月，随后围绕公式、图表、经管课程与写作工具逐章补充。2026 年 9 月 16 日，将这些手记统一整理成合集，并提供完整 PDF 与源码。</p><span class="small-note">从第一章开始建立文档骨架；需要先熟悉在线编译时，可以先看<a href="{BASE}/blog/latex-15-overleaf-workflow/">第 15 章 Overleaf 实操</a>。</span></aside><div class="series-contents">{contents}</div><aside class="reading-plan"><strong>怎么使用这些手记</strong><p>先看网页中的效果与解释，再下载本章完整源文件，用 XeLaTeX 编译。代码框提供复制按钮；片段需按章节说明放入导言区或正文。第 07 章的参考文献还需要 Biber。经济、金融与会计章节均使用明确标注的教学示例。</p></aside></div></main>'''
 
 def chapter_navigation(p, chapters):
     index = chapters.index(p)
@@ -186,7 +189,7 @@ def build():
                 if example.is_file(): archive.write(example, example.name)
             archive.write(ROOT / 'assets/tutorial/LICENSE.txt', 'LICENSE.txt')
             archive.write(ROOT / 'assets/tutorial/NOTICE.md', 'NOTICE.md')
-            archive.writestr('README.txt', 'LaTeX 入门与经管专业排版手记\n作者：Ziyu Peng、刘毅涵\nZiyu Peng GitHub：https://github.com/pzy54154631-hub?tab=repositories\n\n网页目录：https://pzy54154631-hub.github.io/liuyihan/blog/latex/\n默认使用 XeLaTeX 编译。第07章参考文献需 Biber，详见各文件注释和网页教程。\n所有专业数据均为教学示例。\n本教程源码与原创示例采用 MIT 许可，可自由编辑、复制、再发布及商用。再发布时保留版权与许可声明；详见 LICENSE.txt 与 NOTICE.md。\n')
+            archive.writestr('README.txt', 'LaTeX 入门与经管专业排版手记\n作者：Ziyu Peng、刘毅涵\nZiyu Peng 主页：https://pzy54154631-hub.github.io/homepage/\n刘毅涵主页：https://pzy54154631-hub.github.io/liuyihan/\n\n网页目录：https://pzy54154631-hub.github.io/liuyihan/blog/latex/\n默认使用 XeLaTeX 编译。第07章参考文献需 Biber，详见各文件注释和网页教程。\n所有专业数据均为教学示例。\n本教程源码与原创示例采用 MIT 许可，可自由编辑、复制、再发布及商用。再发布时保留版权与许可声明；详见 LICENSE.txt 与 NOTICE.md。\n')
         with zipfile.ZipFile(PUBLIC / 'assets/tutorial/latex-tutorial-source.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
             source = ROOT / 'assets/tutorial'
             archive.write(source / 'latex-tutorial-complete.tex', 'main.tex')

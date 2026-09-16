@@ -67,7 +67,9 @@ $$
 \usepackage[hidelinks]{hyperref}
 
 \title{活动预算差异说明}
-\author{Ziyu Peng \and 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 
 \begin{document}

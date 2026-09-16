@@ -52,8 +52,11 @@ $$
 \documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath,amssymb,booktabs,array}
+\usepackage[hidelinks]{hyperref}
 \title{计量经济学：结果表的组织}
-\author{Ziyu Peng \and 刘毅涵}
+\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+  \\[0.35em]
+  \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
 \begin{document}
 \maketitle
