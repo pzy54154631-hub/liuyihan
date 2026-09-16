@@ -3,7 +3,7 @@ title = "用 AI 写 LaTeX：从清楚的要求到可验证的文档"
 date = "2026-09-16"
 tag = "LaTeX 学习手记"
 summary = "拿一张预算差异表练习提要求、生成完整文件、局部修改和修复报错，再把同样的方法用到课程模板。"
-authors = ["Ziyu.Peng", "刘毅涵"]
+authors = ["Ziyu Peng", "刘毅涵"]
 series = "latex"
 order = 14
 stage = "第四阶段 · 带进经管课堂"
@@ -23,7 +23,7 @@ stage = "第四阶段 · 带进经管课堂"
 任务：A4 一页“活动预算差异说明”，包含一张表和两句解释。
 环境：UTF-8、XeLaTeX、ctexart、fontset=fandol。
 格式：页边距 2.5 cm，使用 booktabs 三线表，不画竖线。
-作者按顺序写 Ziyu.Peng、刘毅涵，不填写虚构写作日期。
+作者按顺序写 Ziyu Peng、刘毅涵，不填写虚构写作日期。
 
 数据均为虚构教学数据，单位：元。
 项目,预算,实际
@@ -67,7 +67,7 @@ $$
 \usepackage[hidelinks]{hyperref}
 
 \title{活动预算差异说明}
-\author{Ziyu.Peng \and 刘毅涵}
+\author{Ziyu Peng \and 刘毅涵}
 \date{}
 
 \begin{document}

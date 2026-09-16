@@ -4,6 +4,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 import json
+import re
 import subprocess
 import sys
 import zipfile
@@ -73,7 +74,29 @@ if bundle.exists():
     with zipfile.ZipFile(bundle) as archive:
         broken = archive.testzip()
         if broken: errors.append(f'Broken archive entry: {broken}')
-        print(f'Checked {len(archive.namelist())-1} downloadable examples')
+        print(f'Checked {sum(name.endswith(".tex") for name in archive.namelist())} downloadable examples')
+        if not {'LICENSE.txt', 'NOTICE.md'}.issubset(archive.namelist()):
+            errors.append('Example bundle is missing license notices')
+source_bundle = PUBLIC / 'assets/tutorial/latex-tutorial-source.zip'
+if not source_bundle.exists():
+    errors.append('Complete tutorial source bundle is missing')
+else:
+    with zipfile.ZipFile(source_bundle) as archive:
+        names = set(archive.namelist())
+        required = {'main.tex', 'LICENSE.txt', 'NOTICE.md', 'README.md'}
+        required.update(f'examples/latex-{number:02}.tex' for number in range(1, 15))
+        required.update({'examples/latex-08-tikzposter.tex', 'examples/latex-08-beamerposter.tex'})
+        if not required.issubset(names): errors.append('Complete source bundle missing: '+str(required-names))
+        if archive.testzip(): errors.append('Complete source bundle is corrupt')
+        if archive.read('main.tex') != (PUBLIC / 'assets/tutorial/latex-tutorial-complete.tex').read_bytes():
+            errors.append('Single-file source differs from the source bundle')
+        chapter_labels = re.findall(r'\\label\{chapter:(\d+)\}', archive.read('main.tex').decode())
+        if chapter_labels != [f'{number:02}' for number in range(1, 15)]:
+            errors.append('Complete source does not contain all 14 chapters in order')
+        print('Complete book source, 16 examples, and license files verified')
+book_pdf = PUBLIC / 'assets/tutorial/latex-tutorial-complete.pdf'
+if not book_pdf.exists() or not book_pdf.read_bytes().startswith(b'%PDF-'):
+    errors.append('Complete tutorial PDF is missing or invalid')
 if errors:
     print('\n'.join(errors), file=sys.stderr)
     sys.exit(1)

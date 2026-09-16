@@ -3,7 +3,7 @@ title = "金融现金流：收益率、复利与贴现"
 date = "2026-09-16"
 tag = "LaTeX 学习手记"
 summary = "用时间一致的例子练习净现值和债券公式，核对单位、现金流时点与舍入。"
-authors = ["Ziyu.Peng", "刘毅涵"]
+authors = ["Ziyu Peng", "刘毅涵"]
 series = "latex"
 order = 11
 stage = "第四阶段 · 带进经管课堂"
@@ -75,7 +75,7 @@ $$
 \usepackage{amsmath,amssymb,booktabs,siunitx}
 \sisetup{group-separator={,},group-minimum-digits=4}
 \title{金融公式：让现金流与时间对齐}
-\author{Ziyu.Peng \and 刘毅涵}
+\author{Ziyu Peng \and 刘毅涵}
 \date{}
 \begin{document}
 \maketitle

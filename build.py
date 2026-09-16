@@ -24,6 +24,22 @@ layout = Template((ROOT / 'templates/layout.html').read_text())
 md = MarkdownIt('commonmark', {'html': False}).enable('table').use(dollarmath_plugin, allow_labels=False)
 SERIES_URL = f'{BASE}/blog/latex/'
 SERIES_TITLE = '把想法写成漂亮的一页'
+AUTHOR_GITHUB = 'https://github.com/pzy54154631-hub?tab=repositories'
+TUTORIAL_ASSETS = f'{BASE}/assets/tutorial'
+
+def author_name(name):
+    if name in ('Ziyu.Peng', 'Ziyu Peng'):
+        return f'<a class="author-link" href="{AUTHOR_GITHUB}" rel="author">Ziyu Peng ↗</a>'
+    return e(name)
+
+def tutorial_license():
+    return f'''<aside class="tutorial-license"><span class="license-badge">MIT · 开源教程</span><p>本教程的正文、PDF、LaTeX 源码与原创示例采用 <a href="https://opensource.org/license/mit" rel="license">MIT 协议</a>。你可以自由编辑、复制、再发布及商用；再发布时请保留版权与许可声明。</p><p class="license-credit">© 2026 {author_name('Ziyu Peng')} · 刘毅涵 <span aria-hidden="true">/</span> <a href="{TUTORIAL_ASSETS}/LICENSE.txt">阅读完整许可</a> · <a href="{TUTORIAL_ASSETS}/NOTICE.md">许可适用范围</a></p></aside>'''
+
+def full_downloads():
+    return f'''<section class="full-downloads" id="downloads" aria-labelledby="download-title"><div class="download-heading"><span class="eyebrow">TAKE THE WHOLE NOTEBOOK</span><h2 id="download-title">把整本手记带走</h2><p>14 章完整正文、公式、代码与练习，离线阅读，也可以继续改写。</p></div><div class="download-grid"><a class="download-card" href="{TUTORIAL_ASSETS}/latex-tutorial-complete.pdf" download><span class="download-kind">PDF</span><div><h3>下载完整教程</h3><p>含封面、可点击目录与全部章节。</p></div><span aria-hidden="true">↓</span></a><a class="download-card" href="{TUTORIAL_ASSETS}/latex-tutorial-source.zip" download><span class="download-kind">TEX</span><div><h3>下载完整 LaTeX 源码</h3><p>完整主文件、16 份示例、编译说明与许可。</p></div><span aria-hidden="true">↓</span></a></div><div class="download-secondary"><a href="{TUTORIAL_ASSETS}/latex-tutorial-complete.tex" download>只下载整本 .tex 文件 ↓</a><a href="{TUTORIAL_ASSETS}/latex-examples.zip" download>只下载配套示例 ↓</a></div>{tutorial_license()}</section>'''
+
+def compact_downloads():
+    return f'''<aside class="complete-book-links"><span>想离线阅读整套教程？</span><a href="{TUTORIAL_ASSETS}/latex-tutorial-complete.pdf" download>完整 PDF ↓</a><a href="{TUTORIAL_ASSETS}/latex-tutorial-source.zip" download>完整 LaTeX 源码 ↓</a></aside>'''
 
 def render_post(content):
     tokens = md.parse(content.strip())
@@ -87,7 +103,7 @@ def cards(posts):
 def series_card(posts):
     count = len([p for p in posts if p.get('series') == 'latex'])
     if not count: return ''
-    return f'''<a class="series-feature" href="{SERIES_URL}"><div class="series-art" aria-hidden="true"><span class="paper-formula">Aa<br><i>∑ xᵢ</i></span><span class="paper-star">✦</span></div><div><span class="eyebrow">LATEX · A LEARNING NOTEBOOK</span><h2>{SERIES_TITLE}</h2><p>从第一份中文文档，到经济模型、金融现金流和会计报表。把一个假期的学习，安排成 {count} 个小章节。</p><span class="series-caption">{count} 章 · 4 个学习阶段 · 附完整示例 <span aria-hidden="true">↗</span></span></div></a>'''
+    return f'''<a class="series-feature" href="{SERIES_URL}"><div class="series-art" aria-hidden="true"><span class="paper-formula">Aa<br><i>∑ xᵢ</i></span><span class="paper-star">✦</span></div><div><span class="eyebrow">LATEX · A LEARNING NOTEBOOK</span><h2>{SERIES_TITLE}</h2><p>从第一份中文文档，到经济模型、金融现金流和会计报表。把一个假期的学习，安排成 {count} 个小章节。</p><span class="series-caption">{count} 章 · 完整 PDF · 可编辑 LaTeX 源码 <span aria-hidden="true">↗</span></span></div></a>'''
 
 def series_index(chapters):
     groups = {}
@@ -96,7 +112,7 @@ def series_index(chapters):
     for stage, entries in groups.items():
         rows = ''.join(f'''<a class="chapter-card" href="{p['url']}"><span class="chapter-no">{p['order']:02}</span><div><h3>{e(p['title'])}</h3><p>{e(p['summary'])}</p><span class="small-note">约 {p['minutes']} 分钟阅读 · 配套练习</span></div><span aria-hidden="true">↗</span></a>''' for p in entries)
         contents += f'<section class="chapter-group"><h2>{e(stage)}</h2>{rows}</section>'
-    return f'''<main class="wrap" id="main"><div class="series-wrap"><nav class="breadcrumb"><a href="{BASE}/blog/">所有手记</a> / LaTeX 学习系列</nav><header class="series-header"><span class="hello">一页一页，把想法写清楚。</span><h1>{SERIES_TITLE}</h1><p class="series-subtitle">LaTeX 入门与经管专业排版手记</p><div class="article-meta"><span>第一作者 Ziyu.Peng · 第二作者 刘毅涵</span><span>{len(chapters)} 章 · 从入门到完整作品</span></div><p class="series-intro">写公式、整理数据、解释一个经济模型，最后把它们放进一份读起来舒服的报告。这套手记从原有的 LaTeX 教程展开，保留基础与进阶内容，也加入经济学、金融和会计中的常用表达，以及用 AI 辅助写作、修改和排错的方法。</p><div class="series-actions"><a class="button button-primary" href="{chapters[0]['url']}">从第一章开始 ↗</a><a class="button button-secondary" href="{BASE}/assets/tutorial/latex-examples.zip" download>下载全部示例 ↓</a></div></header><aside class="reading-plan"><strong>给一个假期的学习安排</strong><p>可以每周完成一个阶段：先写出文档，再练公式图表，接着整理引用与展示，最后做一份经管课程报告。每天改一个小例子，隔几天把旧例子重新写一遍；节奏也可以按自己的课程调整。</p><span class="small-note">这是建议学习路线。全系列于 2026 年 9 月 16 日整理发布。</span></aside><div class="series-contents">{contents}</div><aside class="reading-plan"><strong>怎么使用这些手记</strong><p>先看网页中的效果与解释，再下载本章完整源文件，用 XeLaTeX 编译。代码框提供复制按钮；片段需按章节说明放入导言区或正文。第 07 章的参考文献还需要 Biber。经济、金融与会计章节均使用明确标注的教学示例。</p></aside></div></main>'''
+    return f'''<main class="wrap" id="main"><div class="series-wrap"><nav class="breadcrumb"><a href="{BASE}/blog/">所有手记</a> / LaTeX 学习系列</nav><header class="series-header"><span class="hello">一页一页，把想法写清楚。</span><h1>{SERIES_TITLE}</h1><p class="series-subtitle">LaTeX 入门与经管专业排版手记</p><div class="article-meta"><span>第一作者 {author_name("Ziyu Peng")} · 第二作者 刘毅涵</span><span>{len(chapters)} 章 · 从入门到完整作品</span></div><p class="series-intro">写公式、整理数据、解释一个经济模型，最后把它们放进一份读起来舒服的报告。这套手记从原有的 LaTeX 教程展开，保留基础与进阶内容，也加入经济学、金融和会计中的常用表达，以及用 AI 辅助写作、修改和排错的方法。</p><div class="series-actions"><a class="button button-primary" href="{chapters[0]['url']}">从第一章开始 ↗</a><a class="button button-secondary" href="#downloads">整本下载与开源许可 ↓</a></div></header>{full_downloads()}<aside class="reading-plan"><strong>给一个假期的学习安排</strong><p>可以每周完成一个阶段：先写出文档，再练公式图表，接着整理引用与展示，最后做一份经管课程报告。每天改一个小例子，隔几天把旧例子重新写一遍；节奏也可以按自己的课程调整。</p><span class="small-note">这是建议学习路线。全系列于 2026 年 9 月 16 日整理发布。</span></aside><div class="series-contents">{contents}</div><aside class="reading-plan"><strong>怎么使用这些手记</strong><p>先看网页中的效果与解释，再下载本章完整源文件，用 XeLaTeX 编译。代码框提供复制按钮；片段需按章节说明放入导言区或正文。第 07 章的参考文献还需要 Biber。经济、金融与会计章节均使用明确标注的教学示例。</p></aside></div></main>'''
 
 def chapter_navigation(p, chapters):
     index = chapters.index(p)
@@ -140,7 +156,20 @@ def build():
         with zipfile.ZipFile(PUBLIC / 'assets/tutorial/latex-examples.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
             for example in sorted((ROOT / 'assets/tutorial/examples').glob('*')):
                 if example.is_file(): archive.write(example, example.name)
-            archive.writestr('README.txt', 'LaTeX 入门与经管专业排版手记\n第一作者：Ziyu.Peng\n第二作者：刘毅涵\n\n网页目录：https://pzy54154631-hub.github.io/liuyihan/blog/latex/\n默认使用 XeLaTeX 编译。第07章参考文献需 Biber，详见各文件注释和网页教程。\n所有专业数据均为教学示例。\n')
+            archive.write(ROOT / 'assets/tutorial/LICENSE.txt', 'LICENSE.txt')
+            archive.write(ROOT / 'assets/tutorial/NOTICE.md', 'NOTICE.md')
+            archive.writestr('README.txt', 'LaTeX 入门与经管专业排版手记\n第一作者：Ziyu Peng\n作者 GitHub：https://github.com/pzy54154631-hub?tab=repositories\n第二作者：刘毅涵\n\n网页目录：https://pzy54154631-hub.github.io/liuyihan/blog/latex/\n默认使用 XeLaTeX 编译。第07章参考文献需 Biber，详见各文件注释和网页教程。\n所有专业数据均为教学示例。\n本教程源码与原创示例采用 MIT 许可，可自由编辑、复制、再发布及商用。再发布时保留版权与许可声明；详见 LICENSE.txt 与 NOTICE.md。\n')
+        with zipfile.ZipFile(PUBLIC / 'assets/tutorial/latex-tutorial-source.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+            source = ROOT / 'assets/tutorial'
+            archive.write(source / 'latex-tutorial-complete.tex', 'main.tex')
+            archive.write(source / 'LICENSE.txt', 'LICENSE.txt')
+            archive.write(source / 'NOTICE.md', 'NOTICE.md')
+            archive.write(source / 'SOURCE-README.md', 'README.md')
+            archive.write(ROOT / 'tools/generate_tutorial_book.py', 'generate_book.py')
+            for example in sorted((source / 'examples').glob('*.tex')):
+                archive.write(example, 'examples/'+example.name)
+            for chapter in sorted((ROOT / 'content/posts').glob('latex-*.md')):
+                archive.write(chapter, 'chapters-md/'+chapter.name)
     write(PUBLIC / '.nojekyll', '')
     write(PUBLIC / 'index.html', page('刘毅涵 · 毅涵的小站', profile['intro'], home(posts), active='home'))
     blog = f'''<main class="wrap" id="main"><header class="blog-header"><span class="eyebrow">YIHAN'S NOTEBOOK</span><h1>手记与小发现</h1><p>记录学习中的问题、生活里的观察，还有把事情慢慢弄明白的过程。</p></header>{series_card(posts)}<div class="blog-list">{cards([p for p in posts if not p.get('series')])}</div></main>'''
@@ -150,11 +179,11 @@ def build():
     for p in posts:
         tutorial = p.get('series') == 'latex'
         authors = ' · '.join(e(a) for a in p['authors'])
-        if tutorial: authors = '第一作者 '+e(p['authors'][0])+' · 第二作者 '+e(p['authors'][1])
+        if tutorial: authors = '第一作者 '+author_name(p['authors'][0])+' · 第二作者 '+author_name(p['authors'][1])
         series_link = f'<a href="{SERIES_URL}">LaTeX 学习系列</a> / 第 {p["order"]:02} 章' if tutorial else e(p['title'])
         toc = ('<details class="article-toc"><summary>本章目录</summary><ol>'+''.join(f'<li><a href="#{a}">{e(t)}</a></li>' for a,t,level in p['toc'] if level == 'h2')+'</ol></details>'+example_links(p)) if tutorial else ''
         chapter_label = f'<span class="chapter-kicker">CHAPTER {p["order"]:02} / {len(chapters):02}</span>' if tutorial else ''
-        body = f'''<main id="main" class="wrap"><article class="article-wrap"><nav class="breadcrumb" aria-label="面包屑"><a href="{BASE}/blog/">所有手记</a> / {series_link}</nav><header class="article-header">{chapter_label}<span class="post-tag">{e(p['tag'])}</span><h1>{e(p['title'])}</h1><p class="article-summary">{e(p['summary'])}</p><div class="article-meta"><span>{authors}</span><time datetime="{p['date']}">发布于 {p['date'].replace('-', '.')}</time><span>约 {p['minutes']} 分钟阅读</span></div></header>{toc}<div class="article-body">{p['html']}</div>{chapter_navigation(p, chapters) if tutorial else ''}<footer class="article-end"><a class="text-link" href="{SERIES_URL if tutorial else BASE+'/blog/'}">← {'回到系列目录' if tutorial else '回到所有手记'}</a><a class="text-link" href="mailto:{e(profile['email'])}">读后想聊聊？写信给我 ↗</a></footer></article></main>'''
+        body = f'''<main id="main" class="wrap"><article class="article-wrap"><nav class="breadcrumb" aria-label="面包屑"><a href="{BASE}/blog/">所有手记</a> / {series_link}</nav><header class="article-header">{chapter_label}<span class="post-tag">{e(p['tag'])}</span><h1>{e(p['title'])}</h1><p class="article-summary">{e(p['summary'])}</p><div class="article-meta"><span>{authors}</span><time datetime="{p['date']}">发布于 {p['date'].replace('-', '.')}</time><span>约 {p['minutes']} 分钟阅读</span></div></header>{toc}<div class="article-body">{p['html']}</div>{compact_downloads()+tutorial_license()+chapter_navigation(p, chapters) if tutorial else ''}<footer class="article-end"><a class="text-link" href="{SERIES_URL if tutorial else BASE+'/blog/'}">← {'回到系列目录' if tutorial else '回到所有手记'}</a><a class="text-link" href="mailto:{e(profile['email'])}">读后想聊聊？写信给我 ↗</a></footer></article></main>'''
         write(PUBLIC / f"blog/{p['slug']}/index.html", page(p['title']+' · 毅涵的小站', p['summary'], body, f"blog/{p['slug']}/", 'blog', 'article', tutorial=tutorial))
     not_found = f'<main class="wrap not-found" id="main"><p class="eyebrow">迷路了也没关系</p><h1>404</h1><p>这一页暂时找不到，回小站首页看看吧。</p><a class="button button-primary" href="{BASE}/">回到首页</a></main>'
     write(PUBLIC / '404.html', page('页面未找到 · 毅涵的小站', '回到毅涵的小站首页。', not_found, '404.html'))

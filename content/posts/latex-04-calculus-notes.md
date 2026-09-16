@@ -3,7 +3,7 @@ title = "从微积分公式到一页推导笔记"
 date = "2026-09-16"
 tag = "LaTeX 学习手记"
 summary = "整理极限、导数、积分、级数和偏导数的写法，把条件与解释放回公式旁边。"
-authors = ["Ziyu.Peng", "刘毅涵"]
+authors = ["Ziyu Peng", "刘毅涵"]
 series = "latex"
 order = 4
 stage = "第二阶段 · 把公式与图表讲清楚"
@@ -99,7 +99,7 @@ $$
 \usepackage{amsmath,amssymb}
 \usepackage[hidelinks]{hyperref}
 \title{微积分学习卡片}
-\author{Ziyu.Peng \and 刘毅涵}
+\author{Ziyu Peng \and 刘毅涵}
 \date{}
 \begin{document}
 \maketitle

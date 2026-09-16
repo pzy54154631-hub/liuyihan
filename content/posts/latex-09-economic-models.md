@@ -3,7 +3,7 @@ title = "经济学模型：把约束、推导与供需图写清楚"
 date = "2026-09-16"
 tag = "LaTeX 学习手记"
 summary = "从预算约束到拉格朗日条件，再用 PGFPlots 画一张可核对的供需图。"
-authors = ["Ziyu.Peng", "刘毅涵"]
+authors = ["Ziyu Peng", "刘毅涵"]
 series = "latex"
 order = 9
 stage = "第四阶段 · 带进经管课堂"
@@ -68,7 +68,7 @@ $$
 \usepackage{amsmath,amssymb,pgfplots}
 \pgfplotsset{compat=1.18}
 \title{经济学模型：预算、选择与市场}
-\author{Ziyu.Peng \and 刘毅涵}
+\author{Ziyu Peng \and 刘毅涵}
 \date{}
 \begin{document}
 \maketitle

@@ -3,7 +3,7 @@ title = "把公式写得清楚，也写得准确"
 date = "2026-09-16"
 tag = "LaTeX 学习手记"
 summary = "从行内公式到多行推导，理解上下标、数学符号、编号与对齐的选择。"
-authors = ["Ziyu.Peng", "刘毅涵"]
+authors = ["Ziyu Peng", "刘毅涵"]
 series = "latex"
 order = 3
 stage = "第二阶段 · 把公式与图表讲清楚"
@@ -90,7 +90,7 @@ f(x)=
 \usepackage{amsmath,amssymb}
 \usepackage[hidelinks]{hyperref}
 \title{公式与对齐练习}
-\author{Ziyu.Peng \and 刘毅涵}
+\author{Ziyu Peng \and 刘毅涵}
 \date{}
 \begin{document}
 \maketitle

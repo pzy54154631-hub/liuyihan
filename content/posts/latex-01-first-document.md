@@ -3,7 +3,7 @@ title = "从一份中文文档开始"
 date = "2026-09-16"
 tag = "LaTeX 学习手记"
 summary = "分清编辑器、编译器和宏包，用一页中文笔记建立能够反复使用的 LaTeX 起点。"
-authors = ["Ziyu.Peng", "刘毅涵"]
+authors = ["Ziyu Peng", "刘毅涵"]
 series = "latex"
 order = 1
 stage = "第一阶段 · 写出第一份文档"
@@ -31,7 +31,7 @@ LaTeX 的工作方式是写下内容与结构，再由程序排版。输入 `\se
 \usepackage[hidelinks]{hyperref}
 
 \title{一页学习笔记}
-\author{Ziyu.Peng \and 刘毅涵}
+\author{Ziyu Peng \and 刘毅涵}
 \date{}
 
 \begin{document}

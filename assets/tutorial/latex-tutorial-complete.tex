@@ -1,0 +1,2159 @@
+% !TeX program = xelatex
+% Generated from the complete 14-chapter web tutorial; editable standalone source.
+% MIT License. Copyright (c) 2026 Ziyu Peng and 刘毅涵.
+\documentclass[UTF8,a4paper,11pt,fontset=fandol,oneside,openany]{ctexbook}
+\usepackage[margin=23mm,top=22mm,bottom=23mm,headheight=15pt,headsep=8mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{graphicx,xcolor,tikz}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{fvextra,fancyhdr,enumitem,needspace}
+\usepackage[expansion=false]{microtype}
+\usepackage{xurl}
+\usepackage[unicode,colorlinks=true,linkcolor=InkPurple,urlcolor=InkPurple,
+  pdftitle={LaTeX 学习手记：从中文笔记到经管报告},
+  pdfauthor={Ziyu Peng; 刘毅涵},
+  pdfsubject={完整十四章教程与可编辑示例；MIT License}]{hyperref}
+\usepackage{bookmark}
+\definecolor{InkPurple}{HTML}{5A427A}
+\definecolor{SoftPurple}{HTML}{EDE6F6}
+\definecolor{PaperCream}{HTML}{FFF9EF}
+\definecolor{Muted}{HTML}{69616D}
+\definecolor{CodeInk}{HTML}{292334}
+\setmainfont{texgyrepagella}[Extension=.otf,UprightFont=*-regular,
+  BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\setsansfont{texgyreheros}[Extension=.otf,UprightFont=*-regular,
+  BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\setmonofont{DejaVuSansMono}[Extension=.ttf,UprightFont=*,
+  BoldFont=*-Bold,ItalicFont=*-Oblique,BoldItalicFont=*-BoldOblique,Scale=0.83]
+\linespread{1.25}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\setlength{\emergencystretch}{3em}
+\setlength{\LTpre}{0.5em}
+\setlength{\LTpost}{0.8em}
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{1}
+\setlist{itemsep=0.22em,topsep=0.4em,leftmargin=2em}
+\ctexset{
+  chapter={format=\raggedright\huge\bfseries\color{InkPurple},
+    name={第,章},number=\arabic{chapter},beforeskip=0pt,afterskip=20pt},
+  section={format=\large\bfseries\color{InkPurple},beforeskip=1.3em,afterskip=0.6em},
+  subsection={format=\normalsize\bfseries\color{InkPurple},beforeskip=1em,afterskip=0.4em}
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{Muted}LaTeX 学习手记}
+\fancyhead[R]{\small\color{Muted}\nouppercase{\leftmark}}
+\fancyfoot[L]{\footnotesize\color{Muted}Ziyu Peng \enspace / \enspace 刘毅涵}
+\fancyfoot[R]{\small\color{InkPurple}\thepage}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\chaptermark}[1]{\markboth{第\thechapter 章}{} }
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[L]{\footnotesize\color{Muted}LaTeX 学习手记}
+  \fancyfoot[R]{\small\color{InkPurple}\thepage}\renewcommand{\headrulewidth}{0pt}}
+\DefineVerbatimEnvironment{TutorialCode}{Verbatim}{
+  fontsize=\small,baselinestretch=1.03,breaklines=true,breakanywhere=true,
+  breaksymbolleft={},breaksymbolright={},tabsize=2,
+  frame=leftline,framesep=3mm,framerule=0.8pt,rulecolor=\color{SoftPurple},
+  xleftmargin=4mm,xrightmargin=1mm,formatcom=\color{CodeInk}}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newcommand{\pandocbounded}[1]{#1}
+\newcounter{none}
+\begin{document}
+\begin{titlepage}
+\pagecolor{PaperCream}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[SoftPurple] ([xshift=-25mm,yshift=-17mm]current page.north east) circle (63mm);
+  \draw[InkPurple!25,line width=0.8pt] ([xshift=15mm,yshift=31mm]current page.south west) circle (49mm);
+  \draw[InkPurple!15,line width=0.8pt] ([xshift=15mm,yshift=31mm]current page.south west) circle (58mm);
+\end{tikzpicture}
+\vspace*{18mm}
+{\sffamily\small\color{InkPurple}LEARNING NOTES \quad / \quad COMPLETE EDITION\par}
+\vspace{16mm}
+{\fontsize{35}{47}\selectfont\bfseries\color{InkPurple}LaTeX 学习手记\par}
+\vspace{7mm}
+{\LARGE 从中文笔记到经管报告\par}
+\vspace{8mm}
+{\large 十四章完整教程 · 公式 · 表格 · 专业写作 · AI 协作\par}
+\vspace{24mm}
+{\large\href{https://github.com/pzy54154631-hub?tab=repositories}{Ziyu Peng}\enspace 第一作者\par}
+\vspace{3mm}
+{\large 刘毅涵\enspace 第二作者\par}
+\vfill
+{\small\color{Muted}2026 年 9 月 16 日\quad / \quad MIT License\par}
+\vspace{4mm}
+{\small\href{https://pzy54154631-hub.github.io/liuyihan/blog/latex/}{在线阅读 · 章节目录与示例下载}\par}
+\vspace*{11mm}
+\end{titlepage}
+\nopagecolor
+\frontmatter
+\chapter*{这本手记怎么读}
+\addcontentsline{toc}{chapter}{这本手记怎么读}
+这是一份从零起步、逐步写出完整课程报告的 LaTeX 教程。本书收录网站上十四章的完整正文、公式、代码、练习与延伸阅读。读者可以顺序学习，也可以按当前任务查阅。
+
+前四章建立中文文档、结构、公式与数学笔记的基础；第五至八章处理图片、表格、版式、引用与展示；第九至十二章把这些方法用于经济学模型、计量结果、金融现金流与会计报表；最后两章完成课程报告，并学习怎样与 AI 协作写作和排错。
+
+书中数学公式与示例代码承担不同作用：正文公式用于阅读，等宽字体中的代码用于复制和修改。部分代码是需要插入现有文档的片段；标注为完整示例的代码包含文档类与正文，可以另存为独立文件编译。经济、金融与会计中的教学数值和模拟情景，均应按各章说明理解。
+
+\noindent\textbf{推荐编译方式：}中文文档使用 UTF-8 编码与 XeLaTeX；目录与交叉引用通常需要编译两遍。书中涉及书目的示例，还需要按该章说明运行 Biber。请先运行小例子，再逐步加入自己的内容。
+
+\noindent\textbf{本书在线版本：}\href{https://pzy54154631-hub.github.io/liuyihan/blog/latex/}{刘毅涵的手记 · LaTeX 教程目录}。每章开头的“网页版”链接通往对应章节，可继续查阅配套示例与更新。
+
+\chapter*{开放使用与许可}
+\addcontentsline{toc}{chapter}{开放使用与许可}
+\noindent\textbf{Copyright (c) 2026 Ziyu Peng and 刘毅涵}
+
+本教程的原创正文、完整 PDF、LaTeX 源码与原创示例采用 MIT 许可证。你可以自由使用、复制、编辑、合并、再发布、分发，也可以用于商业用途；分发副本或实质性内容时，须保留版权声明与下列许可说明。
+
+第三方宏包、字体、软件与引用文献遵循各自的许可证或版权条款；本许可不重新授予这些第三方内容的权利。本书中的外部链接用于延伸阅读。MIT 许可原文如下：
+
+\begingroup\small\setlength{\parindent}{0pt}\setlength{\parskip}{0.6em}
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ``Software''), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED ``AS IS'', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+\endgroup
+\clearpage
+\tableofcontents
+\mainmatter
+
+\chapter[从一份中文文档开始]{从一份中文文档开始}
+\label{chapter:01}
+\noindent{\small\color{Muted}第一阶段 · 写出第一份文档\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-01-first-document/}{网页版}}\par\medskip
+学一门排版工具，第一步不必做出复杂模板。先把一段中文、一条公式和一个标题变成清楚的 PDF，再回头理解每一行代码，往往更容易建立信心。本章的目标是一份能运行、能修改、也能解释的小文档。
+
+\section{先知道自己在操作什么}\label{c01-ux5148ux77e5ux9053ux81eaux5df1ux5728ux64cdux4f5cux4ec0ux4e48}
+
+LaTeX 的工作方式是写下内容与结构，再由程序排版。输入 \texttt{\textbackslash{}\allowbreak{}section\{\allowbreak{}学习目标\}\allowbreak{}}，是在说明``这里是一级标题''；字号、位置和编号由文档规则决定。它适合反复修改的课程报告、公式笔记与较长文档。短通知、多人临时编辑的表单，继续使用熟悉的办公软件也很合适。
+
+初学时容易混淆三个名字：LaTeX 是文档系统，XeLaTeX 是本教程选择的编译程序，Overleaf 是可以在线编辑与编译项目的平台。在本地写作，则通常需要 TeX Live、MacTeX 等发行版提供程序、宏包和字体，编辑器本身不等于完整的编译环境。
+
+中文文档在本系列中统一使用 \textbf{UTF-8 编码、\texttt{ctexart} 文档类和 XeLaTeX}。这样可以把精力先放在写作上，暂时不在不同引擎和字体方案之间切换。CTeX 本身也支持其他引擎，具体能力与设置见 \href{https://ctan.org/pkg/ctex}{CTeX 项目与手册}。
+
+\section{第一步：让完整文档运行起来}\label{c01-ux7b2cux4e00ux6b65ux8ba9ux5b8cux6574ux6587ux6863ux8fd0ux884cux8d77ux6765}
+
+在 Overleaf 建立空白项目，把主文件内容替换为下面的代码，并在项目设置中选择 XeLaTeX。在本地则把它保存为 UTF-8 的 \texttt{latex-\allowbreak{}01.\allowbreak{}tex}，使用 XeLaTeX 编译。第一行是给编辑器看的提示，不会替所有平台自动切换编译器。
+
+\begin{TutorialCode}
+% !TeX program = xelatex
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\title{一页学习笔记}
+\author{Ziyu Peng \and 刘毅涵}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{这份笔记要解决什么}
+先把内容写清楚，再让版式保持一致。
+本例中的姓名用于展示作者排列方式。
+
+\section{一条简单公式}
+设五次练习的得分为 \(x_1,\ldots,x_5\)，平均值为
+\[
+  \bar{x}=\frac{1}{5}\sum_{i=1}^{5}x_i.
+\]
+
+\section{下次继续}
+\begin{itemize}
+  \item 改写一个标题，观察编号是否自动更新。
+  \item 替换正文，保留清楚的段落结构。
+\end{itemize}
+\end{document}
+\end{TutorialCode}
+
+编译完成后，应当看到标题、按顺序编号的三个部分、一条居中的公式和两条列表。先核对这些具体结果，再调整外观；如果连最小文档都不能运行，继续增加宏包只会让排查更困难。
+
+\section{第二步：认出文档的骨架}\label{c01-ux7b2cux4e8cux6b65ux8ba4ux51faux6587ux6863ux7684ux9aa8ux67b6}
+
+从 \texttt{\textbackslash{}\allowbreak{}documentclass} 到 \texttt{\textbackslash{}\allowbreak{}begin\{\allowbreak{}document\}\allowbreak{}} 之前是\textbf{导言区}，放文档类、宏包、标题与全局设置。正文位于 \texttt{\textbackslash{}\allowbreak{}begin\{\allowbreak{}document\}\allowbreak{}} 和 \texttt{\textbackslash{}\allowbreak{}end\{\allowbreak{}document\}\allowbreak{}} 之间。标题信息写在导言区，真正打印标题的是正文中的 \texttt{\textbackslash{}\allowbreak{}maketitle}。
+
+\texttt{ctexart} 面向中文文章；\texttt{a4paper} 选择纸张；\texttt{fontset=\allowbreak{}fandol} 选择 TeX 发行版中的 Fandol 中文字体，减少对某台电脑字体的依赖。\texttt{geometry} 管页边距，\texttt{amsmath} 管较丰富的数学环境，\texttt{amssymb} 补充数学字体与符号，\texttt{hyperref} 为引用和网址等建立链接。本例把它放在其他宏包之后；遇到特别说明的宏包，再按对应手册调整顺序。
+
+宏包应当按需要加入。准备插图时再加载 \texttt{graphicx}，准备三线表时再加载 \texttt{booktabs}。把网上模板里所有宏包都复制进来，会增加冲突与解释成本。对于课程已有的正式模板，应先遵守模板要求，再借用本系列的正文写法。
+
+\section{第三步：理解三个常见符号}\label{c01-ux7b2cux4e09ux6b65ux7406ux89e3ux4e09ux4e2aux5e38ux89c1ux7b26ux53f7}
+
+反斜线通常引出命令，花括号圈定参数或作用范围，百分号开始注释。例如 \texttt{\textbackslash{}\allowbreak{}textbf\{\allowbreak{}关键词\}\allowbreak{}} 只把花括号内的内容加粗。源文件里的 \texttt{\% 这里是说明} 不会显示在 PDF 中；正文要显示百分号，应写成 \texttt{10\textbackslash{}\allowbreak{}\%}。
+
+文件名可以简单使用英文字母、数字与短横线，例如 \texttt{course-\allowbreak{}note.\allowbreak{}tex}。源文件是可继续编辑的内容，PDF 是排版后的阅读版本。分享项目时保留 \texttt{.\allowbreak{}tex} 和实际用到的图片、书目；只保存 PDF，以后就很难修改结构和公式了。
+
+\section{编译出错时，从第一条错误开始}\label{c01-ux7f16ux8bd1ux51faux9519ux65f6ux4eceux7b2cux4e00ux6761ux9519ux8befux5f00ux59cb}
+
+遇到错误，先看日志中最早出现的明确错误及其附近代码。\texttt{Undefined control sequence} 常见于命令拼写错误或缺少宏包；\texttt{Missing \$ inserted} 常见于在普通文字中直接使用数学上下标；中文乱码或字体错误则要检查编码、编译器与字体配置。
+
+报错行有时只是程序终于发现问题的位置，真正漏掉的右花括号可能在前几行。每完成一小段就编译，能把需要检查的范围缩小。若出现 PDF，但仍有警告，也应继续核对：有输出并不等于每一项设置都正确。
+
+\section{小练习：做一页自己的课程笔记}\label{c01-ux5c0fux7ec3ux4e60ux505aux4e00ux9875ux81eaux5df1ux7684ux8bfeux7a0bux7b14ux8bb0}
+
+把示例改成任意一门课的学习笔记，保留``问题、例子、下一步''三个部分；加粗一个关键词，再增加一条列表。完成后试着口头解释导言区、正文和宏包各负责什么。能够解释自己的五六个命令，比积攒一页看不懂的模板更有用。
+
+\href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-01.tex}{下载本章完整示例 latex-01.tex}
+
+\section{继续查阅}\label{c01-ux7ee7ux7eedux67e5ux9605}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.latex-project.org/help/documentation/}{LaTeX 官方文档入口}：了解文档系统与作者指南。
+\item
+  \href{https://ctan.org/pkg/ctex}{CTeX 项目与中文手册}：查找中文文档类、字体与标题设置。
+\item
+  \href{https://www.overleaf.com/learn/latex/Choosing_a_LaTeX_Compiler}{Overleaf：选择编译器}：在线项目的编译器设置说明。
+\end{itemize}
+
+\chapter[把笔记组织成一篇文章]{把笔记组织成一篇文章}
+\label{chapter:02}
+\noindent{\small\color{Muted}第一阶段 · 写出第一份文档\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-02-structure-and-references/}{网页版}}\par\medskip
+一页笔记可以靠记忆找到内容，十页报告就需要明确的结构。LaTeX 的便利也从这里开始：章节改了顺序，编号和引用可以跟着更新；新增一段内容，不必重新手工填写目录页码。本章把第一章的小文档变成一份可扩展的中文报告。
+
+\section{标题说明内容关系}\label{c02-ux6807ux9898ux8bf4ux660eux5185ux5bb9ux5173ux7cfb}
+
+在 \texttt{ctexart} 中，常用层级依次是 \texttt{\textbackslash{}\allowbreak{}section}、\texttt{\textbackslash{}\allowbreak{}subsection} 和 \texttt{\textbackslash{}\allowbreak{}subsubsection}。把章节看成``问题---分问题---具体讨论''，比只把它们理解成不同字号更有帮助。文章类没有 \texttt{\textbackslash{}\allowbreak{}chapter}；需要``章''的长篇结构，可以考虑 \texttt{ctexrep} 或 \texttt{ctexbook}。
+
+更深层的 \texttt{\textbackslash{}\allowbreak{}paragraph}、\texttt{\textbackslash{}\allowbreak{}subparagraph} 仍然是标题命令，不能因为名字里有 paragraph 就把它们当作普通换段命令。短报告通常两三级就足够；层级过深时，先检查内容能否合并，而不是再加一层编号。CTeX 的标题样式与中文配置可查阅 \href{https://ctan.org/pkg/ctex}{CTeX 手册}。
+
+\section{中文段落：让结构出现在源码里}\label{c02-ux4e2dux6587ux6bb5ux843dux8ba9ux7ed3ux6784ux51faux73b0ux5728ux6e90ux7801ux91cc}
+
+源码中\textbf{空一行}表示新段落。只按一次回车，通常仍属于同一段；不要用一连串 \texttt{\textbackslash{}\allowbreak{}\textbackslash{}\allowbreak{}} 制造段落和留白。中文标点可以直接输入，首行缩进交给文档类处理，避免手打全角空格。
+
+\begin{TutorialCode}
+这是第一段，交代要讨论的问题。
+这一行仍属于第一段。
+
+这是第二段，说明采用的材料和方法。
+可以用 \textbf{关键词} 提醒读者注意重点。
+\end{TutorialCode}
+
+短说明适合脚注，例如 \texttt{术语说明\textbackslash{}\allowbreak{}footnote\{\allowbreak{}这里补充定义。\}\allowbreak{}}。脚注会自动编号，但不应承担正文的全部论证。文献来源则最好使用后面章节介绍的书目系统，让作者、年份与文献表保持一致。
+
+\section{从手写``第三节''换成稳定标签}\label{c02-ux4eceux624bux5199ux7b2cux4e09ux8282ux6362ux6210ux7a33ux5b9aux6807ux7b7e}
+
+\texttt{\textbackslash{}\allowbreak{}label\{\allowbreak{}sec:methods\}\allowbreak{}} 是给一个位置取稳定的名字，\texttt{\textbackslash{}\allowbreak{}ref\{\allowbreak{}sec:methods\}\allowbreak{}} 输出相应编号，\texttt{\textbackslash{}\allowbreak{}pageref\{\allowbreak{}sec:methods\}\allowbreak{}} 输出页码。标签名不会直接出现在成品中；\texttt{sec:}、\texttt{fig:}、\texttt{tab:} 等前缀是便于管理的约定，并非强制语法。
+
+章节标签放在标题命令后面。将来为图表加标签时，要放在对应 \texttt{\textbackslash{}\allowbreak{}caption} 后面，因为说明文字命令会更新图表编号。标签应当唯一；两个位置使用同一个标签，会让引用含义不清楚。
+
+\begin{TutorialCode}
+\section{材料与方法}
+\label{sec:methods}
+本节说明材料的整理方式。
+
+方法说明见第~\ref{sec:methods}~节，
+位于第~\pageref{sec:methods}~页。
+\end{TutorialCode}
+
+这里的 \texttt{\textasciitilde{}} 是不可断行空格，常用来避免``第''和编号被拆开。中文排版也可以采用适合模板的其他间距方式，关键是全文一致。
+
+\section{一个完整、可修改的报告骨架}\label{c02-ux4e00ux4e2aux5b8cux6574ux53efux4feeux6539ux7684ux62a5ux544aux9aa8ux67b6}
+
+下面是独立文件，不需要接在上一章示例末尾。保存并编译两遍后，再观察目录与交叉引用。
+
+\begin{TutorialCode}
+% !TeX program = xelatex
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+
+\title{课程报告的结构练习}
+\author{Ziyu Peng \and 刘毅涵}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{研究问题}
+\label{sec:question}
+本例只演示文档结构，不包含实际研究结论。
+材料范围见第~\ref{sec:materials}~节。
+
+\section{材料与方法}
+\label{sec:methods}
+\subsection{材料范围}
+\label{sec:materials}
+这里说明准备使用哪些材料，以及为什么选择它们。
+
+这里另起一段，说明材料的限制。
+\footnote{本脚注仅用于演示补充说明。}
+
+\subsection{整理步骤}
+\begin{enumerate}
+  \item 记录材料出处。
+  \item 按主题进行整理。
+  \item 检查说明与材料是否一致。
+\end{enumerate}
+
+\section{小结}
+问题在第~\pageref{sec:question}~页提出。
+当前文档已经可以自动更新编号。
+
+\section*{致谢}
+\phantomsection
+\addcontentsline{toc}{section}{致谢}
+这里放置不编号的致谢内容。
+\end{document}
+\end{TutorialCode}
+
+\section{为什么经常要编译两遍}\label{c02-ux4e3aux4ec0ux4e48ux7ecfux5e38ux8981ux7f16ux8bd1ux4e24ux904d}
+
+第一次编译会把编号、页码等信息写入辅助文件，下一次编译才能把这些信息填到之前出现的引用和目录中。因此第一次出现 \texttt{??}，不一定是标签写错；再次编译后仍有问号，再检查拼写、重复标签与报错。有时结构变化需要更多一遍，或者交给 \texttt{latexmk} 处理更新流程。
+
+\texttt{tocdepth} 决定目录显示到几级，\texttt{secnumdepth} 决定标题编号到几级，两者不是一回事。本例都设为 2，让目录和编号到小节为止。改变其中一个值后，可以刻意比较差别。
+
+\section{无编号标题也可以进入目录}\label{c02-ux65e0ux7f16ux53f7ux6807ux9898ux4e5fux53efux4ee5ux8fdbux5165ux76eeux5f55}
+
+\texttt{\textbackslash{}\allowbreak{}section*\{\allowbreak{}致谢\}\allowbreak{}} 不产生普通章节编号，也不会自动进入目录。示例用 \texttt{\textbackslash{}\allowbreak{}addcontentsline} 加入目录条目；加载 \texttt{hyperref} 后，\texttt{\textbackslash{}\allowbreak{}phantomsection} 用于建立对应的链接位置。不要再用普通 \texttt{\textbackslash{}\allowbreak{}ref} 要求它输出一个不存在的章节编号。更复杂的目录与锚点设置见 \href{https://ctan.org/pkg/hyperref}{hyperref 手册}。
+
+\section{小练习：让一次改动验证整个结构}\label{c02-ux5c0fux7ec3ux4e60ux8ba9ux4e00ux6b21ux6539ux52a8ux9a8cux8bc1ux6574ux4e2aux7ed3ux6784}
+
+在``材料与方法''前插入新章节，再编译。检查正文里的引用、目录编号和页码是否更新；把目录深度改为 1，确认小节仍存在，只是目录不再显示它们。最后把``致谢''移到小结前，检查目录链接能否到达正确位置。
+
+\href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-02.tex}{下载本章完整示例 latex-02.tex}
+
+\section{继续查阅}\label{c02-ux7ee7ux7eedux67e5ux9605}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.latex-project.org/help/documentation/}{LaTeX 官方作者文档}：查找标准文档结构与命令说明。
+\item
+  \href{https://ctan.org/pkg/ctex}{CTeX 项目与手册}：中文标题、缩进与文档类。
+\item
+  \href{https://ctan.org/pkg/hyperref}{hyperref 项目与手册}：目录、引用和可点击链接。
+\end{itemize}
+
+\chapter[把公式写得清楚，也写得准确]{把公式写得清楚，也写得准确}
+\label{chapter:03}
+\noindent{\small\color{Muted}第二阶段 · 把公式与图表讲清楚\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-03-math-and-alignment/}{网页版}}\par\medskip
+公式排版的目标，是让读者看清变量之间的关系。先判断它是句子的一部分、一条重要结论，还是一段推导，再选择环境，比先记住大量命令更实用。本章把几种经常混用的写法放到一起比较。
+
+\section{行内、独立显示与自动编号}\label{c03-ux884cux5185ux72ecux7acbux663eux793aux4e0eux81eaux52a8ux7f16ux53f7}
+
+句子里的短公式用 \texttt{\textbackslash{}\allowbreak{}(.\allowbreak{}.\allowbreak{}.\allowbreak{}\textbackslash{}\allowbreak{})}，也可以使用 \texttt{\$.\allowbreak{}.\allowbreak{}.\allowbreak{}\$}。需要强调或较长的式子用 \texttt{\textbackslash{}\allowbreak{}[\allowbreak{}.\allowbreak{}.\allowbreak{}.\allowbreak{}\textbackslash{}\allowbreak{}]\allowbreak{}} 独立显示；需要后文引用时，使用 \texttt{equation} 自动编号。下面的代码片段放在正文，导言区先加载 \texttt{amsmath}。
+
+\begin{TutorialCode}
+样本均值记为 \(\bar{x}\)。
+
+\[
+\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i
+\]
+
+\begin{equation}
+  \bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i
+  \label{eq:mean}
+\end{equation}
+由式~\eqref{eq:mean}~可计算算术平均值。
+\end{TutorialCode}
+
+\texttt{\textbackslash{}\allowbreak{}eqref} 会为公式编号带上括号。不应手写``公式（3）''，也不必为每个短式子都编号。独立公式仍然属于句子，是否加逗号或句号要看上下文。编号的作用是帮助定位，最好留给需要引用的关系。写完后，沿着正文依次读一遍公式前后的句子，检查它是否仍然是一段完整的解释。网页中的独立公式用另一层显示标记呈现；复制到 \texttt{.\allowbreak{}tex} 文件时，请使用本章代码块里的 LaTeX 环境。
+
+\section{上下标与花括号}\label{c03-ux4e0aux4e0bux6807ux4e0eux82b1ux62ecux53f7}
+
+\texttt{x\_\allowbreak{}i} 的下标只有一个字符；\texttt{x\_\allowbreak{}\{\allowbreak{}i+1\}\allowbreak{}} 把整个 \texttt{i+1} 放进下标。指数同理，\texttt{x\textasciicircum{}12} 只会把 \texttt{1} 作为上标，十二次方应写为 \texttt{x\textasciicircum{}\{\allowbreak{}12\}\allowbreak{}}。
+
+\begin{TutorialCode}
+\[
+x_{i+1},\qquad x^{12},\qquad
+\frac{a+b}{c+d},\qquad \sqrt{x},\qquad
+\binom{n}{k}=\frac{n!}{k!(n-k)!}
+\]
+\end{TutorialCode}
+
+分式的分子、分母都由花括号包住。阅读源码时，可以把 \texttt{\textbackslash{}\allowbreak{}frac\{\allowbreak{}a+b\}\allowbreak{}\{\allowbreak{}c+d\}\allowbreak{}} 理解成两块整体，逐一核对左右括号。括号需要随较高的分式调整大小时，可用 \texttt{\textbackslash{}\allowbreak{}left(} 与 \texttt{\textbackslash{}\allowbreak{}right)} 成对包围；普通小式子不必全部加上自动伸缩括号。
+
+\section{数学字母与函数名不是同一种文字}\label{c03-ux6570ux5b66ux5b57ux6bcdux4e0eux51fdux6570ux540dux4e0dux662fux540cux4e00ux79cdux6587ux5b57}
+
+数学模式中的普通字母通常按变量处理，输入 \texttt{sin x} 会把 \texttt{s}、\texttt{i}、\texttt{n} 当作相邻变量；正弦应写成 \texttt{\textbackslash{}\allowbreak{}sin x}。同样常用的有 \texttt{\textbackslash{}\allowbreak{}log}、\texttt{\textbackslash{}\allowbreak{}ln}、\texttt{\textbackslash{}\allowbreak{}exp}、\texttt{\textbackslash{}\allowbreak{}lim}、\texttt{\textbackslash{}\allowbreak{}min} 和 \texttt{\textbackslash{}\allowbreak{}max}。说明文字使用 \texttt{\textbackslash{}\allowbreak{}text\{\allowbreak{}.\allowbreak{}.\allowbreak{}.\allowbreak{}\}\allowbreak{}}，例如下面的分段函数。
+
+\[
+f(x)=\begin{cases}x^2,&x\geq 0,\\-x,&x<0.\end{cases}
+\]
+
+\begin{TutorialCode}
+\[
+f(x)=
+\begin{cases}
+  x^2, & x\geq 0,\\
+  -x,  & x<0.
+\end{cases}
+\]
+\end{TutorialCode}
+
+常用符号不必一次背完，可以保留一个小索引：
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+写法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+表示什么
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+写法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+表示什么
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{\textbackslash{}\allowbreak{}alpha}、\texttt{\textbackslash{}\allowbreak{}beta} & \(\alpha\)、\(\beta\) & \texttt{\textbackslash{}\allowbreak{}Gamma}、\texttt{\textbackslash{}\allowbreak{}Delta} & \(\Gamma\)、\(\Delta\) \\
+\texttt{\textbackslash{}\allowbreak{}leq}、\texttt{\textbackslash{}\allowbreak{}geq} & \(\leq\)、\(\geq\) & \texttt{\textbackslash{}\allowbreak{}in}、\texttt{\textbackslash{}\allowbreak{}notin} & \(\in\)、\(\notin\) \\
+\texttt{\textbackslash{}\allowbreak{}subseteq} & \(\subseteq\) & \texttt{\textbackslash{}\allowbreak{}cup}、\texttt{\textbackslash{}\allowbreak{}cap} & \(\cup\)、\(\cap\) \\
+\texttt{\textbackslash{}\allowbreak{}sum}、\texttt{\textbackslash{}\allowbreak{}prod} & \(\sum\)、\(\prod\) & \texttt{\textbackslash{}\allowbreak{}forall}、\texttt{\textbackslash{}\allowbreak{}exists} & \(\forall\)、\(\exists\) \\
+\texttt{\textbackslash{}\allowbreak{}infty}、\texttt{\textbackslash{}\allowbreak{}partial} & \(\infty\)、\(\partial\) & \texttt{\textbackslash{}\allowbreak{}mathbb\{\allowbreak{}R\}\allowbreak{}} & \(\mathbb{R}\) \\
+\end{longtable}
+}
+
+\texttt{\textbackslash{}\allowbreak{}mathbb} 的常用支持来自 \texttt{amssymb} 所加载的 AMS 字体功能。不是每个希腊字母都存在独立的大写命令，例如通常直接用拉丁字母 \texttt{A}、\texttt{B} 表示对应的大写字形，不要猜写 \texttt{\textbackslash{}\allowbreak{}Alpha}。
+
+\section{按推导关系选择多行环境}\label{c03-ux6309ux63a8ux5bfcux5173ux7cfbux9009ux62e9ux591aux884cux73afux5883}
+
+\texttt{align} 适合几行等式沿等号对齐，\texttt{\&} 标记对齐位置，\texttt{\textbackslash{}\allowbreak{}\textbackslash{}\allowbreak{}} 换行。它的每行通常各有编号，\texttt{align*} 不编号；在 \texttt{align} 某行加入 \texttt{\textbackslash{}\allowbreak{}notag}，可以仅去掉该行编号。\texttt{align} 已经是独立数学环境，不应再放进 \texttt{\textbackslash{}\allowbreak{}[\allowbreak{}.\allowbreak{}.\allowbreak{}.\allowbreak{}\textbackslash{}\allowbreak{}]\allowbreak{}} 或 \texttt{equation} 中。
+
+若同一个长等式拆成几行而只需要一个编号，可在 \texttt{equation} 内使用 \texttt{split}。没有共同对齐点的长表达式可考虑 \texttt{multline}；几个独立公式逐行居中则可用 \texttt{gather}。这些环境的差异与限制见 \href{https://ctan.org/pkg/amsmath}{amsmath 用户手册}。
+
+\section{完整示例：一页代数推导}\label{c03-ux5b8cux6574ux793aux4f8bux4e00ux9875ux4ee3ux6570ux63a8ux5bfc}
+
+\begin{TutorialCode}
+% !TeX program = xelatex
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\title{公式与对齐练习}
+\author{Ziyu Peng \and 刘毅涵}
+\date{}
+\begin{document}
+\maketitle
+\section{逐步计算}
+设 \(x\in\mathbb{R}\)，展开得到
+\begin{align}
+  (x+1)^2 &= x^2+2x+1,\label{eq:expand}\\
+  (x+1)^2-x^2 &= 2x+1.\label{eq:difference}
+\end{align}
+式~\eqref{eq:difference}~由式~\eqref{eq:expand}~两边减去
+\(x^2\) 得到。
+
+\section{一个编号的多行公式}
+\begin{equation}
+\begin{split}
+  (a+b)^2-(a-b)^2
+    &= (a^2+2ab+b^2)\\
+    &\quad -(a^2-2ab+b^2)\\
+    &= 4ab.
+\end{split}
+\end{equation}
+
+\section{分段定义}
+\[
+|x|=\begin{cases}
+  x,  & x\geq 0,\\
+  -x, & x<0.
+\end{cases}
+\]
+\end{document}
+\end{TutorialCode}
+
+\section{易错点与小练习}\label{c03-ux6613ux9519ux70b9ux4e0eux5c0fux7ec3ux4e60}
+
+在数学环境里不要用空行划分段落，不要用一串空格试图对齐等号。正文中的下划线要转义为 \texttt{\textbackslash{}\allowbreak{}\_\allowbreak{}}；数学下标则必须进入数学模式。报错时也检查 \texttt{\textbackslash{}\allowbreak{}begin} 与 \texttt{\textbackslash{}\allowbreak{}end} 的环境名是否一致。
+
+练习时把示例中的平方展开改为两条自己能够验证的等式，分别用 \texttt{align*} 和 \texttt{equation} 加 \texttt{split} 排版，比较编号行为。然后故意把 \texttt{x\textasciicircum{}\{\allowbreak{}12\}\allowbreak{}} 改成 \texttt{x\textasciicircum{}12}，观察成品：这类错误不一定报错，必须阅读 PDF 才能发现。
+
+\href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-03.tex}{下载本章完整示例 latex-03.tex}
+
+\section{继续查阅}\label{c03-ux7ee7ux7eedux67e5ux9605}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://ctan.org/pkg/amsmath}{amsmath 官方项目页与用户手册}：多行公式、编号与数学文字。
+\item
+  \href{https://ctan.org/pkg/amsfonts}{AMS 字体与 amssymb}：扩展数学符号和字母。
+\item
+  \href{https://www.latex-project.org/help/documentation/}{LaTeX 官方文档中的数学指南}：按主题查找进一步说明。
+\end{itemize}
+
+\chapter[从微积分公式到一页推导笔记]{从微积分公式到一页推导笔记}
+\label{chapter:04}
+\noindent{\small\color{Muted}第二阶段 · 把公式与图表讲清楚\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-04-calculus-notes/}{网页版}}\par\medskip
+一份好用的数学笔记，需要同时留下公式、适用条件与推导关系。只收集漂亮的公式，很容易在复习时忘记变量范围，也容易把记号误认为定义。本章以常见微积分内容练习排版，为后面的经济学和金融应用准备一套清楚的表达方式。
+
+\section{极限记号之后，要有条件}\label{c04-ux6781ux9650ux8bb0ux53f7ux4e4bux540eux8981ux6709ux6761ux4ef6}
+
+\texttt{\textbackslash{}\allowbreak{}lim\_\allowbreak{}\{\allowbreak{}x\textbackslash{}\allowbreak{}to a\}\allowbreak{}f(x)=\allowbreak{}L} 表示一个极限关系，但它本身不是完整的极限定义。初学笔记中可以先写研究对象，再写极限与结论。例如，若函数在 \(a\) 处有定义，且趋近方式在定义域内考虑，连续性可用下面的关系表达：
+
+\[
+\lim_{x\to a}f(x)=f(a).
+\]
+
+\begin{TutorialCode}
+\[
+\lim_{x\to a}f(x)=f(a),\qquad
+\lim_{n\to\infty}a_n=A.
+\]
+\end{TutorialCode}
+
+\texttt{\textbackslash{}\allowbreak{}to} 比手写字符箭头更统一，\texttt{\textbackslash{}\allowbreak{}infty} 是无穷符号。一个是函数极限，一个是数列极限；排版相似，并不意味着变量的取值方式相同。在定义域端点处讨论连续性时，还要说明相应的单侧趋近。
+
+\section{导数：变量、算子与说明分开}\label{c04-ux5bfcux6570ux53d8ux91cfux7b97ux5b50ux4e0eux8bf4ux660eux5206ux5f00}
+
+导数定义在极限存在时写作
+
+\[
+f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}.
+\]
+
+\begin{TutorialCode}
+\[
+f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}.
+\]
+\end{TutorialCode}
+
+需要强调求导变量时，写 \texttt{\textbackslash{}\allowbreak{}frac\{\allowbreak{}\textbackslash{}\allowbreak{}mathrm\{\allowbreak{}d\}\allowbreak{}\}\allowbreak{}\{\allowbreak{}\textbackslash{}\allowbreak{}mathrm\{\allowbreak{}d\}\allowbreak{}x\}\allowbreak{}}。本系列用正体 \texttt{\textbackslash{}\allowbreak{}mathrm\{\allowbreak{}d\}\allowbreak{}} 表示微分记号，这是一种保持全文一致的排版选择。
+
+常见法则可以按``对象---条件---结果''整理。例如，在相关函数可微的条件下，乘积法则为 \((uv)'=u'v+uv'\)，链式法则为 \((f(g(x)))'=f'(g(x))g'(x)\)。对数函数 \(\ln x\) 在实数范围内需要 \(x>0\)；若写一般幂函数 \(x^a\) 的求导公式，先取 \(x>0\) 可避免对实指数定义域的含混。
+
+\section{积分：不要丢掉常数和微分}\label{c04-ux79efux5206ux4e0dux8981ux4e22ux6389ux5e38ux6570ux548cux5faeux5206}
+
+不定积分表示一族原函数，因此通常需要积分常数；定积分在条件满足时给出确定的数值。下面把二者放在一起，方便比较。
+
+\begin{TutorialCode}
+\begin{align*}
+  \int x^2\,\mathrm{d}x &= \frac{x^3}{3}+C,\\
+  \int_0^1 x^2\,\mathrm{d}x &= \frac{1}{3}.
+\end{align*}
+\end{TutorialCode}
+
+\texttt{\textbackslash{}\allowbreak{},\allowbreak{}} 在被积函数与微分之间加入一点空隙。对幂函数，\(\int x^n\,\mathrm{d}x=x^{n+1}/(n+1)+C\) 要注明 \(n\ne-1\)，并在实函数有定义的区间内使用；\(n=-1\) 时则涉及 \(\ln|x|+C\)。漂亮的分式不能代替这些数学条件。
+
+分部积分可写成 \(\int u\,\mathrm{d}v=uv-\int v\,\mathrm{d}u\)。定积分换元时，除了替换被积函数与微分，也要转换上下限，或先回代原变量再计算，避免把两套变量混在同一个式子里。
+
+\section{级数：上下限与收敛范围一起记录}\label{c04-ux7ea7ux6570ux4e0aux4e0bux9650ux4e0eux6536ux655bux8303ux56f4ux4e00ux8d77ux8bb0ux5f55}
+
+求和使用 \texttt{\textbackslash{}\allowbreak{}sum\_\allowbreak{}\{\allowbreak{}n=\allowbreak{}0\}\allowbreak{}\textasciicircum{}\{\allowbreak{}\textbackslash{}\allowbreak{}infty\}\allowbreak{}}。几何级数最适合练习``条件紧挨着结论''的写法：
+
+\[
+\sum_{n=0}^{\infty}ar^n=\frac{a}{1-r},\qquad |r|<1.
+\]
+
+\begin{TutorialCode}
+\[
+\sum_{n=0}^{\infty}ar^n=\frac{a}{1-r},
+\qquad |r|<1.
+\]
+\end{TutorialCode}
+
+指数函数的幂级数为 \(e^x=\sum_{n=0}^{\infty}x^n/n!\)，对所有实数 \(x\) 都成立。把级数截断到有限项得到近似式时，应改用 \texttt{\textbackslash{}\allowbreak{}approx} 或写出余项，而不能直接保留等号并删掉剩余部分。求和从 0 还是从 1 开始，也要随原式核对。
+
+\section{偏导数与向量：每个变量的位置都要明确}\label{c04-ux504fux5bfcux6570ux4e0eux5411ux91cfux6bcfux4e2aux53d8ux91cfux7684ux4f4dux7f6eux90fdux8981ux660eux786e}
+
+多元函数对单一变量求导使用 \texttt{\textbackslash{}\allowbreak{}partial}。若 \(z=f(x,y)\)，其中 \(x=x(t)\)、\(y=y(t)\)，在相应可微条件下，链式法则写为
+
+\[
+\frac{\mathrm{d}z}{\mathrm{d}t}
+=\frac{\partial f}{\partial x}\frac{\mathrm{d}x}{\mathrm{d}t}
++\frac{\partial f}{\partial y}\frac{\mathrm{d}y}{\mathrm{d}t}.
+\]
+
+梯度 \texttt{\textbackslash{}\allowbreak{}nabla f}、散度 \texttt{\textbackslash{}\allowbreak{}nabla\textbackslash{}\allowbreak{}cdot\textbackslash{}\allowbreak{}mathbf\{\allowbreak{}F\}\allowbreak{}}、旋度 \texttt{\textbackslash{}\allowbreak{}nabla\textbackslash{}\allowbreak{}times\textbackslash{}\allowbreak{}mathbf\{\allowbreak{}F\}\allowbreak{}} 可作为后续符号索引；双重积分和三重积分则使用 \texttt{\textbackslash{}\allowbreak{}iint}、\texttt{\textbackslash{}\allowbreak{}iiint}。这些命令负责表达形式，具体计算仍需结合课程定义、区域和方向条件。
+
+\section{完整示例：将一个函数整理成学习卡片}\label{c04-ux5b8cux6574ux793aux4f8bux5c06ux4e00ux4e2aux51fdux6570ux6574ux7406ux6210ux5b66ux4e60ux5361ux7247}
+
+\begin{TutorialCode}
+% !TeX program = xelatex
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\title{微积分学习卡片}
+\author{Ziyu Peng \and 刘毅涵}
+\date{}
+\begin{document}
+\maketitle
+\section{从函数到导数}
+设 \(f(x)=x^2+2x\)，其中 \(x\in\mathbb{R}\)。
+\begin{align*}
+  f'(x) &= 2x+2,\\
+  f''(x) &= 2.
+\end{align*}
+在 \(x=-1\) 处，一阶导数为零；
+又因二阶导数为正，此处为严格局部极小值点。
+
+\section{积分与验证}
+\begin{align*}
+  \int f(x)\,\mathrm{d}x
+    &= \frac{x^3}{3}+x^2+C,\\
+  \int_0^1 f(x)\,\mathrm{d}x
+    &= \left[\frac{x^3}{3}+x^2\right]_0^1
+     = \frac{4}{3}.
+\end{align*}
+对原函数再求导，可以检查不定积分的结果。
+
+\section{拓展到两个变量}
+设 \(g(x,y)=x^2+xy+y^2\)，则
+\[
+\nabla g=
+\begin{pmatrix}
+  2x+y\\
+  x+2y
+\end{pmatrix}.
+\]
+本例统一把梯度写成列向量。
+\end{document}
+\end{TutorialCode}
+
+\section{小练习：检查式子，也检查适用范围}\label{c04-ux5c0fux7ec3ux4e60ux68c0ux67e5ux5f0fux5b50ux4e5fux68c0ux67e5ux9002ux7528ux8303ux56f4}
+
+把函数改为 \(f(x)=x^3\)，重新写出一阶导数和从 0 到 1 的定积分；再把双变量函数改为 \(g(x,y)=xy\)，计算两个偏导数。最后给几何级数增加一行有限和，比较有限和与无穷级数的条件。完成后既检查括号、编号和对齐，也用手算确认结果。
+
+\href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-04.tex}{下载本章完整示例 latex-04.tex}
+
+\section{继续查阅}\label{c04-ux7ee7ux7eedux67e5ux9605}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://ctan.org/pkg/amsmath}{amsmath 项目与用户手册}：积分、矩阵和多行数学环境。
+\item
+  \href{https://ctan.org/pkg/amsfonts}{AMS 字体与扩展符号}：实数集等数学字母的支持。
+\item
+  \href{https://www.latex-project.org/help/documentation/}{LaTeX 官方数学文档入口}：寻找数学排版指南及更完整的示例。
+\end{itemize}
+
+\chapter[图片与表格：让材料自己说清楚]{图片与表格：让材料自己说清楚}
+\label{chapter:05}
+\noindent{\small\color{Muted}第二阶段 · 把公式与图表讲清楚\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-05-figures-tables/}{网页版}}\par\medskip
+图表进入文档之后，写作就多了一条线索：正文提出问题，图表提供材料，图注解释读者应该看到什么。排版时最值得花时间的，往往不是加边框，而是把标题、单位、来源和编号安排好。
+
+这一章从一张图片开始，再把同样的思路带到表格。学完后，可以整理一页课程报告，也可以做一份有编号、有说明的活动资料。
+
+\href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-05.tex}{下载完整示例：图片与表格}。示例用方框代替外部图片，保存后可直接用 XeLaTeX 编译；里面的预算和材料条目全部为虚构教学内容。
+
+\section{先分清图片与图片容器}\label{c05-ux5148ux5206ux6e05ux56feux7247ux4e0eux56feux7247ux5bb9ux5668}
+
+\texttt{graphicx} 提供 \texttt{\textbackslash{}\allowbreak{}includegraphics}，负责读取图片。\texttt{figure} 则是浮动环境，负责把图片、标题和编号放在合适的位置。它们的工作不同：图片可以不放进 \texttt{figure}，但一旦需要编号、图注和交叉引用，浮动环境通常更方便。
+
+下面分成两步，避免把宏包命令复制到正文里。
+
+\begin{TutorialCode}
+% 导言区
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\end{TutorialCode}
+
+把图片保存为项目中的 \texttt{images/\allowbreak{}reading-\allowbreak{}map.\allowbreak{}png}，再把这一段写在正文中。文件名是示例，必须对应自己实际上传的图片。
+
+\begin{TutorialCode}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.72\linewidth]{reading-map.png}
+  \caption{阅读材料的整理流程}
+  \label{fig:reading-map}
+\end{figure}
+
+图~\ref{fig:reading-map}~展示了材料的整理顺序。
+\end{TutorialCode}
+
+\texttt{h}、\texttt{t}、\texttt{b}、\texttt{p} 分别允许当前位置、页顶、页底和浮动页；它们提供可选位置，并不保证图片紧贴源码所在行。图表移动以后，正文中的引用仍然有效，因此尽量写``见图 1''，少写``如下图''。\texttt{\textasciitilde{}} 是不可断行空格，可以避免``图''和编号分到两行。
+
+\texttt{\textbackslash{}\allowbreak{}label} 要放在 \texttt{\textbackslash{}\allowbreak{}caption} 后，因为图号由 \texttt{\textbackslash{}\allowbreak{}caption} 更新。引用第一次显示问号时，先再编译一次；持续存在的问号才需要检查标签拼写和重复标签。
+
+图片大小优先设一个维度，让原始比例保持不变。在表格单元、子图或列表里，\texttt{\textbackslash{}\allowbreak{}linewidth} 表示当前位置可用的行宽，通常比整页的 \texttt{\textbackslash{}\allowbreak{}textwidth} 更合适。
+
+\section{两张图并排，需要两个层次的说明}\label{c05-ux4e24ux5f20ux56feux5e76ux6392ux9700ux8981ux4e24ux4e2aux5c42ux6b21ux7684ux8bf4ux660e}
+
+比较图常有一个总标题，再给每个面板一个子标题。加载 \texttt{subcaption} 后，可以用 \texttt{subfigure} \textbf{环境}创建面板；这里不需要加载同名的旧 \texttt{subfigure} \textbf{宏包}。
+
+\begin{TutorialCode}
+% 导言区：\usepackage{subcaption}
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[t]{0.46\linewidth}
+    \centering
+    \fbox{\rule{0pt}{25mm}\rule{0.8\linewidth}{0pt}}
+    \caption{方案甲}\label{fig:a}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.46\linewidth}
+    \centering
+    \fbox{\rule{0pt}{25mm}\rule{0.8\linewidth}{0pt}}
+    \caption{方案乙}\label{fig:b}
+  \end{subfigure}
+  \caption{两种版面的比较示意}\label{fig:comparison}
+\end{figure}
+\end{TutorialCode}
+
+这一段不依赖图片文件。两个 \texttt{\textbackslash{}\allowbreak{}fbox} 是占位框，之后可分别换成 \texttt{\textbackslash{}\allowbreak{}includegraphics[\allowbreak{}width=\allowbreak{}\textbackslash{}\allowbreak{}linewidth]\allowbreak{}\{\allowbreak{}.\allowbreak{}.\allowbreak{}.\allowbreak{}\}\allowbreak{}}。子图内部的 \texttt{\textbackslash{}\allowbreak{}linewidth} 已经是该面板的宽度，不能再按整页宽度塞入图片。子图标题与总标题的设置见 \href{https://ctan.org/pkg/subcaption}{subcaption 官方项目与手册}。
+
+\section{短表：先让列有分工，再画横线}\label{c05-ux77edux8868ux5148ux8ba9ux5217ux6709ux5206ux5de5ux518dux753bux6a2aux7ebf}
+
+表格的外层 \texttt{table} 管理浮动、标题和编号，内层 \texttt{tabular} 或 \texttt{tabularx} 管理行列。\texttt{booktabs} 的三条横线分别对应表头上方、表头下方和表格底部。简洁的横线通常已经足够，不必给每个单元格画完整方框。
+
+遇到说明文字很长的表格，\texttt{tabularx} 的 \texttt{X} 列会分配剩余宽度并自动换行；普通 \texttt{l}、\texttt{c}、\texttt{r} 列不会因此自动折行。
+
+\begin{TutorialCode}
+% 导言区
+\usepackage{booktabs,array,tabularx}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% 正文：所有金额均为虚构教学数据
+\begin{table}[htbp]
+  \centering
+  \caption{活动物料预算（虚构教学示例）}
+  \label{tab:budget}
+  \begin{tabularx}{\linewidth}{@{}lYr@{}}
+    \toprule
+    项目 & 用途说明 & 金额（元）\\
+    \midrule
+    印刷 & 提供知识卡片，并预留少量备用。 & 120\\
+    文具 & 用于填写反馈和记录问题。 & 80\\
+    合计 & 仅演示排版。 & 200\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+\end{TutorialCode}
+
+这里让项目左对齐、金额右对齐、长说明自动换行。\texttt{@\{\allowbreak{}\}\allowbreak{}} 移除两侧多余的列间留白；\texttt{\textbackslash{}\allowbreak{}arraybackslash} 让换行命令 \texttt{\textbackslash{}\allowbreak{}\textbackslash{}\allowbreak{}} 在这个自定义列中正常工作。表头已经写了``元''，金额单元格就不必重复单位。处理小数较多的结果表时，下一步可以学习专门的数字对齐工具，而不是靠手打空格凑位置。
+
+表格设计和横线规则可以继续查阅 \href{https://ctan.org/pkg/booktabs}{booktabs 官方文档}。
+
+\section{长表：让分页成为结构的一部分}\label{c05-ux957fux8868ux8ba9ux5206ux9875ux6210ux4e3aux7ed3ux6784ux7684ux4e00ux90e8ux5206}
+
+\texttt{tabularx} 会换行，却不能自动把整张表分到多页。文献目录、材料清单足够长时，使用 \texttt{longtable}，并直接放在正文中，\textbf{不要再套 \texttt{table}}。
+
+\begin{TutorialCode}
+% 导言区：\usepackage{longtable,booktabs}
+\begin{longtable}{@{}p{0.15\linewidth}
+  p{0.33\linewidth}p{0.40\linewidth}@{}}
+\caption{材料目录（虚构示例）}\label{tab:materials}\\
+\toprule 编号 & 材料 & 整理说明\\\midrule
+\endfirsthead
+
+\multicolumn{3}{c}{表~\thetable\ （续）}\\
+\toprule 编号 & 材料 & 整理说明\\\midrule
+\endhead
+
+\midrule\multicolumn{3}{r}{续下页}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+D01 & 示例记录 & 核对来源、日期和页码。\\
+D02 & 示例访谈 & 保留匿名编号与转写说明。\\
+% 继续添加短行；完整下载示例包含跨页内容。
+\end{longtable}
+\end{TutorialCode}
+
+四个分界命令分别定义首个表头、后续表头、续页页脚和末页页脚。列宽之和还要给列间距留空间，不能简单让所有 \texttt{p\{\allowbreak{}.\allowbreak{}.\allowbreak{}.\allowbreak{}\}\allowbreak{}} 加起来正好等于整行宽度。这里使用固定宽度的 \texttt{p} 列；\texttt{longtable} 本身不提供 \texttt{X} 列。
+
+它通常在行与行之间分页，不能把一格中整页长的访谈自然拆开。遇到这种材料，应把长文本还给正文，把表格用于索引或简要比较。标准 \texttt{longtable} 也不适合直接放进双栏文档、\texttt{minipage} 或 Beamer 幻灯片。分页机制与限制见 \href{https://ctan.org/pkg/longtable}{longtable 官方文档}。
+
+\section{留给自己的检查与练习}\label{c05-ux7559ux7ed9ux81eaux5df1ux7684ux68c0ux67e5ux4e0eux7ec3ux4e60}
+
+把下载示例里的方框换成一张自己的图，修改图注，然后在前文引用它。接着把短表新增一行，确认总额、单位和说明仍然一致。最后让长表跨页，检查每一页都有表头，末页没有多余的``续下页''。
+
+如果版面拥挤，先减少重复文字、拆分信息或调整列宽，再考虑字号。缩小整张表虽然容易，却可能把最需要阅读的内容一起缩得很小。
+
+\chapter[字体、颜色与代码：让整篇文档保持一致]{字体、颜色与代码：让整篇文档保持一致}
+\label{chapter:06}
+\noindent{\small\color{Muted}第三阶段 · 整理成完整作品\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-06-type-layout-code/}{网页版}}\par\medskip
+一份文档好读，往往来自几条稳定的约定：同一级标题长得一样，同一种提示使用同一种颜色，正文有足够的呼吸空间。学会调整样式以后，更重要的是把这些设置集中起来，让后面的每一页自然保持一致。
+
+本章沿用 XeLaTeX 与 \texttt{ctexart}。先完成一套简单样式，再处理代码和流程图，不需要一开始就收集很多宏包。
+
+\href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-06.tex}{下载完整示例：字体、版面与代码}。它包含中文正文、英文代码、中文源码和一个无需外部图片的小流程图。
+
+\section{字体设置先明确中文与西文}\label{c06-ux5b57ux4f53ux8bbeux7f6eux5148ux660eux786eux4e2dux6587ux4e0eux897fux6587}
+
+\begin{TutorialCode}
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\setmainfont{texgyrepagella-regular.otf}[
+  BoldFont=texgyrepagella-bold.otf,
+  ItalicFont=texgyrepagella-italic.otf,
+  BoldItalicFont=texgyrepagella-bolditalic.otf]
+\setmonofont{lmmono10-regular.otf}[BoldFont=lmmonolt10-bold.otf,
+  ItalicFont=lmmono10-italic.otf]
+\end{TutorialCode}
+
+\texttt{fontset=\allowbreak{}fandol} 为中文选择 TeX 发行版提供的 Fandol 字体集；\texttt{\textbackslash{}\allowbreak{}setmainfont} 设置西文正文，\texttt{\textbackslash{}\allowbreak{}setmonofont} 设置西文等宽字体。这里按 TeX 发行版中的字体文件名加载，避免部分电脑没有登记字体家族名而找不到字体；相关字体文件仍需要存在。在 XeLaTeX 下，\texttt{ctexart} 已经配置相关 Unicode 字体支持，因此不需要再叠加一套面向 pdfLaTeX 的传统字体编码方案。
+
+若确实需要换中文字体，可在 XeLaTeX 的导言区使用 \texttt{\textbackslash{}\allowbreak{}setCJKmainfont\{\allowbreak{}字体名\}\allowbreak{}}。前提是编译环境能够找到它：自己电脑上存在的字体，不代表共享项目或在线平台也存在。保留 Fandol 设置，是一个方便交换源码的起点。中文字体机制及跨引擎区别见 \href{https://ctan.org/pkg/ctex}{ctex 官方文档}。
+
+正文中的样式优先用语义清楚的命令：
+
+\begin{TutorialCode}
+\textbf{关键概念}
+\emph{An Example Book}
+\texttt{variable\_name}
+{\kaishu 一小段局部楷体说明。}
+{\large 一句较大的文字。}
+\end{TutorialCode}
+
+最后两处用花括号限制作用范围，避免字号或字体一直延续到后文。中文的斜体、粗体效果由字体及配置共同决定，不能把西文字体的表现直接套在汉字上。\texttt{\textbackslash{}\allowbreak{}textsc\{\allowbreak{}Small Caps\}\allowbreak{}} 也需要字体支持，不是中文标题的通用处理方法。
+
+\section{标题、留白与颜色放在导言区}\label{c06-ux6807ux9898ux7559ux767dux4e0eux989cux8272ux653eux5728ux5bfcux8a00ux533a}
+
+下面是一组可以一起使用的设置。代码里的颜色值只是本章选用的示例，后续修改一个名字，就能保持全文统一。
+
+\begin{TutorialCode}
+\usepackage[margin=2.5cm,headheight=16pt]{geometry}
+\usepackage{xcolor,fancyhdr}
+\definecolor{inkblue}{HTML}{385A75}
+\definecolor{paperblue}{HTML}{F1F5F8}
+\ctexset{section={format=\Large\bfseries\color{inkblue}}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{LaTeX 学习手记}
+\fancyhead[R]{字体与版面}
+\fancyfoot[C]{\thepage}
+\end{TutorialCode}
+
+\texttt{geometry} 负责页面尺寸；\texttt{fancyhdr} 负责页眉页脚。标题页可能使用文档类规定的 \texttt{plain} 页面样式，因此它不一定和后续页面完全相同，这是需要阅读 PDF 检查的地方。
+
+正文里，\texttt{\textbackslash{}\allowbreak{}textcolor\{\allowbreak{}inkblue\}\allowbreak{}\{\allowbreak{}文字\}\allowbreak{}} 只改变花括号中的内容；单独写 \texttt{\textbackslash{}\allowbreak{}color\{\allowbreak{}inkblue\}\allowbreak{}} 会影响其所在分组内后续的文字。提示信息最好同时有明确文字，不让颜色承担全部含义；打印成灰度后也应该能读懂。
+
+\begin{TutorialCode}
+\usepackage[expansion=false]{microtype}
+\end{TutorialCode}
+
+这行可以加入 XeLaTeX 项目。微排版功能取决于引擎：XeTeX 支持字符边缘突出等功能，但不支持字体伸缩，所以这里显式关闭 \texttt{expansion}。它能改善部分细节，却不会替你拆开过宽的公式或表格。功能差异见 \href{https://ctan.org/pkg/microtype}{microtype 官方文档}。
+
+\section{让读者看到代码，而不是让 LaTeX 执行它}\label{c06-ux8ba9ux8bfbux8005ux770bux5230ux4ee3ux7801ux800cux4e0dux662fux8ba9-latex-ux6267ux884cux5b83}
+
+正文写下 \texttt{\textbackslash{}\allowbreak{}section\{\allowbreak{}材料\}\allowbreak{}} 会生成标题；教程有时需要把这条命令原样印出来。短代码可以用 \texttt{\textbackslash{}\allowbreak{}verb|.\allowbreak{}.\allowbreak{}.\allowbreak{}|}，较长代码需要专门的环境。含下划线的变量名，放在这些环境中，也不需要逐个手动转义。
+
+英文程序代码可以从 \texttt{listings} 开始。下面将设置放在导言区，将 \texttt{lstlisting} 放在正文。
+
+\begin{TutorialCode}
+% 导言区
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  showstringspaces=false
+}
+
+% 正文
+\begin{lstlisting}[language=Python]
+values = [120, 80, 200]
+total = sum(values)
+print(total)
+\end{lstlisting}
+\end{TutorialCode}
+
+这里的 Python 代码只被排版，不会运行。若展示的是分析脚本，代码旁仍然需要解释输入是什么、输出是什么；一块彩色源码不会自动成为分析结论。
+
+包含中文的 LaTeX 示例，使用 \texttt{fvextra} 提供的 \texttt{Verbatim} 往往更直接。它关注原样显示和断行，不默认提供程序语言的语法高亮。
+
+\begin{TutorialCode}
+% 导言区
+\usepackage{fvextra}
+
+% 正文
+\begin{Verbatim}[breaklines=true,fontsize=\small]
+\section{材料整理}
+百分号写作 \%，与号写作 \&，下划线写作 \_。
+\end{Verbatim}
+\end{TutorialCode}
+
+注意大写的 \texttt{Verbatim} 与普通小写 \texttt{verbatim} 是不同环境；环境名称必须配对。复杂标题、图注等命令参数中也不宜随意塞入原样代码环境。中文显示仍依赖中文字体和引擎配置，示例使用的 XeLaTeX 与 Fandol 组合可作为起点。断行选项可以查阅 \href{https://ctan.org/pkg/fvextra}{fvextra 官方文档}。
+
+\texttt{minted} 是另一个选择，但需要和安装版本相配的外部高亮工具及执行权限设置。第一次整理笔记时，先把 \texttt{listings} 或 \texttt{Verbatim} 用稳妥；需要更丰富高亮时，再按 \texttt{minted} 当前手册配置，不要把``打开一个选项''当成所有环境都适用的答案。
+
+\section{一个小流程图就够开始}\label{c06-ux4e00ux4e2aux5c0fux6d41ux7a0bux56feux5c31ux591fux5f00ux59cb}
+
+TikZ 适合让简单流程与文档一起维护。下载示例里把``输入材料---核对来源---输出文档''画成三个节点。下面的代码放在正文，导言区加载 \texttt{\textbackslash{}\allowbreak{}usepackage\{\allowbreak{}tikz\}\allowbreak{}}。
+
+\begin{TutorialCode}
+\begin{tikzpicture}[
+  every node/.style={draw,rounded corners,
+    minimum width=25mm,minimum height=10mm}]
+  \node (a) at (0,0) {输入材料};
+  \node (b) at (4,0) {核对来源};
+  \node (c) at (8,0) {输出文档};
+  \draw[->] (a) -- (b);
+  \draw[->] (b) -- (c);
+\end{tikzpicture}
+\end{TutorialCode}
+
+节点名称 \texttt{a}、\texttt{b}、\texttt{c} 用来连线，花括号中的文字用来显示。改文字不会破坏连线关系。更复杂的统计图，通常适合先由数据分析工具输出 PDF 或图片，再按上一章的方法插入；无需为了统一工具而手动画每一个点。
+
+\section{本章练习}\label{c06-ux672cux7ae0ux7ec3ux4e60}
+
+把完整示例的主题色改成另一种深色，检查标题、页眉和图形是否保持协调；加入一段含中文注释的代码，观察是否缺字或超出页边。最后用普通大小阅读生成的 PDF，确认正文和代码都能轻松看清。
+
+保存一个能稳定编译的版本，再逐次添加样式。若遇到报错，回到最后一次成功的改动，通常比一次更换多套主题更容易定位问题。
+
+\chapter[引用与长文档：让每一句话都有来处]{引用与长文档：让每一句话都有来处}
+\label{chapter:07}
+\noindent{\small\color{Muted}第三阶段 · 整理成完整作品\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-07-citations-long-documents/}{网页版}}\par\medskip
+文章变长以后，最容易出错的地方往往不在正文：引用页码忘了补，章节顺序改了却没有更新编号，一段访谈不知道对应哪份材料。这一章把来源记录和文档结构一起整理，让后续修改更有把握。
+
+这些方法适用于人文社科阅读笔记，也适用于经济学课程论文。具体引用格式仍以课程、学校或期刊要求为准。
+
+\href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-07.tex}{下载完整示例：引用与长文档}。它会生成配套书目文件，需要 XeLaTeX 和 Biber。\textbf{文件里的作者、文献、引文与访谈全部是虚构教学示例，不能当作真实材料引用。}
+
+\section{段落、脚注和引文各有位置}\label{c07-ux6bb5ux843dux811aux6ce8ux548cux5f15ux6587ux5404ux6709ux4f4dux7f6e}
+
+中文段落之间空一行即可，不需要在段首反复打空格，也不需要用许多 \texttt{\textbackslash{}\allowbreak{}\textbackslash{}\allowbreak{}} 拉开间距。\texttt{ctexart} 已经处理中文段落的基本格式；统一样式留在导言区，正文尽量只写内容。
+
+说明性脚注适合交代术语范围、补充背景或记录转写约定。
+
+\begin{TutorialCode}
+这里的“社区”指日常交往的范围。\footnote{
+  这是教学自拟的概念限定，用于展示脚注。
+}
+\end{TutorialCode}
+
+来源引用则回答``这句话依据哪份材料''。它和说明性脚注可能出现在相同位置，但逻辑用途不同。真实文献需要记录版本、作者、出版信息和具体定位；脚注编号不会替你验证这些信息。
+
+长引文可以使用 \texttt{quote}；多段引文可考虑 \texttt{quotation}；需要保留诗行的文本可用 \texttt{verse}。下面是自拟句子，只展示版式。
+
+\begin{TutorialCode}
+\begin{quote}
+材料的缺席，不能直接说明行动没有发生。
+\end{quote}
+
+\begin{verse}
+旧页留微痕，\\
+新问入书窗。
+\end{verse}
+\end{TutorialCode}
+
+正式引用时，应区分逐字引文、自己的概括与译文。档案定位可能是档号、卷次或叶码，不能为了整齐全部改成现代页码。多语言和嵌套引号可进一步使用 \texttt{csquotes}，并检查生成的引号是否符合目标格式。
+
+\section{用文献库保存信息，用命令表达关系}\label{c07-ux7528ux6587ux732eux5e93ux4fddux5b58ux4fe1ux606fux7528ux547dux4ee4ux8868ux8fbeux5173ux7cfb}
+
+本章采用 \texttt{biblatex} 与 Biber：\texttt{.\allowbreak{}bib} 文件存储文献数据，Biber 处理数据，\texttt{biblatex} 决定引用与文献表的排版。两者是配合关系，具体介绍见 \href{https://ctan.org/pkg/biblatex}{biblatex 官方文档} 与 \href{https://ctan.org/pkg/biber}{Biber 官方项目}。
+
+先看这份能够独立运行的最小文件。\texttt{filecontents*} 把示例书目写入文件，方便一次复制；正式项目通常直接维护独立的 \texttt{.\allowbreak{}bib} 文件。
+
+\begin{TutorialCode}
+% !TeX program = xelatex
+% 以下作者、书名、出版信息全部为虚构教学示例。
+\begin{filecontents*}{citation-demo.bib}
+@book{sample2024,
+  author = {Sample, Alice},
+  title = {Local Memory: A Fictional Teaching Example},
+  date = {2024},
+  location = {Example City},
+  publisher = {Fictional Teaching Press}
+}
+\end{filecontents*}
+
+\documentclass[fontset=fandol]{ctexart}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=authoryear]{biblatex}
+\addbibresource{citation-demo.bib}
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+\section*{引用练习：全部为虚构教学内容}
+\textcite[23--25]{sample2024} 展示叙述式引用。
+这句话展示括号式引用\parencite[23]{sample2024}。
+\printbibliography[title={参考文献（虚构示例）}]
+\end{document}
+\end{TutorialCode}
+
+保存为 \texttt{citation-\allowbreak{}demo.\allowbreak{}tex} 后，本地编译顺序如下。Biber 的参数不带 \texttt{.\allowbreak{}tex} 后缀。
+
+\begin{TutorialCode}
+xelatex citation-demo.tex
+biber citation-demo
+xelatex citation-demo.tex
+xelatex citation-demo.tex
+\end{TutorialCode}
+
+第一次 LaTeX 编译生成控制文件，Biber 读取书目，后续编译再更新引用和文献表。能够自动调用 Biber 的编辑器或 \texttt{latexmk} 可以代办这一流程。下载版本的文件名是 \texttt{latex-\allowbreak{}07.\allowbreak{}tex}，手动运行时应相应使用 \texttt{biber latex-\allowbreak{}07}。
+
+\texttt{filecontents*} 默认不会覆盖已经存在的同名文件。如果修改示例以后发现书目没有变化，直接打开生成的 \texttt{.\allowbreak{}bib} 修改，或在确认无需保留旧内容后重新生成。
+
+\section{选好引用制度，再统一写法}\label{c07-ux9009ux597dux5f15ux7528ux5236ux5ea6ux518dux7edfux4e00ux5199ux6cd5}
+
+\texttt{\textbackslash{}\allowbreak{}textcite\{\allowbreak{}key\}\allowbreak{}} 把作者放进句子中；\texttt{\textbackslash{}\allowbreak{}parencite\{\allowbreak{}key\}\allowbreak{}} 生成括号引用；\texttt{\textbackslash{}\allowbreak{}footcite\{\allowbreak{}key\}\allowbreak{}} 把引用放进脚注。可选参数 \texttt{[\allowbreak{}23-\allowbreak{}-\allowbreak{}25]\allowbreak{}} 是这次引用的定位信息，和期刊条目中表示整篇文章范围的 \texttt{pages} 字段不同。
+
+\texttt{style=\allowbreak{}authoryear} 是通用作者年份样式，并不等于 APA。若需要完整脚注制，可研究 \texttt{style=\allowbreak{}verbose} 或目标规范专门的样式；只把命令从 \texttt{\textbackslash{}\allowbreak{}parencite} 换成 \texttt{\textbackslash{}\allowbreak{}footcite}，不会自动让作者年份制变成完整脚注制。中文正文使用 \texttt{ctex}，也不意味着文献标点和排序会自动符合所有中文规范。
+
+同一个项目不要同时加载 \texttt{natbib} 与 \texttt{biblatex}，也不要混入另一套 \texttt{\textbackslash{}\allowbreak{}bibliographystyle}、\texttt{\textbackslash{}\allowbreak{}bibliography} 流程。使用课程提供的模板时，先确定模板采用哪一套体系，再补充文献。
+
+\section{让交叉引用替你记住章节位置}\label{c07-ux8ba9ux4ea4ux53c9ux5f15ux7528ux66ffux4f60ux8bb0ux4f4fux7ae0ux8282ux4f4dux7f6e}
+
+\begin{TutorialCode}
+\section{材料与方法}\label{sec:methods}
+这里说明材料来源。
+
+参见第~\ref{sec:methods}~节，
+该部分位于第~\pageref{sec:methods}~页。
+
+\section*{致谢}
+\phantomsection
+\addcontentsline{toc}{section}{致谢}
+\end{TutorialCode}
+
+星号标题不自动编号，通常也不自动进入目录。最后两行把它加入目录并给链接一个锚点；无编号标题不能依靠普通 \texttt{\textbackslash{}\allowbreak{}ref} 获得章节编号。正文中的标签可以统一使用 \texttt{sec:}、\texttt{fig:}、\texttt{tab:} 和 \texttt{app:} 前缀，检查时更容易定位。
+
+\texttt{ctexart} 的主要层级是 \texttt{\textbackslash{}\allowbreak{}section}；只有书籍、报告等相应文档类才使用 \texttt{\textbackslash{}\allowbreak{}chapter}。目录显示深度 \texttt{tocdepth} 与编号深度 \texttt{secnumdepth} 也分别控制不同事情。
+
+\section{匿名材料与长文结构一起维护}\label{c07-ux533fux540dux6750ux6599ux4e0eux957fux6587ux7ed3ux6784ux4e00ux8d77ux7ef4ux62a4}
+
+下面的编号、时间和话语均为虚构。\texttt{description} 便于区分发言人，长文本可以自然分页；不要把整份访谈塞进一个不能分页的大盒子。
+
+\begin{TutorialCode}
+% 导言区：\usepackage{enumitem}
+\begin{description}[leftmargin=2em,
+                    font=\normalfont\bfseries]
+  \item[访问者，00:12] 你怎样描述这处公共空间？
+  \item[P03，00:18] 我会把它叫作碰面的地方。
+  \item[转写说明] 方括号用于标记删节与补充说明。
+\end{description}
+\end{TutorialCode}
+
+真实项目中，应在方法部分解释编号规则，并把真实身份对应表与可共享源码分开保管。匿名化不仅发生在 PDF 正文里；文件名、注释和未使用的材料也可能包含身份信息。
+
+长文章可以拆成多个正文文件，主文件集中保留样式。下面是结构片段，使用前需要创建对应的子文件。
+
+\begin{TutorialCode}
+\begin{document}
+\maketitle
+\tableofcontents
+\input{sections/introduction}
+\input{sections/literature-review}
+\input{sections/methods}
+\printbibliography
+\appendix
+\section{访谈提纲}\label{app:guide}
+\input{sections/interview-guide}
+\end{document}
+\end{TutorialCode}
+
+子文件只写正文，不再放 \texttt{\textbackslash{}\allowbreak{}documentclass} 或 \texttt{\textbackslash{}\allowbreak{}begin\{\allowbreak{}document\}\allowbreak{}}。\texttt{\textbackslash{}\allowbreak{}input} 不强制换页；\texttt{\textbackslash{}\allowbreak{}include} 会在文件边界清页，适合另有分章需求的项目。\texttt{\textbackslash{}\allowbreak{}appendix} 会切换后续编号形式，标题中不必手写``附录 A''。关于基本文档组织，可继续阅读 \href{https://www.latex-project.org/help/documentation/}{LaTeX 项目官方文档入口}。
+
+\section{本章练习}\label{c07-ux672cux7ae0ux7ec3ux4e60}
+
+先运行下载示例，确认目录、章节引用和文献表都没有问号。随后把一条虚构条目替换成自己确实读过的真实文献，核对作者、版本与引用页码。最后调整章节顺序，再编译，观察编号自动更新。
+
+交稿前再读一次 PDF：文字来源是否可追溯，所有教学占位条目是否已经删除，附录编号是否清楚，生成的文件是否包含不应公开的材料。能编译，是整理完成的起点。
+
+\chapter[演示与海报：把一份笔记讲给别人听]{演示与海报：把一份笔记讲给别人听}
+\label{chapter:08}
+\noindent{\small\color{Muted}第三阶段 · 整理成完整作品\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-08-slides-posters/}{网页版}}\par\medskip
+笔记允许读者停下来细看，汇报却需要跟随讲话的节奏。把文章改成演示文稿时，先想清楚每一页回答什么，再决定放多少内容。海报又多了一层要求：读者可能从任何一个内容块开始阅读，标题和图注需要帮助他们找到路线。
+
+这一章准备了三份独立文件。它们分别演示 Beamer 幻灯片、TikZ 海报和 Beamer 海报，都是排版练习，没有实际研究结果。
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-08.tex}{下载 Beamer 幻灯片示例}
+\item
+  \href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-08-tikzposter.tex}{下载 tikzposter 海报示例}
+\item
+  \href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-08-beamerposter.tex}{下载 beamerposter 海报示例}
+\end{itemize}
+
+每份文件都单独选择 XeLaTeX 编译，不要把三段文档类声明拼到同一个主文件里。
+
+\section{Beamer：一页内容放在一个 frame 里}\label{c08-beamerux4e00ux9875ux5185ux5bb9ux653eux5728ux4e00ux4e2a-frame-ux91cc}
+
+\texttt{beamer} 是文档类，\texttt{frame} 是一页逻辑内容的基本容器。下面是一个完整的中文最小示例。
+
+\begin{TutorialCode}
+% !TeX program = xelatex
+\documentclass[aspectratio=169]{beamer}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usetheme{Madrid}
+\setbeamertemplate{navigation symbols}{}
+\title{怎样把一页报告讲清楚}
+\author{Ziyu Peng \and 刘毅涵}
+\date{}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{这一页只回答一个问题}
+  \begin{block}{先给出要点}
+    标题、图表与解释，应共同说明同一个问题。
+  \end{block}
+  \begin{itemize}
+    \item 标明数据单位和来源。
+    \item 留下听众理解图表的时间。
+    \item 把细节放进附录或讲义。
+  \end{itemize}
+\end{frame}
+\end{document}
+\end{TutorialCode}
+
+\texttt{aspectratio=\allowbreak{}169} 指定 16:9 比例；\texttt{\textbackslash{}\allowbreak{}usetheme} 控制整套视觉样式。主题可以之后再换，先确认内容结构成立。\texttt{\textbackslash{}\allowbreak{}titlepage} 从前面定义的标题、作者、日期读取信息，修改一次就能更新封面。
+
+\texttt{frame} 不一定只输出一张 PDF 页面：使用覆盖显示命令时，一页逻辑内容可以分成多个展示步骤。例如 \texttt{\textbackslash{}\allowbreak{}pause} 会把后续内容延后显示。初学时先保持静态页面，确认逻辑连贯，再决定是否需要逐步揭示。框架与覆盖显示机制见 \href{https://ctan.org/pkg/beamer}{Beamer 官方项目和手册}。
+
+\section{两栏是为了建立关系}\label{c08-ux4e24ux680fux662fux4e3aux4e86ux5efaux7acbux5173ux7cfb}
+
+可以把图放左边，把解释放右边，或者把问题和方法并排。Beamer 的列宽使用实际长度，下面两列各占正文宽度的 47\%，中间留有空间。
+
+\begin{TutorialCode}
+\begin{frame}{图表与解释放在一起}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.47\textwidth}
+      \begin{block}{观察什么}
+        先明确比较对象、范围与单位。
+      \end{block}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \begin{block}{怎样解释}
+        再交代结论成立的条件与局限。
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+\end{TutorialCode}
+
+\texttt{T} 让两栏从顶部对齐；\texttt{onlytextwidth} 把总宽度限制在正文区域。装不下时优先拆成两页，或者把长段落改成真正需要口头说明的要点。把字号一直缩小，会让听众承担版面安排的问题。
+
+\section{代码页需要 fragile}\label{c08-ux4ee3ux7801ux9875ux9700ux8981-fragile}
+
+原样代码与一般正文的读取方式不同。包含 \texttt{verbatim}、\texttt{lstlisting} 等内容的 Beamer 页，通常需要给 \texttt{frame} 加上 \texttt{[\allowbreak{}fragile]\allowbreak{}}。下面是正文片段。
+
+\begin{TutorialCode}
+\begin{frame}[fragile]{展示一段命令}
+\begin{verbatim}
+\section{A clear structure}
+One question, one main message.
+\end{verbatim}
+\end{frame}
+\end{TutorialCode}
+
+环境的结束命令最好各占一行，不把 \texttt{\textbackslash{}\allowbreak{}end\{\allowbreak{}frame\}\allowbreak{}} 藏进其他命令或压缩成一行。中文源码的展示方式可以沿用上一章的 \texttt{fvextra}，同时保留 \texttt{fragile}。
+
+下载的完整幻灯片还包含一个小表格，便于练习``说明---表格''对应关系。表里的金额都是虚构值，教学说明应和数字一起保留。
+
+\section{tikzposter：用内容块搭起一张海报}\label{c08-tikzposterux7528ux5185ux5bb9ux5757ux642dux8d77ux4e00ux5f20ux6d77ux62a5}
+
+\texttt{tikzposter} 自身就是文档类。它把海报组织成 \texttt{\textbackslash{}\allowbreak{}block}，并通过 \texttt{columns} 和 \texttt{\textbackslash{}\allowbreak{}column} 管理分栏。以下代码可单独保存编译。
+
+\begin{TutorialCode}
+% !TeX program = xelatex
+% 第一作者：Ziyu Peng；第二作者：刘毅涵
+\documentclass[25pt,a0paper,portrait]{tikzposter}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\title{从问题到表达：一张学习海报}
+\author{Ziyu Peng \quad 刘毅涵}
+\institute{LaTeX 学习手记 · 教学示例}
+% tikzposter 2.0 的标题缩放键兼容修正。
+\makeatletter
+\define@key{title}{titletextscale}{\def\TP@titletextscale{#1}}
+\makeatother
+% 中文标题使用正常直立字形，不请求小型大写字形。
+\renewcommand{\sc}{\upshape}
+\usetheme{Board}
+\begin{document}
+\maketitle
+\block{先交代问题}{这张海报演示标题、分栏和内容块，不展示真实研究结果。}
+\begin{columns}
+  \column{0.5}
+  \block{材料与方法}{用短句解释材料来源和处理步骤；真实项目需要注明数据范围。}
+  \column{0.5}
+  \block{结果与讨论}{图表应回答标题中的问题，并说明单位、来源与局限。}
+\end{columns}
+\block{继续阅读}{根据实际报告内容添加参考文献与联系方式。}
+\end{document}
+\end{TutorialCode}
+
+这里的 \texttt{0.\allowbreak{}5} 是比例，不需要追加 \texttt{\textbackslash{}\allowbreak{}textwidth}。\texttt{a0paper} 与 \texttt{portrait} 分别设置纸张和方向，\texttt{25pt} 是海报级别的基础字号选项，不能把 A4 文章的字号直接搬过来。主题与内容块的设置可以查阅 \href{https://ctan.org/pkg/tikzposter}{tikzposter 官方文档}。
+
+这一文件是可工作的骨架。完整下载版还包含针对 \texttt{tikzposter 2.\allowbreak{}0} 标题缩放键的兼容修正，并把中文标题设为直立字形，避免旧主题请求中文小型大写字形产生替代警告。正式海报还需要安排图表、来源、留白与信息密度，不能把课程论文全文分成几个方块就直接印刷。
+
+\section{beamerposter：保留 Beamer 的写法}\label{c08-beamerposterux4fddux7559-beamer-ux7684ux5199ux6cd5}
+
+另一条路线是在 \texttt{beamer} 文档类中加载 \texttt{beamerposter}。它提供大幅面页面和字体缩放，内容仍然放在 \texttt{frame} 中，分栏仍然使用 Beamer 的长度语法。
+
+\begin{TutorialCode}
+% !TeX program = xelatex
+\documentclass{beamer}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage[orientation=portrait,size=a0,scale=1.4]{beamerposter}
+\usetheme{Madrid}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+
+\begin{document}
+\begin{frame}[t]
+  \begin{center}
+    {\LARGE\bfseries 从问题到表达\par}
+    \bigskip
+    Ziyu Peng \quad 刘毅涵
+  \end{center}
+  \vspace{1cm}
+  \begin{columns}[t,totalwidth=\textwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{问题与材料}
+        此处是排版占位说明，不是真实研究结果。
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{表达与解释}
+        交代图表单位、材料来源与结论适用范围。
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+\end{document}
+\end{TutorialCode}
+
+\texttt{scale} 调整相关字体缩放，并不等于把任何长度的内容都自动压进页面。不要同时把 \texttt{tikzposter} 的 \texttt{\textbackslash{}\allowbreak{}column\{\allowbreak{}0.\allowbreak{}5\}\allowbreak{}} 原样搬来：两个系统使用相近的名字，却有不同语法。页面尺寸和缩放选项见 \href{https://ctan.org/pkg/beamerposter}{beamerposter 官方文档}。
+
+\section{把完成标准放在实际阅读里}\label{c08-ux628aux5b8cux6210ux6807ux51c6ux653eux5728ux5b9eux9645ux9605ux8bfbux91cc}
+
+先完成三页小汇报：第一页提出问题，第二页放一个图表或例子，第三页解释结果与局限。然后用同一份内容做一张海报，只保留值得让读者驻足的部分。这样能比较两种媒介的信息组织方式，而不是只更换页面大小。
+
+检查幻灯片时使用全屏演示，检查海报时既看整体，也放大到接近实际阅读尺寸。确认文字没有被裁切，列宽没有溢出，来源和图注可读；送印前再核对对方要求的纸张尺寸与方向。完整示例能帮助起步，最终版面仍需要以自己的内容来判断。
+
+\chapter[经济学模型：把约束、推导与供需图写清楚]{经济学模型：\\把约束、推导与供需图写清楚}
+\label{chapter:09}
+\noindent{\small\color{Muted}第四阶段 · 带进经管课堂\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-09-economic-models/}{网页版}}\par\medskip
+前面学会公式、图形与交叉引用后，可以试着把它们放进一页经济学作业。重点不只是让一条公式居中：读者需要知道变量代表什么、结论依赖什么假设，以及图中的点为什么出现在那里。本篇用两个自设的小模型练习这些表达，参数均为教学设定。
+
+\section{先把问题写完整}\label{c09-ux5148ux628aux95eeux9898ux5199ux5b8cux6574}
+
+考虑一个消费者在两种商品之间分配预算。\(x,y\) 是消费数量，\(p_x,p_y\) 是单价，\(m\) 是可支配预算；所有价格和预算均为正。为便于求解，取 \(0<\alpha<1\)，并在 \(x,y>0\) 上使用对数效用：
+
+\[
+\max_{x,y>0}\;\alpha\ln x+(1-\alpha)\ln y
+\quad\text{s.t.}\quad p_xx+p_yy\le m.
+\]
+
+\texttt{\textbackslash{}\allowbreak{}max} 会把``max''排成运算符，\texttt{\textbackslash{}\allowbreak{}ln} 同理；不要直接输入斜体字母 \texttt{max} 或 \texttt{ln}。约束前的 \texttt{\textbackslash{}\allowbreak{}text\{\allowbreak{}s.\allowbreak{}t.\allowbreak{}\}\allowbreak{}} 是普通说明文字。公式后的正文应解释符号，避免把一连串字母交给读者猜。预算约束与效用最大化的入门背景可以参照 \href{https://openstax.org/books/principles-microeconomics-3e/pages/6-1-consumption-choices}{OpenStax 的消费选择章节}。
+
+这里先写``支出不超过预算''，再根据效用对两种商品严格递增，说明最优点会花完预算。这一步使随后的等式约束有了理由。它不适用于所有偏好；例如出现饱和点时，就不能直接照搬。
+
+\section{多行推导要对齐推理关系}\label{c09-ux591aux884cux63a8ux5bfcux8981ux5bf9ux9f50ux63a8ux7406ux5173ux7cfb}
+
+等式预算下，拉格朗日函数为：
+
+\[
+\mathcal L=\alpha\ln x+(1-\alpha)\ln y+\lambda(m-p_xx-p_yy).
+\]
+
+将两个边际条件与预算等式写进 \texttt{align} 环境，在 \texttt{\&} 后对齐等号。\texttt{\textbackslash{}\allowbreak{}partial} 表示偏导，\texttt{\textbackslash{}\allowbreak{}mathcal L} 则把函数符号与普通字母区分开。消去乘子后可得：
+
+\[
+x^*=\frac{\alpha m}{p_x},\qquad y^*=\frac{(1-\alpha)m}{p_y}.
+\]
+
+本例的对数效用在正数域严格凹，预算可行集是凸集，因此这里的一阶条件能确定唯一最优选择。写``求得驻点''与写``求得最大值''之间，需要这样的数学依据；仅仅让推导排得整齐，并不会自动证明结论。
+
+把 \(m=100,p_x=5,p_y=10,\alpha=0.4\) 代入，得到 \(x^*=8,y^*=6\)。再算一次 \(5\times8+10\times6=100\)，既检查推导，也检查录入时是否把分母和下标抄错。
+
+\section{用供需图练习坐标和标注}\label{c09-ux7528ux4f9bux9700ux56feux7ec3ux4e60ux5750ux6807ux548cux6807ux6ce8}
+
+接着换一个独立的市场模型：逆需求为 \(p_D(q)=12-0.5q\)，逆供给为 \(p_S(q)=2+0.5q\)。本章只画 \(0\le q\le20\) 的示意范围，联立得到均衡 \((q^*,p^*)=(10,7)\)。这两条线并不是前面的消费者模型推出来的，也不对应任何实际商品。
+
+经济学图常把数量放在横轴、价格放在纵轴，所以绘图函数要输入``价格关于数量的表达式''。在 PGFPlots 中，横坐标的内部变量仍写作 \texttt{x}，即使轴标签叫 \(q\)。\texttt{axis cs:10,\allowbreak{}7} 则让文字跟着数据坐标定位，不必靠目测挪动。
+
+把需求画为实线、供给画为虚线，再加上图例，即使黑白打印也能区分。均衡点的水平和垂直投影用于读数，不应误标成第三条经济曲线。完整示例使用 \href{https://ctan.org/pkg/pgfplots}{PGFPlots} 绘图，图注同时标明模型参数为自设。
+
+\section{把模型解释放在推导之后}\label{c09-ux628aux6a21ux578bux89e3ux91caux653eux5728ux63a8ux5bfcux4e4bux540e}
+
+这组偏好下，\(p_xx^*=\alpha m\)，说明消费者把收入的 \(\alpha\) 部分花在商品 \(x\) 上。\(\alpha=0.4\) 表示支出份额为四成，不是购买数量占全部商品数量的四成；两类商品的计量单位未必相同，数量也不能随意相加。课堂报告可以把这一句放在最终公式后，让数学解重新回到原来的经济问题。
+
+若固定收入与另一个价格，只把 \(p_x\) 翻倍，本例的 \(x^*\) 会减半。但这是一组特定偏好假设下的比较静态结论，不能把它说成所有消费者的普遍规律。介绍模型时，区分设定、推导与解释，也是在给后续讨论留下清晰的边界。
+
+\section{可编译示例}\label{c09-ux53efux7f16ux8bd1ux793aux4f8b}
+
+\href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-09.tex}{下载本章完整示例}。新建文件后选择 XeLaTeX，编译两遍，以更新图号引用。此文件独立运行，不需要外部图片或数据。
+
+\begin{TutorialCode}
+% !TeX program = xelatex
+% 教学模型；所有参数均为自设，不代表真实市场。
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,pgfplots}
+\pgfplotsset{compat=1.18}
+\title{经济学模型：预算、选择与市场}
+\author{Ziyu Peng \and 刘毅涵}
+\date{}
+\begin{document}
+\maketitle
+\section{消费者选择}
+设两种商品数量为 $x,y>0$，价格 $p_x,p_y>0$，
+收入 $m>0$，偏好参数 $0<\alpha<1$。采用对数效用：
+\begin{equation}
+  \max_{x,y>0}\; \alpha\ln x+(1-\alpha)\ln y
+  \quad\text{s.t.}\quad p_xx+p_yy\le m.
+  \label{eq:choice}
+\end{equation}
+因效用对两种商品均严格递增，最优选择用尽预算。
+将约束写成等式后，拉格朗日函数及一阶条件为
+\begin{align}
+ \mathcal L&=\alpha\ln x+(1-\alpha)\ln y
+           +\lambda(m-p_xx-p_yy),\\
+ \frac{\partial\mathcal L}{\partial x}
+   &=\frac{\alpha}{x}-\lambda p_x=0,\\
+ \frac{\partial\mathcal L}{\partial y}
+   &=\frac{1-\alpha}{y}-\lambda p_y=0,\\
+ p_xx+p_yy&=m.
+\end{align}
+得到唯一最优解
+\[
+ x^*=\frac{\alpha m}{p_x},\qquad
+ y^*=\frac{(1-\alpha)m}{p_y}.
+\]
+例如 $m=100,p_x=5,p_y=10,\alpha=0.4$，
+有 $x^*=8,y^*=6$，预算核对为 $5\times8+10\times6=100$。
+这些值仅是教学设定。
+
+\clearpage
+\section{供需示意图}
+下面是与上例独立的线性市场模型：
+\[
+ p_D(q)=12-0.5q,\qquad p_S(q)=2+0.5q.
+\]
+联立后得到 $q^*=10,p^*=7$。图中横轴是数量，纵轴是价格。
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+ width=0.8\linewidth,height=7cm,
+ axis lines=left,xmin=0,xmax=20,ymin=0,ymax=13,
+ xlabel={数量 $q$},ylabel={价格 $p$},
+ xtick={0,5,10,15,20},ytick={0,2,7,12},
+ legend style={at={(0.98,0.98)},anchor=north east},
+ samples=2]
+\addplot[blue,thick,domain=0:20]{12-0.5*x};
+\addlegendentry{需求}
+\addplot[red,dashed,thick,domain=0:20]{2+0.5*x};
+\addlegendentry{供给}
+\addplot[gray,densely dotted,forget plot]
+ coordinates {(0,7) (10,7) (10,0)};
+\addplot[black,only marks,mark=*,forget plot]
+ coordinates {(10,7)};
+\node[above left] at (axis cs:10,7) {$E(10,7)$};
+\end{axis}
+\end{tikzpicture}
+\caption{自设线性供需模型；曲线不来自市场数据。}
+\label{fig:supply-demand}
+\end{figure}
+如图~\ref{fig:supply-demand}，虚线投影帮助读出均衡坐标。
+\end{document}
+\end{TutorialCode}
+
+\section{容易出错的地方}\label{c09-ux5bb9ux6613ux51faux9519ux7684ux5730ux65b9}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{把条件藏在公式外。} 正价格、正收入和 \(0<\alpha<1\) 决定本例解的性质，不能在套用模板时一并删掉。
+\item
+  \textbf{只画出交点，没有核对数值。} 可以先代回两条方程：\(12-0.5\times10=2+0.5\times10=7\)。
+\item
+  \textbf{使用 \texttt{\$\$.\allowbreak{}.\allowbreak{}.\allowbreak{}\$\$} 排 LaTeX 源文件。} 网页手记用它分隔展示公式；下载的 \texttt{.\allowbreak{}tex} 中采用 \texttt{\textbackslash{}\allowbreak{}[\allowbreak{}.\allowbreak{}.\allowbreak{}.\allowbreak{}\textbackslash{}\allowbreak{}]\allowbreak{}} 或 \texttt{equation}，需要多行对齐则采用 \texttt{align}。
+\item
+  \textbf{图形替代解释。} 图注说明``画了什么''，正文还要说明``为什么这与问题有关''。
+\end{itemize}
+
+\section{留一个小练习}\label{c09-ux7559ux4e00ux4e2aux5c0fux7ec3ux4e60}
+
+先把预算改为 \(m=120\)，保持价格和偏好参数不变，更新最优消费量并核对支出；然后把逆供给改为 \(p_S(q)=4+0.5q\)，重新计算并标出市场均衡。前者应得到 \((9.6,7.2)\)，后者应得到 \((8,8)\)。若图中的点没有一起移动，说明公式、代码与文字还没有同步完成。
+
+\chapter[计量经济学：一张读得懂的回归结果表]{计量经济学：一张读得懂的回归结果表}
+\label{chapter:10}
+\noindent{\small\color{Muted}第四阶段 · 带进经管课堂\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-10-econometrics-tables/}{网页版}}\par\medskip
+计量作业里的表格需要同时回答几件事：研究的结果变量是什么、每列对应哪个模型、括号中的数字是什么，以及结论来自怎样的样本。把软件输出截图放进文档很省事，但字号、列宽和注释往往难以统一。本篇练习把这些信息组织成一张可编辑的表。
+
+本章所有系数、标准误、观察值数量及 \(R^2\) 均为\textbf{虚构排版占位值}，没有对应数据集，也没有实际运行回归。练习的目标是看清表格结构，不能根据这些数字讨论经济现象或统计显著性。
+
+\section{让方程与表格说同一件事}\label{c10-ux8ba9ux65b9ux7a0bux4e0eux8868ux683cux8bf4ux540cux4e00ux4ef6ux4e8b}
+
+设 \(c_i\) 是家庭 \(i\) 的月消费，\(y_i\) 是月收入，二者都以千元为单位，\(s_i\) 是家庭人数。两个模型分别写成：
+
+\[
+c_i=\beta_0+\beta_1y_i+u_i,
+\]
+
+\[
+c_i=\beta_0+\beta_1y_i+\beta_2s_i+u_i.
+\]
+
+这里的 \(\beta\) 是模型参数，\(u_i\) 是误差项；正式报告估计结果时，估计系数通常写作 \(\hat\beta\)。如果表格改成``对数月消费''，正文、变量单位和回归式都应一起改，不能只换表头。是否对数化会改变系数的解释，排版模板本身不会替读者完成这个判断。
+
+\section{一列模型，由几层信息组成}\label{c10-ux4e00ux5217ux6a21ux578bux7531ux51e0ux5c42ux4fe1ux606fux7ec4ux6210}
+
+表头先写因变量，再给每个模型编号。核心区域让系数在上、标准误在下一行的括号里，变量名称只需出现一次。表底保留观察值数量与拟合指标，较长的估计说明放进表注。这样既能横向比较同一变量，又能纵向查看同一模型。
+
+本例使用 \texttt{booktabs} 提供的 \texttt{\textbackslash{}\allowbreak{}toprule}、\texttt{\textbackslash{}\allowbreak{}midrule}、\texttt{\textbackslash{}\allowbreak{}bottomrule} 组织层次；\texttt{\textbackslash{}\allowbreak{}cmidrule(lr)\{\allowbreak{}2-\allowbreak{}3\}\allowbreak{}} 只给第二至第三列添加局部横线。数字列采用右对齐并统一保留三位小数，适合入门练习。不要通过反复输入空格把小数点``推''到同一处；数字位数复杂时，可以进一步学习 \texttt{siunitx} 的 \texttt{S} 列。宏包说明分别见 \href{https://ctan.org/pkg/booktabs}{booktabs 官方文档入口} 与 \href{https://ctan.org/pkg/siunitx}{siunitx 官方文档入口}。
+
+\section{表注是结果的一部分}\label{c10-ux8868ux6ce8ux662fux7ed3ux679cux7684ux4e00ux90e8ux5206}
+
+真实报告中，括号内如果是标准误，必须说明是常规标准误、异方差稳健标准误还是某一层级的聚类标准误。若它其实是 \(t\) 值或置信区间，也要写清楚，不能沿用别人的表注。标准误的计算方法应与研究设计和估计过程一致。以 Python 为例，\href{https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.get_robustcov_results.html}{statsmodels 的官方说明} 区分了异方差稳健与聚类等协方差估计选项；表注应忠实对应实际采用的设置。
+
+同样，``没有加入变量''和``估计系数等于零''是两回事。本例用破折号表示前者；不要填 \texttt{0.\allowbreak{}000}，否则会把模型设定写成一个不存在的估计结果。真实数据中的缺失值如何处理、为什么两列的样本数不同，也应能在正文或表注里找到说明。
+
+模板没有显著性星号。正式使用时，只有在真实计算检验并明确阈值之后才可添加；不应为了让表格更像论文而手工装饰。\(R^2\) 描述的拟合信息也不等于因果识别，加入更多变量之后数字变大，更不自动意味着研究结论更可靠。
+
+\section{可编译示例}\label{c10-ux53efux7f16ux8bd1ux793aux4f8b}
+
+\href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-10.tex}{下载本章完整示例}。复制到新的 \texttt{.\allowbreak{}tex} 文件后，使用 XeLaTeX 编译两遍。例子不读取外部数据，表内的虚构说明会保留在最终 PDF 中。
+
+\begin{TutorialCode}
+% !TeX program = xelatex
+% 所有系数、标准误、样本量、R^2均为虚构排版占位值。
+% 本文件不对应真实数据或实际回归，不可作统计推断。
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array}
+\title{计量经济学：结果表的组织}
+\author{Ziyu Peng \and 刘毅涵}
+\date{}
+\begin{document}
+\maketitle
+\section{先写清楚模型}
+考虑用于说明表格结构的横截面回归：
+\begin{align}
+ c_i&=\beta_0+\beta_1y_i+u_i,\label{eq:m1}\\
+ c_i&=\beta_0+\beta_1y_i+\beta_2s_i+u_i.\label{eq:m2}
+\end{align}
+其中 $c_i$ 表示月消费（千元），$y_i$ 表示月收入（千元），
+$s_i$ 表示家庭人数。每行观察值对应一个家庭。
+\textbf{以下数值全部是虚构的排版占位值；没有实际运行回归，
+也没有对应的数据集，不用于估计、检验或现实解释。}
+
+\begin{table}[htbp]
+\centering
+\caption{结果表版式练习：虚构占位值}
+\label{tab:regression}
+\begin{tabular}{lrr}
+\toprule
+ & \multicolumn{2}{c}{因变量：月消费（千元）}\\
+\cmidrule(lr){2-3}
+ & \multicolumn{1}{c}{模型（1）}
+ & \multicolumn{1}{c}{模型（2）}\\
+\midrule
+月收入（千元） & 0.620 & 0.580\\
+ & (0.080) & (0.090)\\
+家庭人数 & \multicolumn{1}{c}{—} & 0.350\\
+ & & (0.120)\\
+常数项 & 0.800 & 0.300\\
+ & (0.250) & (0.310)\\
+\midrule
+观察值数量 & 120 & 120\\
+$R^2$ & 0.410 & 0.460\\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\begin{minipage}{0.88\linewidth}
+\footnotesize
+注：系数下方括号用于展示标准误应放置的位置。
+所有系数、标准误、观察值数量和 $R^2$ 均为自设占位值；
+破折号表示未纳入该变量。示例不标显著性星号。
+实际研究须报告数据来源、样本筛选、估计方法及标准误类型；
+如使用聚类标准误，还须说明聚类层级。
+\end{minipage}
+\end{table}
+
+表~\ref{tab:regression} 练习了表头、数值、模型信息及表注的分工。
+排版程序不会替代统计软件验证表内数字。
+\end{document}
+\end{TutorialCode}
+
+\section{从练习表走向真实作业}\label{c10-ux4eceux7ec3ux4e60ux8868ux8d70ux5411ux771fux5b9eux4f5cux4e1a}
+
+真正使用数据时，建议把``计算''和``排版''分开保存：先保留数据来源、清理步骤和估计脚本，再把脚本生成的数值填入或导出为表格片段。表格调整只处理标签、有效位数和版面，不改变计算结果。把导出表用 \texttt{\textbackslash{}\allowbreak{}input\{\allowbreak{}tables/\allowbreak{}result.\allowbreak{}tex\}\allowbreak{}} 插入主文档，就能减少重新计算后忘记更新正文的风险；前提是该文件确实已生成并放在项目中。
+
+遇到表格过宽，优先缩短重复标签、把解释移到表注，或者按研究问题拆成两张表。直接把整个表压缩到很小，虽然可以塞进页面，却让它失去了供人阅读和比较的作用。
+
+\section{小练习：先改结构，再改内容}\label{c10-ux5c0fux7ec3ux4e60ux5148ux6539ux7ed3ux6784ux518dux6539ux5185ux5bb9}
+
+增加第三列模型，练习更新 \texttt{tabular} 的列定义、合并表头的列数和 \texttt{\textbackslash{}\allowbreak{}cmidrule} 范围；新列继续明确标为占位值。随后把全表改成两位小数，并逐项检查正文中的变量名称、单位、括号含义是否仍一致。最后用一句话解释：为什么``这张表能成功编译''并不意味着``这项回归已经正确完成''？
+
+\chapter[金融现金流：收益率、复利与贴现]{金融现金流：收益率、复利与贴现}
+\label{chapter:11}
+\noindent{\small\color{Muted}第四阶段 · 带进经管课堂\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-11-finance-cashflows/}{网页版}}\par\medskip
+金融公式里最容易被排版掩盖的细节，是时间。一个看起来正确的分母，如果使用了年利率而现金流按月发生，就可能算出完全不同的结果。此篇以自设现金流练习收益率、复利、净现值和债券现值；所有数值用于课堂说明，不对应实际投资产品。
+
+\section{收益率：分清定义与显示方式}\label{c11-ux6536ux76caux7387ux5206ux6e05ux5b9aux4e49ux4e0eux663eux793aux65b9ux5f0f}
+
+在没有分红和中途现金流、价格均为正的简化情境下，简单收益率与对数收益率分别为：
+
+\[
+R_t=\frac{P_t-P_{t-1}}{P_{t-1}},\qquad r_t=\ln\left(\frac{P_t}{P_{t-1}}\right)=\ln(1+R_t).
+\]
+
+价格从 100 变成 110，简单收益率是 \(0.10=10\%\)，对数收益率约为 \(0.09531\)。两者数值接近，但不能当作同一个量互换。在这个无额外现金流的情境下，多期简单收益率要通过 \(\prod_t(1+R_t)-1\) 连乘得到；对数收益率则可以相加。有分红、申购或赎回时，需要重新说明收益率口径。
+
+LaTeX 中的 \texttt{\%} 会开始注释，所以百分号必须写作 \texttt{\textbackslash{}\allowbreak{}\%}；对数要写 \texttt{\textbackslash{}\allowbreak{}ln}。把 \(R\) 与 \(r\) 的定义固定下来，也能避免同一个字母在下一节突然变成折现率。
+
+\section{复利：先约定``一期''有多长}\label{c11-ux590dux5229ux5148ux7ea6ux5b9aux4e00ux671fux6709ux591aux957f}
+
+若每期有效利率恒为 \(i\)，收益按相同利率再投资，\(n\) 期后的金额为：
+
+\[
+\mathrm{FV}_n=\mathrm{PV}_0(1+i)^n.
+\]
+
+本金 1000 元、年有效利率为 5\%、期限 3 年时，结果是 1157.625 元，显示到分为 1157.63 元。计算中尽量保留精度，最终展示才统一舍入。复利与终值的基础解释可参照 \href{https://openstax.org/books/principles-finance/pages/7-2-time-value-of-money-tvm-basics}{OpenStax 的货币时间价值章节}。
+
+如果题目改成按月贴现，应使用每月有效利率。年有效利率 \(i_a\) 对应 \(i_m=(1+i_a)^{1/12}-1\)；``名义年利率、每月复利''则是另一个定义，月利率按其名义报价约定计算。先写清楚利率口径，再决定公式里出现 \(n\) 还是 \(12n\)，比在最后补一个脚注更稳妥。
+
+\section{净现值：把支出和收入放回时间轴}\label{c11-ux51c0ux73b0ux503cux628aux652fux51faux548cux6536ux5165ux653eux56deux65f6ux95f4ux8f74}
+
+设 \(t=0\) 支出 1000 元，第 1、2、3 年末分别收到 400、450、500 元，年有效折现率为 8\%。现金流采用``收到为正、支付为负''的符号约定，便可统一写成：
+
+\[
+\mathrm{NPV}=\sum_{t=0}^{3}\frac{\mathrm{CF}_t}{(1+i)^t}=-1000+\frac{400}{1.08}+\frac{450}{1.08^2}+\frac{500}{1.08^3}\approx153.09.
+\]
+
+\texttt{\textbackslash{}\allowbreak{}mathrm\{\allowbreak{}NPV\}\allowbreak{}} 让缩写保持直立；下标 \(t=0\) 明确初始支出不需要再折现一期。净现值把不同时间的现金流换算到同一基准时点，相关概念可查阅 \href{https://openstax.org/books/principles-finance/pages/16-2-net-present-value-npv-method}{OpenStax 净现值章节}。本例的折现率是题目给定值，并不演示真实项目的风险评估。
+
+表格把时点、现金流和现值并排放置，适合自查。三个正现金流的现值显示为 370.37、385.80、396.92；先用未舍入值加总，再把最终 NPV 显示为 153.09。本例的显示值相加恰好也得到这个结果；其他算例可能出现中间舍入差异，应说明而不是偷偷改一行来凑数。
+
+\section{债券：息票率与折现率各有位置}\label{c11-ux503aux5238ux606fux7968ux7387ux4e0eux6298ux73b0ux7387ux5404ux6709ux4f4dux7f6e}
+
+再设一个按年付息的固定息票债券：面值 1000 元，年息票率 4\%，剩余期限 3 年，每年末付息一次；在刚付完息的时点估值，假设年有效收益率为 5\%，且不考虑违约、税费和嵌入期权。每年息票为 40 元，最后一年还会收到本金，因此：
+
+\[
+B_0=\sum_{t=1}^{3}\frac{40}{1.05^t}+\frac{1000}{1.05^3}\approx972.77.
+\]
+
+分子中的 4\% 决定息票额，分母中的 5\% 决定折现。最后一期收到 1040 元，切勿漏掉本金。这种把息票与到期本金分别贴现的结构，可参照 \href{https://openstax.org/books/principles-finance/pages/10-2-bond-valuation}{OpenStax 债券估值章节}。改成半年付息时，期数、每期息票和每期收益率都要一起调整。
+
+\section{同一张表里，保留同一种口径}\label{c11-ux540cux4e00ux5f20ux8868ux91ccux4fddux7559ux540cux4e00ux79cdux53e3ux5f84}
+
+如果作业中一部分金额以元表示，另一部分以万元表示，先统一单位再求和。金额的正负号也要从同一个观察者出发：项目支付出去的本金与投资者收到的款项可能恰好相反，不能从两个视角各取一半。把``从谁的角度、在哪个时点、用什么单位''写在表前，通常只需一两句话，却能省下许多解释。
+
+报告中还可以用 \texttt{\textbackslash{}\allowbreak{}label} 给关键公式命名，正文使用 \texttt{\textbackslash{}\allowbreak{}eqref} 引用。调整章节顺序后，编号会跟随更新；手动写``由公式（3）可知''，则容易在插入新公式时失去对应关系。下载示例保持精简，课程报告里可按需要加入编号与引用。
+
+\section{可编译示例}\label{c11-ux53efux7f16ux8bd1ux793aux4f8b}
+
+\href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-11.tex}{下载本章完整示例}。使用 XeLaTeX 编译；表中的 \texttt{S} 列由 \href{https://ctan.org/pkg/siunitx}{siunitx} 按小数位置对齐，表头用花括号包住，避免被当作数字解析。
+
+\begin{TutorialCode}
+% !TeX program = xelatex
+% 自设教学现金流；不对应任何真实投资产品。
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,siunitx}
+\sisetup{group-separator={,},group-minimum-digits=4}
+\title{金融公式：让现金流与时间对齐}
+\author{Ziyu Peng \and 刘毅涵}
+\date{}
+\begin{document}
+\maketitle
+\section{收益率与复利}
+无分红、无中途现金流、价格均为正时，简单收益率与对数收益率为
+\[
+ R_t=\frac{P_t-P_{t-1}}{P_{t-1}},\qquad
+ r_t=\ln\!\left(\frac{P_t}{P_{t-1}}\right)
+     =\ln(1+R_t).
+\]
+价格从 100 变为 110 时，$R_t=10\%$，$r_t\approx0.09531$。
+若每期有效利率恒为 $i$，且收益在相同利率下再投资，则
+\[
+ \mathrm{FV}_n=\mathrm{PV}_0(1+i)^n.
+\]
+例如本金 1000、年有效利率 $5\%$、期限 3 年，有
+$\mathrm{FV}_3=1000(1.05)^3=1157.625$，显示到分为 1157.63。
+
+\section{净现值：明确每笔现金流的时点}
+设期初 $t=0$ 支出 1000，第 1、2、3 年末分别收到 400、450、500，
+年有效折现率取 $8\%$。金额单位统一为元，参数均为教学设定。
+\begin{align*}
+ \mathrm{NPV}
+ &=\sum_{t=0}^{3}\frac{\mathrm{CF}_t}{(1+i)^t}\\
+ &=-1000+\frac{400}{1.08}
+   +\frac{450}{1.08^2}+\frac{500}{1.08^3}\\
+ &\approx153.09.
+\end{align*}
+\begin{center}
+\begin{tabular}{c S[table-format=-4.0] S[table-format=-4.2]}
+\toprule
+{时点 $t$（年）} & {现金流（元）} & {现值（元）}\\
+\midrule
+0 & -1000 & -1000.00\\
+1 & 400 & 370.37\\
+2 & 450 & 385.80\\
+3 & 500 & 396.92\\
+\midrule
+\multicolumn{2}{r}{NPV（由未舍入值求和）} & 153.09\\
+\bottomrule
+\end{tabular}
+\end{center}
+表中单行显示值已舍入；计算 NPV 时使用未舍入值，最后统一显示到分。
+$t=0$ 表示期初；$t=1,2,3$ 分别表示第 1、2、3 年末。
+
+\section{固定息票债券的课堂估值}
+设面值 $F=1000$、年息票率 $c=4\%$，每年末付息一次，
+3 年后还本；估值时点刚付完息，年有效收益率假设为 $y=5\%$。
+忽略违约、税费与嵌入期权，则
+\[
+ B_0=\sum_{t=1}^{3}\frac{cF}{(1+y)^t}
+     +\frac{F}{(1+y)^3}
+     \approx972.77.
+\]
+最后一期收到的总额为 $40+1000=1040$，不能只计息票。
+本例仅用于演示排版与贴现计算。
+\end{document}
+\end{TutorialCode}
+
+\section{小练习与检查}\label{c11-ux5c0fux7ec3ux4e60ux4e0eux68c0ux67e5}
+
+将项目现金流的折现率改为 10\%，重新计算每一行现值与 NPV，结果应约为 111.19 元。再把债券收益率改为 4\%，保持息票率及其他设定不变，价格应回到 1000 元。检查时同时核对单位、收付方向、时点与最终舍入，不能只看计算器的最后一行。
+
+\chapter[会计分录与报表：让数字彼此对得上]{会计分录与报表：让数字彼此对得上}
+\label{chapter:12}
+\noindent{\small\color{Muted}第四阶段 · 带进经管课堂\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-12-accounting-statements/}{网页版}}\par\medskip
+会计表格的难点常常不在横线，而在同一个金额进入不同报表以后是否仍然说得通。本篇从一组模拟交易出发，先写借贷分录，再整理利润、期末资产负债和现金流。这样做出来的文档既能阅读，也能检查。
+
+案例为自设的服务工作室，期初各项余额为零，金额统一为元；不考虑税费，期间内没有利润分配，设备当期折旧直接给定为 100 元。耗材购入时计为资产，实际耗用时计为费用。这是一份用于说明基本关系的简化教学报表，不是特定会计准则下的完整披露模板。
+
+\section{借方、贷方不是``收入、支出''的别名}\label{c12-ux501fux65b9ux8d37ux65b9ux4e0dux662fux6536ux5165ux652fux51faux7684ux522bux540d}
+
+复式记账要求每一笔分录的借方金额合计等于贷方金额合计。资产增加通常记借方，负债和权益增加通常记贷方；收入增加通常记贷方，费用增加通常记借方。资产的抵减账户等有自身的方向，不能把``所有借方都增加资产''当作通用规则。基本恒等式是：
+
+\[
+\text{资产}=\text{负债}+\text{所有者权益}.
+\]
+
+这些关系可以结合 \href{https://openstax.org/books/principles-financial-accounting/pages/3-1-describe-principles-assumptions-and-concepts-of-accounting-and-their-relationship-to-financial-statements}{OpenStax 的会计等式说明} 阅读。排版时把科目与借贷金额分列，比把整条分录写成一段文字更容易检查。
+
+\section{用八件事搭起一组报表}\label{c12-ux7528ux516bux4ef6ux4e8bux642dux8d77ux4e00ux7ec4ux62a5ux8868}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+事项 & 本期发生的交易或调整 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & 收到所有者投入现金 10,000 元。 \\
+2 & 支付现金 3,000 元购入设备。 \\
+3 & 支付现金 600 元购入耗材。 \\
+4 & 赊购耗材 500 元，款项尚未支付。 \\
+5 & 完成服务，确认收入 2,400 元；收到 1,800 元，另有 600 元待收。 \\
+6 & 支付本期租金 500 元。 \\
+7 & 期末确认本期耗用耗材 200 元。 \\
+8 & 期末确认设备折旧 100 元。 \\
+\end{longtable}
+}
+
+第五笔是复合分录：借记银行存款 1800、应收账款 600，贷记服务收入 2400。确认收入并不要求已经把全部款项收到手；本例假定服务已经完成、收入在本期确认。分录中的时间判断要先正确，表格才能反映正确的期间。
+
+第三、四笔购入耗材合计 1100 元，实际耗用 200 元，所以期末还剩 900 元。把购入耗材的全部金额直接写成本期费用，会让利润和期末资产一起出错。
+
+\section{三张表怎样互相核对}\label{c12-ux4e09ux5f20ux8868ux600eux6837ux4e92ux76f8ux6838ux5bf9}
+
+本期利润为 \(2400-500-200-100=1600\) 元。期末权益由投入资本 10000 元与本期留存利润 1600 元构成，合计 11600 元。这里省略税费只是题目假设，并不是现实企业都可以省略税费。
+
+期末银行存款为 \(10000-3000-600+1800-500=7700\) 元；加上应收账款 600、耗材 900 和设备净额 \(3000-100=2900\)，资产总额为 12100 元。另一侧，应付账款 500 元加权益 11600 元，也得到 12100 元。累计折旧是设备资产的抵减项，不能为了凑平衡把它列作负债。
+
+现金流按本例的活动性质分组：经营活动净流入 \(1800-600-500=700\) 元，投资活动净流出 3000 元，筹资活动净流入 10000 元，合计增加 7700 元，与期末银行存款一致。赊购耗材没有发生本期现金支付，因此不能又在现金流里扣一遍。
+
+利润是 1600 元，经营现金流却是 700 元，并不矛盾。收入中有 600 元尚未收回，耗材仍占用资源，折旧又不是本期现金支出。用间接核对方式表示，就是 \(1600+100-600-900+500=700\)。了解报表之间的连接，可以阅读 \href{https://openstax.org/books/principles-financial-accounting/pages/2-1-describe-the-income-statement-statement-of-owners-equity-balance-sheet-and-statement-of-cash-flows-and-how-they-interrelate}{OpenStax 的财务报表关系章节}。
+
+\section{排版时保留``可核对性''}\label{c12-ux6392ux7248ux65f6ux4fddux7559ux53efux6838ux5bf9ux6027}
+
+分录多了会跨页，所以完整示例使用 \texttt{longtable}，重复显示列标题。这个环境不要再套入 \texttt{table} 浮动体；较短的报表则用普通 \texttt{tabular} 与 \texttt{booktabs}。金额列右对齐，单位写在表头或图注，不要每格都重复写``元''。宏包细节可查 \href{https://ctan.org/pkg/longtable}{longtable 文档入口}。
+
+表名还应区分期间：利润表和现金流描述``本期发生了什么''，资产负债表描述``期末还拥有什么、承担什么''。正式作业中，把具体期间和期末日期写在表名附近，能避免两种口径混在一起。
+
+\section{可编译示例}\label{c12-ux53efux7f16ux8bd1ux793aux4f8b}
+
+\href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-12.tex}{下载本章完整示例}。使用 XeLaTeX 编译两遍。文件包括全部分录和三张简化报表，不依赖外部账簿。
+
+\begin{TutorialCode}
+% !TeX program = xelatex
+% 自设会计教学案例；金额单位为元，不对应任何企业。
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,longtable,array}
+\title{会计分录与报表：让同一组数字相互勾稽}
+\author{Ziyu Peng \and 刘毅涵}
+\date{}
+\begin{document}
+\maketitle
+假设一家模拟服务工作室期初余额全部为零。下面记录一个教学期间的交易，
+不考虑税费，期末无分红；设备本期折旧给定为 100。
+耗材购入时先确认为资产，本期耗用部分才转为费用。
+所有数值均为自设，报表是为解释勾稽关系而简化的教学版。
+
+\section{分录：每笔借贷相等}
+\begin{longtable}{@{}p{1cm}p{4.9cm}rr@{}}
+\caption{模拟交易分录（单位：元）}\label{tab:entries}\\
+\toprule
+事项 & 科目 & 借方 & 贷方\\
+\midrule
+\endfirsthead
+\toprule
+事项 & 科目 & 借方 & 贷方\\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{续下页}\\
+\endfoot
+\bottomrule
+\endlastfoot
+1 & 银行存款 & 10000 & \\
+  & \quad 投入资本 & & 10000\\
+\addlinespace
+2 & 设备 & 3000 & \\
+  & \quad 银行存款 & & 3000\\
+\addlinespace
+3 & 耗材 & 600 & \\
+  & \quad 银行存款 & & 600\\
+\addlinespace
+4 & 耗材 & 500 & \\
+  & \quad 应付账款 & & 500\\
+\addlinespace
+5 & 银行存款 & 1800 & \\
+  & 应收账款 & 600 & \\
+  & \quad 服务收入 & & 2400\\
+\addlinespace
+6 & 租金费用 & 500 & \\
+  & \quad 银行存款 & & 500\\
+\addlinespace
+7 & 耗材费用 & 200 & \\
+  & \quad 耗材 & & 200\\
+\addlinespace
+8 & 折旧费用 & 100 & \\
+  & \quad 累计折旧 & & 100\\
+\end{longtable}
+
+\section{本期利润与期末权益}
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+利润表项目 & 金额（元）\\
+\midrule
+服务收入 & 2400\\
+减：租金费用 & 500\\
+减：耗材费用 & 200\\
+减：折旧费用 & 100\\
+\midrule
+本期利润 & 1600\\
+\bottomrule
+\end{tabular}
+\end{center}
+在本例无税费的设定下，本期利润为 1600。期末权益为
+$0+10000+1600-0=11600$，依次对应期初权益、投入、本期利润和分配。
+
+\section{期末资产负债表}
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+资产项目 & 金额（元）\\
+\midrule
+银行存款 & 7700\\
+应收账款 & 600\\
+耗材 & 900\\
+设备原值 & 3000\\
+减：累计折旧 & 100\\
+\midrule
+资产总计 & 12100\\
+\midrule
+负债和权益项目 & 金额（元）\\
+\midrule
+应付账款 & 500\\
+投入资本 & 10000\\
+本期形成的留存利润 & 1600\\
+\midrule
+负债和权益合计 & 12100\\
+\bottomrule
+\end{tabular}
+\end{center}
+核对 $12100=500+11600$。累计折旧抵减设备账面价值，并非负债。
+
+\clearpage
+\section{本期现金流量汇总}
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+项目 & 金额（元）\\
+\midrule
+经营：收到服务款 & 1800\\
+经营：购入耗材支付 & -600\\
+经营：支付租金 & -500\\
+经营活动现金流量净额 & 700\\
+\midrule
+投资：购买设备 & -3000\\
+筹资：收到投入资本 & 10000\\
+\midrule
+现金净增加额 & 7700\\
+期初现金余额 & 0\\
+期末现金余额 & 7700\\
+\bottomrule
+\end{tabular}
+\end{center}
+赊购耗材 500 不产生本期现金收付。折旧 100 也不直接产生现金收付。
+本例银行存款即现金流量表中的现金，未另设现金等价物。
+以间接思路核对经营现金流：
+\[
+1600+100-600-900+500=700.
+\]
+各项依次为利润、折旧、应收增加、耗材增加和应付增加。
+\end{document}
+\end{TutorialCode}
+
+\section{小练习：收回应收款以后}\label{c12-ux5c0fux7ec3ux4e60ux6536ux56deux5e94ux6536ux6b3eux4ee5ux540e}
+
+在期末前再收回 300 元应收账款，暂不增加任何其他交易。先补写``借：银行存款 300；贷：应收账款 300''，再更新报表。利润仍为 1600 元，现金变为 8000 元，应收账款降到 300 元，资产总额仍为 12100 元，经营现金流增至 1000 元。如果你把这次收款再次写成收入，利润就被重复确认了。
+
+\chapter[把零散练习，整理成一份经管课程报告]{把零散练习，整理成一份经管课程报告}
+\label{chapter:13}
+\noindent{\small\color{Muted}第四阶段 · 带进经管课堂\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-13-course-report/}{网页版}}\par\medskip
+到这里，已经练过公式、图表、参考文献，也看过它们在经管课程中的用法。这一章把这些部件放回一份完整的报告：读者先知道我们在回答什么问题，再看假设和计算，最后判断结论能走多远。
+
+本章的案例是\textbf{完全虚构的课堂练习}：比较两个校园活动预算方案。所有金额和预计参与人数都是为演示而设定的，不代表实际活动记录。它适合练习排版和推理，也提醒我们：做出一张漂亮的表，与得到一个可靠的结论，是两件需要分别完成的事。
+
+\section{先画出报告的骨架}\label{c13-ux5148ux753bux51faux62a5ux544aux7684ux9aa8ux67b6}
+
+在打开排版软件前，可以先用六句话回答：研究问题是什么；已知什么；假设什么；怎样计算；算出了什么；还有什么没考虑。把它们扩成章节，报告的顺序就比较自然。
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+部分 & 本例需要说明的内容 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+问题与范围 & 在 1,000 元预算约束下，比较两种活动方案 \\
+数据与假设 & 支出为预算数，人数为情景假设，尚未实际发生 \\
+方法 & 计算总支出与每位预计参与者的预算成本 \\
+结果 & 用表格并列展示方案 A、B 的输入与计算 \\
+讨论 & 预计人数下降时结论是否仍然成立 \\
+附录 & 保留计算明细、变量说明和必要的源文件 \\
+\end{longtable}
+}
+
+这里的重点是让每个数字都能追溯。预计人数不能写成已经服务的人数，预算结余不能写成已经赚到的利润；标题、表注和正文都应保持同一个口径。
+
+\section{用一套符号贯穿全文}\label{c13-ux7528ux4e00ux5957ux7b26ux53f7ux8d2fux7a7fux5168ux6587}
+
+设方案 \(j\) 的预算支出为 \(C_j\)，预计参与人数为 \(N_j\)。当 \(N_j>0\) 时，每位预计参与者对应的预算成本为：
+
+\[
+c_j=\frac{C_j}{N_j}.
+\]
+
+假设方案 A 的预算支出是 650 元、预计 50 人参与；方案 B 为 900 元、预计 75 人参与，则 \(c_A=13\) 元/人，\(c_B=12\) 元/人。两者都满足总预算不超过 1,000 元的约束。
+
+这只能说明，在给定假设下 B 的单位预算成本较低。活动质量、参与体验和执行难度还没有进入这个指标，所以不能直接把 B 称为``最优方案''。
+
+在正文中，先定义变量，再写公式，紧接着解释结果。公式后面依然需要完整的句子，而不是让一个编号代替全部说明。
+
+\begin{TutorialCode}
+设方案 $j$ 的预算支出为 $C_j$，预计参与人数为 $N_j>0$。
+每位预计参与者的预算成本为
+\begin{equation}
+  c_j = \frac{C_j}{N_j}.
+  \label{eq:unit-cost}
+\end{equation}
+式~\eqref{eq:unit-cost} 的单位为元/人。
+\end{TutorialCode}
+
+\section{表格负责比较，正文负责解释}\label{c13-ux8868ux683cux8d1fux8d23ux6bd4ux8f83ux6b63ux6587ux8d1fux8d23ux89e3ux91ca}
+
+同一张表中，金额、人数和元/人的单位不能混在一起。可以把单位放进表头，避免每个单元格重复。表注则交代数据来源和假设。
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule\noalign{}
+方案 & 支出 / 元 & 预计人数 / 人 & 单位预算成本 /（元/人） \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+A & 650 & 50 & 13.00 \\
+B & 900 & 75 & 12.00 \\
+\end{longtable}
+}
+
+表里的两位小数只是展示格式，不表示预测精确到了小数点后两位。正文要指出真正值得关注的比较，而不是把每一个格子重念一遍。
+
+如果 B 的预计人数改成 60 人，单位预算成本就变成 15 元/人。假设支出固定为 900 元，若想低于 A 的 13 元/人，需要：
+
+\[
+\frac{900}{N_B}<13
+\quad\Longleftrightarrow\quad
+N_B>\frac{900}{13}\approx69.23.
+\]
+
+因此，在这个固定支出的简化模型里，至少需要 70 位参与者。这里比较的是预算效率；并没有证明更高参与人数一定能实现，也没有纳入新增参与者可能带来的额外支出。
+
+\section{让标题、引用和附录互相连接}\label{c13-ux8ba9ux6807ux9898ux5f15ux7528ux548cux9644ux5f55ux4e92ux76f8ux8fdeux63a5}
+
+不手写``见第二节''或``见表一''，而是给对象加标签，再由 \texttt{\textbackslash{}\allowbreak{}ref} 或 \texttt{\textbackslash{}\allowbreak{}eqref} 生成编号。调整章节顺序后重新编译，就能保持对应关系。
+
+\begin{TutorialCode}
+\section{比较结果}
+\label{sec:results}
+
+\begin{table}[htbp]
+  \centering
+  \caption{预算方案比较（模拟数据）}
+  \label{tab:plans}
+  % 此处放 tabular 与表格内容
+\end{table}
+
+如表~\ref{tab:plans} 所示，结论依赖预计参与人数。
+\appendix
+\section{计算说明}
+附录补充第~\ref{sec:results}~节的计算过程。
+\end{TutorialCode}
+
+附录适合放细节，但不能承担正文里缺失的关键假设。读者应当在不翻附录的情况下知道比较的含义，再在需要时核对过程。
+
+涉及外部资料时，用第 07 章介绍的文献系统管理作者、年份和出处。这个小例子的业务数字均为虚构设定，没有把它们包装成调查资料；排版文档的链接也不能充当经济结论的证据。
+
+\section{下载一个能继续改的起点}\label{c13-ux4e0bux8f7dux4e00ux4e2aux80fdux7ee7ux7eedux6539ux7684ux8d77ux70b9}
+
+\href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-13.tex}{下载本章完整示例：课程报告模板（latex-13.tex）}。文件包含标题、摘要、目录、公式、三线表、敏感性讨论和附录，不需要外部图片或数据库，使用 XeLaTeX 编译即可。
+
+建议先编译原文件，再按三个顺序改动：先换题目和研究问题，再换数据与公式，最后调整视觉样式。每完成一小步就编译一次，出错时容易定位到最近的修改。
+
+短报告使用一个文件已经足够。篇幅长了，可以按章节拆分：
+
+\begin{TutorialCode}
+course-report/
+├── main.tex
+├── references.bib
+├── sections/
+│   ├── introduction.tex
+│   ├── method.tex
+│   └── results.tex
+└── figures/
+\end{TutorialCode}
+
+主文件负责文档类、宏包和整体结构，章节文件只放正文，用 \texttt{\textbackslash{}\allowbreak{}input\{\allowbreak{}sections/\allowbreak{}results\}\allowbreak{}} 引入。不要在每个章节文件里重复 \texttt{\textbackslash{}\allowbreak{}documentclass} 和 \texttt{\textbackslash{}\allowbreak{}begin\{\allowbreak{}document\}\allowbreak{}}。如果课程提供模板，优先把内容放进模板已有结构，再做必要的局部调整。
+
+\section{编译失败时，从第一条错误往回找}\label{c13-ux7f16ux8bd1ux5931ux8d25ux65f6ux4eceux7b2cux4e00ux6761ux9519ux8befux5f80ux56deux627e}
+
+日志里出现许多错误，常常是一个前面的括号或环境没有闭合。先找到第一条错误，再向前检查最近修改的公式、表格和命令；逐条追最后几十条报错反而容易绕远。
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+现象
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+先检查什么
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{Undefined control sequence} & 命令拼写、宏包是否加载、编译引擎是否适合 \\
+\texttt{Missing \$ inserted} & 数学命令或下划线是否出现在普通文本中 \\
+\texttt{Extra alignment tab} & 表格每行的 \texttt{\&} 是否多于声明的列数 \\
+引用显示 \texttt{??} & 标签是否拼对、是否重复，是否完成后续编译 \\
+\texttt{Overfull \textbackslash{}\allowbreak{}hbox} & 是否有太长的公式、网址、代码或不能换行的内容 \\
+\end{longtable}
+}
+
+不要只为了``消掉报错''就删除出问题的结论或引用。先建立一个最小例子，确认问题，再把修复放回主文件。正文里的百分号要写成 \texttt{\textbackslash{}\allowbreak{}\%}，邮箱或网址可以交给 \texttt{\textbackslash{}\allowbreak{}url\{\allowbreak{}.\allowbreak{}.\allowbreak{}.\allowbreak{}\}\allowbreak{}}，而不必逐个处理特殊字符。
+
+\section{最后一次检查，也是一部分写作}\label{c13-ux6700ux540eux4e00ux6b21ux68c0ux67e5ux4e5fux662fux4e00ux90e8ux5206ux5199ux4f5c}
+
+编译成功之后，还要打开 PDF 通读。检查标题层级、公式是否越过页边、图表是否在合适的位置、表注字号是否可读，以及正文引用是否真的指向对应对象。可以让另一位同学只看 PDF，试着复述问题、方法和主要结论；如果复述不出来，往往需要改的是表达，而不只是样式。
+
+交作业时保留课程要求的文件。需要可复现源项目，就一起提交 \texttt{.\allowbreak{}tex}、实际使用的图片和 \texttt{.\allowbreak{}bib}；只要求 PDF，就按要求交 PDF。含有个人信息的原始问卷、姓名对照表和与报告无关的文件，不应顺手塞进公开项目。
+
+这一章的目标，是能够独立写出一份结构清楚、计算可核对的文档。之后再学新宏包，会更容易判断它解决的究竟是哪一个问题。
+
+\section{留给下一份报告的小练习}\label{c13-ux7559ux7ed9ux4e0bux4e00ux4efdux62a5ux544aux7684ux5c0fux7ec3ux4e60}
+
+给方案 B 加上每增加一位参与者就增加 2 元支出的设定，重新定义成本函数，计算它与 A 的比较条件。注意先说明基础支出包含哪些项目，避免把相同成本算两遍。把新的假设、公式、表格和结论一起更新，而不是只改结果数字。
+
+\section{继续查阅}\label{c13-ux7ee7ux7eedux67e5ux9605}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.latex-project.org/help/documentation/}{LaTeX 项目文档入口}：遇到命令和文档结构问题时，从官方资料继续查找。
+\item
+  \href{https://ctan.org/pkg/booktabs}{booktabs 文档}：理解三线表和表格间距。
+\item
+  \href{https://ctan.org/pkg/latexmk}{latexmk 文档}：了解如何自动完成需要多轮的编译流程。
+\end{itemize}
+
+\chapter[用 AI 写 LaTeX：从清楚的要求到可验证的文档]{用 AI 写 LaTeX：\\从清楚的要求到可验证的文档}
+\label{chapter:14}
+\noindent{\small\color{Muted}第四阶段 · 带进经管课堂\quad / \href{https://pzy54154631-hub.github.io/liuyihan/blog/latex-14-ai-assisted-latex/}{网页版}}\par\medskip
+假设你已经算好一张活动预算表，想把它放进课程报告。AI 可以帮你把数据转成 LaTeX、调整表格或解释报错。实际操作时，先交代要做什么、现有文件是什么、哪些内容不能改，再要求一个能运行的小结果。下面直接用这个任务走一遍。
+
+\section{先给任务边界，再给数据}\label{c14-ux5148ux7ed9ux4efbux52a1ux8fb9ux754cux518dux7ed9ux6570ux636e}
+
+一句``帮我做漂亮的 LaTeX 报告''缺少判断标准。至少补上引擎、文档类型、数据含义、输出范围与检查方式。如果有学校模板，提供模板；如果没有，就明确允许使用简单的 \texttt{ctexart}。数据要说明单位、时间与计算口径，不能让工具从数字大小猜测``元''还是``万元''。
+
+以下提示词可以直接复制。\textbf{表中数字均为虚构教学数据，不代表实际活动支出。}
+
+\begin{TutorialCode}
+请把以下教学数据写成一份可直接编译的中文 LaTeX 文件。
+
+任务：A4 一页“活动预算差异说明”，包含一张表和两句解释。
+环境：UTF-8、XeLaTeX、ctexart、fontset=fandol。
+格式：页边距 2.5 cm，使用 booktabs 三线表，不画竖线。
+作者按顺序写 Ziyu Peng、刘毅涵，不填写虚构写作日期。
+
+数据均为虚构教学数据，单位：元。
+项目,预算,实际
+印刷,120,108
+交通,80,90
+物资,200,196
+
+计算口径：差异＝实际－预算；负数表示低于预算。
+请算出各行差异、合计和总差异率。
+总差异率＝（实际合计－预算合计）÷预算合计×100%。
+不要推断支出变化的原因，不要添加文献或新数据。
+
+输出一个完整 main.tex，不需要外部图片、数据文件或自定义字体。
+将标题、单位、虚构数据说明、差异口径写进文档。
+表格要有 caption 和 label，并在正文中引用。
+输出后列出核对算式和所需编译方式。
+若未实际运行编译，请写“尚未实际编译”，不要声称已通过。
+\end{TutorialCode}
+
+这里把``漂亮''转换成了纸张、边距、表格样式和一页长度；把``分析''限制为给定数据支持的解释。这样得到的结果才容易核对，也便于继续提出局部修改。
+
+\section{先在纸上核对五个结果}\label{c14-ux5148ux5728ux7eb8ux4e0aux6838ux5bf9ux4e94ux4e2aux7ed3ux679c}
+
+印刷、交通、物资的差异分别是 \(-12\)、\(+10\)、\(-4\) 元。预算合计 \(400\) 元，实际合计 \(394\) 元，因此总差异 \(-6\) 元，总差异率 \(-1.5\%\)。交通一项超出预算，总额仍低于预算，这两句话可以同时成立。
+
+\[
+\frac{394-400}{400}\times100\%=-1.5\%.
+\]
+
+若把分母换成实际支出，得到的就不是本题定义的预算差异率。数字正确也不等于解释成立：这里能写``总支出低于预算''，却不能据此编造``通过集中采购降低成本''。排版前就明确这条界限，能省掉后续返工。
+
+\section{一个可以直接运行的答案}\label{c14-ux4e00ux4e2aux53efux4ee5ux76f4ux63a5ux8fd0ux884cux7684ux7b54ux6848}
+
+以下完整文件实现上述要求。\texttt{r} 列让数字右对齐；\texttt{booktabs} 提供横线；表格标签放在 \texttt{\textbackslash{}\allowbreak{}caption} 之后。更复杂的表格规则可以查阅 \href{https://ctan.org/pkg/booktabs}{booktabs 手册}。
+
+\begin{TutorialCode}
+% !TeX program = xelatex
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\title{活动预算差异说明}
+\author{Ziyu Peng \and 刘毅涵}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{数据说明：}
+以下均为虚构教学数据，单位为元；
+差异定义为“实际支出减预算”，负数表示低于预算。
+
+\begin{table}[htbp]
+\centering
+\caption{活动预算与实际支出（虚构教学数据，单位：元）}
+\label{tab:budget}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+项目 & 预算 & 实际 & 差异 \\
+\midrule
+印刷 & 120 & 108 & \(-12\) \\
+交通 & 80  & 90  & \(+10\) \\
+物资 & 200 & 196 & \(-4\) \\
+\midrule
+合计 & 400 & 394 & \(-6\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+由表~\ref{tab:budget}~可见，总支出比预算少 6 元，
+总差异率为
+\[
+  \frac{394-400}{400}\times100\%=-1.5\%.
+\]
+交通支出高于预算 10 元；仅凭本表不能判断各项差异的原因。
+
+\end{document}
+\end{TutorialCode}
+
+\href{https://pzy54154631-hub.github.io/liuyihan/assets/tutorial/examples/latex-14.tex}{下载本章完整示例 latex-14.tex}
+
+本例已经实际用 XeLaTeX 与 \texttt{latexmk} 编译，表格引用可正常解析。换到自己的项目后，仍需重新编译并检查成品，因为模板、字体与已有宏包可能不同。
+
+\section{继续修改时，一次解决一个问题}\label{c14-ux7ee7ux7eedux4feeux6539ux65f6ux4e00ux6b21ux89e3ux51b3ux4e00ux4e2aux95eeux9898}
+
+先确认表中的数字和口径，再调整版式。例如表格过宽，告诉 AI ``表格超出版心，保持数据和字号，优先让文字列换行，只返回表格及必要的导言区改动''，比``重新美化全文''更明确。一次接受一个修改，保存能运行的版本，再做下一步。
+
+若文字只需润色，要求``只修改说明段落，不改表格和公式''；若改了预算数字，则同时要求更新行差异、合计、公式与解释，随后自己重新计算。源码里这些数字通常是静态文本，LaTeX 不会自动替你重算。
+
+可以让 AI 解释刚刚引入的命令：\texttt{@\{\allowbreak{}\}\allowbreak{}} 为什么会改变表格两侧间距，\texttt{\textbackslash{}\allowbreak{}centering} 为什么放在这里。能看懂改动的位置，下一次就更容易判断建议是否适合现有文档。
+
+\section{报错时，给第一条错误和最小复现}\label{c14-ux62a5ux9519ux65f6ux7ed9ux7b2cux4e00ux6761ux9519ux8befux548cux6700ux5c0fux590dux73b0}
+
+不要只贴最后一行``编译失败''。从日志里找到第一条明确错误，连同前后的源码、导言区、编译器和期待结果一起提供。后面的错误可能只是由第一个问题连锁产生。
+
+\begin{TutorialCode}
+以下最小文件使用 XeLaTeX 编译失败。
+请先解释第一条错误的原因，再给最小修改。
+保留文档类、已有数据和无关样式，不要重写整篇。
+
+第一条错误：Undefined control sequence. ... \toprule
+完整文件：
+[粘贴仍能复现问题的 documentclass、导言区和表格]
+
+请说明修改应放在导言区还是正文。
+如果信息不足，请指出还需要哪一段日志或源码。
+\end{TutorialCode}
+
+这个错误在未加载 \texttt{booktabs} 时会出现，但实际文件仍应检查拼写与加载情况。若缺的是宏包，在导言区补上 \texttt{\textbackslash{}\allowbreak{}usepackage\{\allowbreak{}booktabs\}\allowbreak{}}，不必更换文档类。制作最小复现时，在副本中逐步删除无关内容，并确认错误依然存在；只截出一个缺少环境的片段，可能制造新的错误。
+
+\section{已有学校模板时，把模板当作约束}\label{c14-ux5df2ux6709ux5b66ux6821ux6a21ux677fux65f6ux628aux6a21ux677fux5f53ux4f5cux7ea6ux675f}
+
+把主文件、相关 \texttt{.\allowbreak{}cls} 或 \texttt{.\allowbreak{}sty} 文件和需要修改的部分一起提供。明确要求保留文档类、学校自定义命令、章节层级、页眉页脚、已有标签和文献处理方式，只替换指定正文。不要让 AI 为了让一个小片段单独运行，顺手把整套模板换成 \texttt{article}。
+
+提示词可以写：``请先列出你准备修改的文件与位置；输出局部替换内容，并解释新增宏包是否必要。已有模板能完成的功能直接复用。''修改后比较差异，再从项目主文件编译；子章节能够单独运行，并不代表它已正确接入整篇报告。
+
+\section{交稿前，分别检查内容和成品}\label{c14-ux4ea4ux7a3fux524dux5206ux522bux68c0ux67e5ux5185ux5bb9ux548cux6210ux54c1}
+
+公式先检查定义、下标、条件和计算结果；表格逐项对照原数据、单位与合计；文献逐条打开原始来源，核对作者、题名、年份与引用位置。没有找到来源时，保留待补位置或删去依赖它的论断，不要把看似完整的虚构书目留进报告。
+
+最后打开 PDF，查看缺字、越界、表格位置与引用问号。编译成功只说明程序完成了排版，不会自动证明推导、金额或文献真实。再给 AI 一个收尾任务：``根据这些明确要求逐项检查，区分已验证、未验证和需要我提供材料的部分。''实际检查记录应当比一句``全部没问题''更具体。
+
+\section{小练习}\label{c14-ux5c0fux7ec3ux4e60}
+
+把交通实际支出改为 85 元，让 AI 只更新受影响的位置。预期实际合计应为 389 元，总差异为 \(-11\) 元，总差异率为 \(-2.75\%\)；其余数据不变。编译后对照这三个结果，再检查正文是否仍写着旧金额。
+
+\section{继续查阅}\label{c14-ux7ee7ux7eedux67e5ux9605}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.latex-project.org/help/documentation/}{LaTeX 官方文档}：用文档核对命令，而不是只凭生成结果判断。
+\item
+  \href{https://ctan.org/pkg/booktabs}{booktabs 项目与手册}：本章表格命令和排版规则。
+\item
+  \href{https://ctan.org/pkg/amsmath}{amsmath 项目与手册}：公式环境、对齐和编号说明。
+\end{itemize}
+
+\backmatter
+\chapter*{继续写下去}
+从一页笔记开始，把结构、公式和资料来源逐步写清楚，再把能重复使用的部分积累成自己的工作方法。\par
+\noindent 第一作者：\href{https://github.com/pzy54154631-hub?tab=repositories}{Ziyu Peng}\quad 第二作者：刘毅涵\par
+\noindent 在线目录：\url{https://pzy54154631-hub.github.io/liuyihan/blog/latex/}\par
+\end{document}

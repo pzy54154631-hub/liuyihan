@@ -3,7 +3,7 @@ title = "把笔记组织成一篇文章"
 date = "2026-09-16"
 tag = "LaTeX 学习手记"
 summary = "用标题、段落、目录与交叉引用整理一份中文报告，让内容增加之后仍然容易维护。"
-authors = ["Ziyu.Peng", "刘毅涵"]
+authors = ["Ziyu Peng", "刘毅涵"]
 series = "latex"
 order = 2
 stage = "第一阶段 · 写出第一份文档"
@@ -61,7 +61,7 @@ stage = "第一阶段 · 写出第一份文档"
 \setcounter{secnumdepth}{2}
 
 \title{课程报告的结构练习}
-\author{Ziyu.Peng \and 刘毅涵}
+\author{Ziyu Peng \and 刘毅涵}
 \date{}
 
 \begin{document}

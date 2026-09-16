@@ -3,7 +3,7 @@ title = "会计分录与报表：让数字彼此对得上"
 date = "2026-09-16"
 tag = "LaTeX 学习手记"
 summary = "用一组模拟交易串起借贷分录、利润、资产负债和现金流，练习报表间的勾稽关系。"
-authors = ["Ziyu.Peng", "刘毅涵"]
+authors = ["Ziyu Peng", "刘毅涵"]
 series = "latex"
 order = 12
 stage = "第四阶段 · 带进经管课堂"
@@ -67,7 +67,7 @@ $$
 \usepackage[margin=2.2cm]{geometry}
 \usepackage{amsmath,amssymb,booktabs,longtable,array}
 \title{会计分录与报表：让同一组数字相互勾稽}
-\author{Ziyu.Peng \and 刘毅涵}
+\author{Ziyu Peng \and 刘毅涵}
 \date{}
 \begin{document}
 \maketitle

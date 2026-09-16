@@ -3,7 +3,7 @@ title = "计量经济学：一张读得懂的回归结果表"
 date = "2026-09-16"
 tag = "LaTeX 学习手记"
 summary = "把模型、系数、标准误与表注组织到同一张表里，并分清排版练习与真实估计。"
-authors = ["Ziyu.Peng", "刘毅涵"]
+authors = ["Ziyu Peng", "刘毅涵"]
 series = "latex"
 order = 10
 stage = "第四阶段 · 带进经管课堂"
@@ -53,7 +53,7 @@ $$
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath,amssymb,booktabs,array}
 \title{计量经济学：结果表的组织}
-\author{Ziyu.Peng \and 刘毅涵}
+\author{Ziyu Peng \and 刘毅涵}
 \date{}
 \begin{document}
 \maketitle

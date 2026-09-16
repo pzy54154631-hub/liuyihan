@@ -3,7 +3,7 @@ title = "演示与海报：把一份笔记讲给别人听"
 date = "2026-09-16"
 tag = "LaTeX 学习手记"
 summary = "从 Beamer 幻灯片走到学术海报，用三个独立示例理解页面、内容块、分栏与代码展示。"
-authors = ["Ziyu.Peng", "刘毅涵"]
+authors = ["Ziyu Peng", "刘毅涵"]
 series = "latex"
 order = 8
 stage = "第三阶段 · 整理成完整作品"
@@ -30,7 +30,7 @@ stage = "第三阶段 · 整理成完整作品"
 \usetheme{Madrid}
 \setbeamertemplate{navigation symbols}{}
 \title{怎样把一页报告讲清楚}
-\author{Ziyu.Peng \and 刘毅涵}
+\author{Ziyu Peng \and 刘毅涵}
 \date{}
 
 \begin{document}
@@ -101,11 +101,11 @@ One question, one main message.
 
 ```latex
 % !TeX program = xelatex
-% 第一作者：Ziyu.Peng；第二作者：刘毅涵
+% 第一作者：Ziyu Peng；第二作者：刘毅涵
 \documentclass[25pt,a0paper,portrait]{tikzposter}
 \usepackage[UTF8,fontset=fandol]{ctex}
 \title{从问题到表达：一张学习海报}
-\author{Ziyu.Peng \quad 刘毅涵}
+\author{Ziyu Peng \quad 刘毅涵}
 \institute{LaTeX 学习手记 · 教学示例}
 % tikzposter 2.0 的标题缩放键兼容修正。
 \makeatletter
@@ -149,7 +149,7 @@ One question, one main message.
   \begin{center}
     {\LARGE\bfseries 从问题到表达\par}
     \bigskip
-    Ziyu.Peng \quad 刘毅涵
+    Ziyu Peng \quad 刘毅涵
   \end{center}
   \vspace{1cm}
   \begin{columns}[t,totalwidth=\textwidth]

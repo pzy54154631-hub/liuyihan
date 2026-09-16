@@ -35,12 +35,12 @@ summary = "一两句话介绍这篇文章。"
 
 ## LaTeX 学习系列
 
-目录位于 `/liuyihan/blog/latex/`。14 章按 4 个阶段排列，覆盖入门、公式图表、引用与展示、经管应用和 AI 辅助写作。署名顺序为 Ziyu.Peng、刘毅涵；各篇实际发布日期为 2026-09-16，假期安排是建议学习路线。
+目录位于 `/liuyihan/blog/latex/`。14 章按 4 个阶段排列，覆盖入门、公式图表、引用与展示、经管应用和 AI 辅助写作。署名顺序为 Ziyu Peng、刘毅涵；各篇实际发布日期为 2026-09-16，假期安排是建议学习路线。
 
 章节正文在 `content/posts/latex-*.md`，可以直接在 GitHub 编辑。除了普通文章字段，系列文章还包含：
 
 ```toml
-authors = ["Ziyu.Peng", "刘毅涵"]
+authors = ["Ziyu Peng", "刘毅涵"]
 series = "latex"
 order = 14
 stage = "第四阶段 · 带进经管课堂"
@@ -51,6 +51,31 @@ stage = "第四阶段 · 带进经管课堂"
 下载源文件位于 `assets/tutorial/examples/`，全部示例压缩包由构建程序自动生成。已编译的 PDF 预览位于 `assets/tutorial/previews/`；更新源文件后也应重新编译并替换对应 PDF。修改正文中的完整代码时，也要同步修改对应 `.tex` 文件。示例使用 XeLaTeX；第 07 章参考文献另需 Biber。所有经济、金融、会计数据均为明确标注的教学示例。
 
 公式使用随站点提供的 KaTeX 0.18.7，无需访问外部 CDN；许可证位于 `assets/vendor/katex/LICENSE`。教程阅读样式和复制按钮分别在 `assets/tutorial.css`、`assets/tutorial.js`。
+
+### 完整 PDF 与源码
+
+教程目录的“把整本手记带走”提供完整 PDF、单文件 LaTeX 源码和源码 ZIP；各章页尾也可下载整本。作者 **[Ziyu Peng](https://github.com/pzy54154631-hub?tab=repositories)** 的署名链接指向其 GitHub 页面。
+
+- `assets/tutorial/latex-tutorial-complete.pdf`：14 章完整书稿。
+- `assets/tutorial/latex-tutorial-complete.tex`：可直接使用 XeLaTeX 编译的单文件源码。
+- `assets/tutorial/SOURCE-README.md`：源码包使用说明。
+- `tools/generate_tutorial_book.py`：从网页 Markdown 重新生成书稿的维护工具。
+
+完整源码 ZIP 由 `build.py` 自动打包，包含 `main.tex`、16 份独立示例、14 章 Markdown、重新生成脚本和许可说明。修改网页版章节后，若需要同步整本 PDF，请重新生成并编译书稿，再替换上述 `.tex` 和 `.pdf`；网站日常构建不会自动运行 TeX。
+
+```sh
+python -m pip install pypandoc_binary
+python tools/generate_tutorial_book.py --posts content/posts --output work/book/main.tex
+latexmk -xelatex -outdir=work/book/build work/book/main.tex
+cp work/book/main.tex assets/tutorial/latex-tutorial-complete.tex
+cp work/book/build/main.pdf assets/tutorial/latex-tutorial-complete.pdf
+python build.py
+python check_site.py
+```
+
+### 教程许可
+
+本教程的原创正文、PDF、LaTeX 源码与原创示例采用 **MIT 许可**，允许自由编辑、复制、再发布和商用。分发全部或实质性部分时，请保留版权和完整许可声明。完整条款见 [LICENSE.txt](assets/tutorial/LICENSE.txt)，范围见 [NOTICE.md](assets/tutorial/NOTICE.md)。第三方宏包、字体、KaTeX 与引用资料保留原有许可；本声明不自动覆盖个人主页其他内容。
 
 ## 本地预览
 
