@@ -1,6 +1,6 @@
 # LaTeX 学习手记 · 完整源码
 
-第一作者：[Ziyu Peng](https://github.com/pzy54154631-hub?tab=repositories)；第二作者：刘毅涵。
+作者：[Ziyu Peng](https://github.com/pzy54154631-hub?tab=repositories)、刘毅涵。
 
 本源码包对应 15 章完整教程，包含教程书稿与 17 份可独立编译的章节示例。线上目录：<https://pzy54154631-hub.github.io/liuyihan/blog/latex/>。
 

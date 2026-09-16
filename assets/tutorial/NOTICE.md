@@ -1,6 +1,6 @@
 # 使用与许可
 
-第一作者：[Ziyu Peng](https://github.com/pzy54154631-hub?tab=repositories)；第二作者：刘毅涵。
+作者：[Ziyu Peng](https://github.com/pzy54154631-hub?tab=repositories)、刘毅涵。
 
 Copyright (c) 2026 Ziyu Peng and 刘毅涵。
 

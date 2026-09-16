@@ -117,9 +117,7 @@ PREAMBLE = r'''% !TeX program = xelatex
 \vspace{8mm}
 {\large CHAPTER_COUNT_ZH章完整教程 · 公式 · 表格 · 专业写作 · AI 协作\par}
 \vspace{24mm}
-{\large\href{https://github.com/pzy54154631-hub?tab=repositories}{Ziyu Peng}\enspace 第一作者\par}
-\vspace{3mm}
-{\large 刘毅涵\enspace 第二作者\par}
+{\large\href{https://github.com/pzy54154631-hub?tab=repositories}{Ziyu Peng}\qquad 刘毅涵\par}
 \vfill
 {\small\color{Muted}合集整理：2026 年 9 月 16 日\quad / \quad MIT License\par}
 \vspace{4mm}
@@ -131,6 +129,8 @@ PREAMBLE = r'''% !TeX program = xelatex
 \chapter*{这本手记怎么读}
 \addcontentsline{toc}{chapter}{这本手记怎么读}
 这是一份从零起步、逐步写出完整课程报告的 LaTeX 教程。本书收录网站上CHAPTER_COUNT_ZH章的完整正文、公式、代码、练习与延伸阅读。读者可以顺序学习，也可以按当前任务查阅。
+
+这份开源手记希望帮助更多大一同学跨过入门时的第一道门槛，也欢迎读者在保留许可说明的前提下继续改进、分享。
 
 本系列于 2026 年 7 月发布首篇，随后逐章补充，于 2026 年 9 月 16 日整理成合集。
 
@@ -232,7 +232,7 @@ def main():
                        'source_characters': len(body), 'code_blocks': body.count('```')//2})
     out += ['\n\\backmatter\n\\chapter*{继续写下去}\n',
             '从一页笔记开始，把结构、公式和资料来源逐步写清楚，再把能重复使用的部分积累成自己的工作方法。\\par\n',
-            '\\noindent 第一作者：\\href{'+AUTHOR_URL+'}{Ziyu Peng}\\quad 第二作者：刘毅涵\\par\n',
+            '\\noindent \\href{'+AUTHOR_URL+'}{Ziyu Peng}\\qquad 刘毅涵\\par\n',
             '\\noindent 在线目录：\\url{'+SITE+'/liuyihan/blog/latex/}\\par\n',
             '\\end{document}\n']
     args.output.parent.mkdir(parents=True, exist_ok=True)

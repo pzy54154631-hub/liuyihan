@@ -101,7 +101,7 @@ One question, one main message.
 
 ```latex
 % !TeX program = xelatex
-% 第一作者：Ziyu Peng；第二作者：刘毅涵
+% 作者：Ziyu Peng、刘毅涵
 \documentclass[25pt,a0paper,portrait]{tikzposter}
 \usepackage[UTF8,fontset=fandol]{ctex}
 \title{从问题到表达：一张学习海报}
