@@ -1,0 +1,94 @@
+% !TeX program = xelatex
+% 第一作者：Ziyu.Peng；第二作者：刘毅涵
+% 全部材料与数值均为虚构教学示例。无需外部图片。
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx,subcaption,booktabs,array,tabularx,longtable}
+\usepackage[hidelinks]{hyperref}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\title{图片与表格：一个可以修改的小样}
+\author{Ziyu.Peng \and 刘毅涵}
+\date{}
+\begin{document}
+\maketitle
+\section{成组图片}
+图~\ref{fig:pair}~中两个方框是占位图；可把方框替换为自己的图片。
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[t]{0.46\linewidth}
+    \centering
+    \fbox{\rule{0pt}{25mm}\rule{0.8\linewidth}{0pt}}
+    \caption{方案甲}\label{fig:plan-a}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.46\linewidth}
+    \centering
+    \fbox{\rule{0pt}{25mm}\rule{0.8\linewidth}{0pt}}
+    \caption{方案乙}\label{fig:plan-b}
+  \end{subfigure}
+  \caption{版面比较示意，不代表研究结果}\label{fig:pair}
+\end{figure}
+\section{会换行的短表}
+表~\ref{tab:plan}~把数字和说明分开，金额单位写在表头中。
+\begin{table}[htbp]
+  \centering
+  \caption{活动物料预算（虚构教学示例）}\label{tab:plan}
+  \begin{tabularx}{\linewidth}{@{}lYr@{}}
+    \toprule
+    项目 & 用途说明 & 金额（元）\\
+    \midrule
+    印刷 & 提供可带走的知识小卡片，并预留少量备用。 & 120\\
+    文具 & 用于现场填写反馈与记录问题。 & 80\\
+    合计 & 仅演示排版，不是实际活动预算。 & 200\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+\clearpage
+\section{跨页材料目录}
+下面主动加入足够多的短行，以观察续页表头。
+\begin{longtable}{@{}p{0.15\linewidth}p{0.33\linewidth}p{0.40\linewidth}@{}}
+  \caption{材料目录（全部为虚构占位条目）}\label{tab:materials}\\
+  \toprule 编号 & 材料 & 整理说明 \\\midrule
+  \endfirsthead
+  \multicolumn{3}{c}{表~\thetable\ （续）}\\
+  \toprule 编号 & 材料 & 整理说明 \\\midrule
+  \endhead
+  \midrule\multicolumn{3}{r}{续下页}\\
+  \endfoot
+  \bottomrule
+  \endlastfoot
+  D01 & 示例记录 01 & 核对日期、来源与定位信息。\\[4pt]
+  D02 & 示例记录 02 & 核对日期、来源与定位信息。\\[4pt]
+  D03 & 示例记录 03 & 核对日期、来源与定位信息。\\[4pt]
+  D04 & 示例记录 04 & 核对日期、来源与定位信息。\\[4pt]
+  D05 & 示例记录 05 & 核对日期、来源与定位信息。\\[4pt]
+  D06 & 示例记录 06 & 核对日期、来源与定位信息。\\[4pt]
+  D07 & 示例记录 07 & 核对日期、来源与定位信息。\\[4pt]
+  D08 & 示例记录 08 & 核对日期、来源与定位信息。\\[4pt]
+  D09 & 示例记录 09 & 核对日期、来源与定位信息。\\[4pt]
+  D10 & 示例记录 10 & 核对日期、来源与定位信息。\\[4pt]
+  D11 & 示例记录 11 & 核对日期、来源与定位信息。\\[4pt]
+  D12 & 示例记录 12 & 核对日期、来源与定位信息。\\[4pt]
+  D13 & 示例记录 13 & 核对日期、来源与定位信息。\\[4pt]
+  D14 & 示例记录 14 & 核对日期、来源与定位信息。\\[4pt]
+  D15 & 示例记录 15 & 核对日期、来源与定位信息。\\[4pt]
+  D16 & 示例记录 16 & 核对日期、来源与定位信息。\\[4pt]
+  D17 & 示例记录 17 & 核对日期、来源与定位信息。\\[4pt]
+  D18 & 示例记录 18 & 核对日期、来源与定位信息。\\[4pt]
+  D19 & 示例记录 19 & 核对日期、来源与定位信息。\\[4pt]
+  D20 & 示例记录 20 & 核对日期、来源与定位信息。\\[4pt]
+  D21 & 示例记录 21 & 核对日期、来源与定位信息。\\[4pt]
+  D22 & 示例记录 22 & 核对日期、来源与定位信息。\\[4pt]
+  D23 & 示例记录 23 & 核对日期、来源与定位信息。\\[4pt]
+  D24 & 示例记录 24 & 核对日期、来源与定位信息。\\[4pt]
+  D25 & 示例记录 25 & 核对日期、来源与定位信息。\\[4pt]
+  D26 & 示例记录 26 & 核对日期、来源与定位信息。\\[4pt]
+  D27 & 示例记录 27 & 核对日期、来源与定位信息。\\[4pt]
+  D28 & 示例记录 28 & 核对日期、来源与定位信息。\\[4pt]
+  D29 & 示例记录 29 & 核对日期、来源与定位信息。\\[4pt]
+  D30 & 示例记录 30 & 核对日期、来源与定位信息。\\[4pt]
+  D31 & 示例记录 31 & 核对日期、来源与定位信息。\\[4pt]
+  D32 & 示例记录 32 & 核对日期、来源与定位信息。\\[4pt]
+  D33 & 示例记录 33 & 核对日期、来源与定位信息。\\[4pt]
+  D34 & 示例记录 34 & 核对日期、来源与定位信息。\\[4pt]
+\end{longtable}
+\end{document}

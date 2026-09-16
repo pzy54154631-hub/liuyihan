@@ -1,0 +1,46 @@
+% !TeX program = xelatex
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+
+\title{课程报告的结构练习}
+\author{Ziyu.Peng \and 刘毅涵}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{研究问题}
+\label{sec:question}
+本例只演示文档结构，不包含实际研究结论。
+材料范围见第~\ref{sec:materials}~节。
+
+\section{材料与方法}
+\label{sec:methods}
+\subsection{材料范围}
+\label{sec:materials}
+这里说明准备使用哪些材料，以及为什么选择它们。
+
+这里另起一段，说明材料的限制。
+\footnote{本脚注仅用于演示补充说明。}
+
+\subsection{整理步骤}
+\begin{enumerate}
+  \item 记录材料出处。
+  \item 按主题进行整理。
+  \item 检查说明与材料是否一致。
+\end{enumerate}
+
+\section{小结}
+问题在第~\pageref{sec:question}~页提出。
+当前文档已经可以自动更新编号。
+
+\section*{致谢}
+\phantomsection
+\addcontentsline{toc}{section}{致谢}
+这里放置不编号的致谢内容。
+\end{document}

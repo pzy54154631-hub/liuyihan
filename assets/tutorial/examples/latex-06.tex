@@ -1,0 +1,56 @@
+% !TeX program = xelatex
+% 第一作者：Ziyu.Peng；第二作者：刘毅涵
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm,headheight=16pt]{geometry}
+\usepackage[expansion=false]{microtype}
+\usepackage{xcolor,fancyhdr,listings,fvextra,tikz}
+\setmainfont{texgyrepagella-regular.otf}[
+  BoldFont=texgyrepagella-bold.otf,
+  ItalicFont=texgyrepagella-italic.otf,
+  BoldItalicFont=texgyrepagella-bolditalic.otf]
+\setmonofont{lmmono10-regular.otf}[BoldFont=lmmonolt10-bold.otf,
+  ItalicFont=lmmono10-italic.otf]
+\definecolor{inkblue}{HTML}{385A75}
+\definecolor{paperblue}{HTML}{F1F5F8}
+\ctexset{section={format=\Large\bfseries\color{inkblue}}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{LaTeX 学习手记}
+\fancyhead[R]{字体与版面}
+\fancyfoot[C]{\thepage}
+\lstset{basicstyle=\ttfamily\small,breaklines=true,
+  backgroundcolor=\color{paperblue},frame=single,showstringspaces=false}
+\usepackage[colorlinks=true,allcolors=inkblue]{hyperref}
+\title{让同一种信息拥有同一种样式}
+\author{Ziyu.Peng \and 刘毅涵}
+\date{}
+\begin{document}
+\maketitle
+\section{统一视觉层级}
+这是一段正文。\textbf{加粗}用于强调关键点，
+\textcolor{inkblue}{主题色}帮助识别少量提示信息。
+{\kaishu 这一句使用局部楷体。}后面的文字恢复正常。
+\section{展示代码}
+下面是英文 Python 代码，只作代码排版演示。
+\begin{lstlisting}[language=Python]
+values = [120, 80, 200]
+total = sum(values)
+print(total)
+\end{lstlisting}
+包含中文的 LaTeX 源码用 Verbatim 展示，不把它当作正文执行。
+\begin{Verbatim}[breaklines=true,fontsize=\small,frame=single]
+\section{材料整理}
+这是中文说明。正文中的百分号写作 \%。
+\end{Verbatim}
+\section{一个小流程图}
+\begin{center}
+\begin{tikzpicture}[every node/.style={draw=inkblue,rounded corners,
+  minimum height=10mm,minimum width=25mm,fill=paperblue}]
+  \node (a) at (0,0) {输入材料};
+  \node (b) at (4,0) {核对来源};
+  \node (c) at (8,0) {输出文档};
+  \draw[->,thick,inkblue] (a) -- (b);
+  \draw[->,thick,inkblue] (b) -- (c);
+\end{tikzpicture}
+\end{center}
+\end{document}

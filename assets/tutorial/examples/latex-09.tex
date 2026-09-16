@@ -1,0 +1,72 @@
+% !TeX program = xelatex
+% 教学模型；所有参数均为自设，不代表真实市场。
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,pgfplots}
+\pgfplotsset{compat=1.18}
+\title{经济学模型：预算、选择与市场}
+\author{Ziyu.Peng \and 刘毅涵}
+\date{}
+\begin{document}
+\maketitle
+\section{消费者选择}
+设两种商品数量为 $x,y>0$，价格 $p_x,p_y>0$，
+收入 $m>0$，偏好参数 $0<\alpha<1$。采用对数效用：
+\begin{equation}
+  \max_{x,y>0}\; \alpha\ln x+(1-\alpha)\ln y
+  \quad\text{s.t.}\quad p_xx+p_yy\le m.
+  \label{eq:choice}
+\end{equation}
+因效用对两种商品均严格递增，最优选择用尽预算。
+将约束写成等式后，拉格朗日函数及一阶条件为
+\begin{align}
+ \mathcal L&=\alpha\ln x+(1-\alpha)\ln y
+           +\lambda(m-p_xx-p_yy),\\
+ \frac{\partial\mathcal L}{\partial x}
+   &=\frac{\alpha}{x}-\lambda p_x=0,\\
+ \frac{\partial\mathcal L}{\partial y}
+   &=\frac{1-\alpha}{y}-\lambda p_y=0,\\
+ p_xx+p_yy&=m.
+\end{align}
+得到唯一最优解
+\[
+ x^*=\frac{\alpha m}{p_x},\qquad
+ y^*=\frac{(1-\alpha)m}{p_y}.
+\]
+例如 $m=100,p_x=5,p_y=10,\alpha=0.4$，
+有 $x^*=8,y^*=6$，预算核对为 $5\times8+10\times6=100$。
+这些值仅是教学设定。
+
+\clearpage
+\section{供需示意图}
+下面是与上例独立的线性市场模型：
+\[
+ p_D(q)=12-0.5q,\qquad p_S(q)=2+0.5q.
+\]
+联立后得到 $q^*=10,p^*=7$。图中横轴是数量，纵轴是价格。
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+ width=0.8\linewidth,height=7cm,
+ axis lines=left,xmin=0,xmax=20,ymin=0,ymax=13,
+ xlabel={数量 $q$},ylabel={价格 $p$},
+ xtick={0,5,10,15,20},ytick={0,2,7,12},
+ legend style={at={(0.98,0.98)},anchor=north east},
+ samples=2]
+\addplot[blue,thick,domain=0:20]{12-0.5*x};
+\addlegendentry{需求}
+\addplot[red,dashed,thick,domain=0:20]{2+0.5*x};
+\addlegendentry{供给}
+\addplot[gray,densely dotted,forget plot]
+ coordinates {(0,7) (10,7) (10,0)};
+\addplot[black,only marks,mark=*,forget plot]
+ coordinates {(10,7)};
+\node[above left] at (axis cs:10,7) {$E(10,7)$};
+\end{axis}
+\end{tikzpicture}
+\caption{自设线性供需模型；曲线不来自市场数据。}
+\label{fig:supply-demand}
+\end{figure}
+如图~\ref{fig:supply-demand}，虚线投影帮助读出均衡坐标。
+\end{document}

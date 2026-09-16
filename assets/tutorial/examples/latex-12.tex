@@ -1,0 +1,130 @@
+% !TeX program = xelatex
+% 自设会计教学案例；金额单位为元，不对应任何企业。
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,longtable,array}
+\title{会计分录与报表：让同一组数字相互勾稽}
+\author{Ziyu.Peng \and 刘毅涵}
+\date{}
+\begin{document}
+\maketitle
+假设一家模拟服务工作室期初余额全部为零。下面记录一个教学期间的交易，
+不考虑税费，期末无分红；设备本期折旧给定为 100。
+耗材购入时先确认为资产，本期耗用部分才转为费用。
+所有数值均为自设，报表是为解释勾稽关系而简化的教学版。
+
+\section{分录：每笔借贷相等}
+\begin{longtable}{@{}p{1cm}p{4.9cm}rr@{}}
+\caption{模拟交易分录（单位：元）}\label{tab:entries}\\
+\toprule
+事项 & 科目 & 借方 & 贷方\\
+\midrule
+\endfirsthead
+\toprule
+事项 & 科目 & 借方 & 贷方\\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{续下页}\\
+\endfoot
+\bottomrule
+\endlastfoot
+1 & 银行存款 & 10000 & \\
+  & \quad 投入资本 & & 10000\\
+\addlinespace
+2 & 设备 & 3000 & \\
+  & \quad 银行存款 & & 3000\\
+\addlinespace
+3 & 耗材 & 600 & \\
+  & \quad 银行存款 & & 600\\
+\addlinespace
+4 & 耗材 & 500 & \\
+  & \quad 应付账款 & & 500\\
+\addlinespace
+5 & 银行存款 & 1800 & \\
+  & 应收账款 & 600 & \\
+  & \quad 服务收入 & & 2400\\
+\addlinespace
+6 & 租金费用 & 500 & \\
+  & \quad 银行存款 & & 500\\
+\addlinespace
+7 & 耗材费用 & 200 & \\
+  & \quad 耗材 & & 200\\
+\addlinespace
+8 & 折旧费用 & 100 & \\
+  & \quad 累计折旧 & & 100\\
+\end{longtable}
+
+\section{本期利润与期末权益}
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+利润表项目 & 金额（元）\\
+\midrule
+服务收入 & 2400\\
+减：租金费用 & 500\\
+减：耗材费用 & 200\\
+减：折旧费用 & 100\\
+\midrule
+本期利润 & 1600\\
+\bottomrule
+\end{tabular}
+\end{center}
+在本例无税费的设定下，本期利润为 1600。期末权益为
+$0+10000+1600-0=11600$，依次对应期初权益、投入、本期利润和分配。
+
+\section{期末资产负债表}
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+资产项目 & 金额（元）\\
+\midrule
+银行存款 & 7700\\
+应收账款 & 600\\
+耗材 & 900\\
+设备原值 & 3000\\
+减：累计折旧 & 100\\
+\midrule
+资产总计 & 12100\\
+\midrule
+负债和权益项目 & 金额（元）\\
+\midrule
+应付账款 & 500\\
+投入资本 & 10000\\
+本期形成的留存利润 & 1600\\
+\midrule
+负债和权益合计 & 12100\\
+\bottomrule
+\end{tabular}
+\end{center}
+核对 $12100=500+11600$。累计折旧抵减设备账面价值，并非负债。
+
+\clearpage
+\section{本期现金流量汇总}
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+项目 & 金额（元）\\
+\midrule
+经营：收到服务款 & 1800\\
+经营：购入耗材支付 & -600\\
+经营：支付租金 & -500\\
+经营活动现金流量净额 & 700\\
+\midrule
+投资：购买设备 & -3000\\
+筹资：收到投入资本 & 10000\\
+\midrule
+现金净增加额 & 7700\\
+期初现金余额 & 0\\
+期末现金余额 & 7700\\
+\bottomrule
+\end{tabular}
+\end{center}
+赊购耗材 500 不产生本期现金收付。折旧 100 也不直接产生现金收付。
+本例银行存款即现金流量表中的现金，未另设现金等价物。
+以间接思路核对经营现金流：
+\[
+1600+100-600-900+500=700.
+\]
+各项依次为利润、折旧、应收增加、耗材增加和应付增加。
+\end{document}

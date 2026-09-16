@@ -1,0 +1,42 @@
+% !TeX program = xelatex
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\title{活动预算差异说明}
+\author{Ziyu.Peng \and 刘毅涵}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{数据说明：}
+以下均为虚构教学数据，单位为元；
+差异定义为“实际支出减预算”，负数表示低于预算。
+
+\begin{table}[htbp]
+\centering
+\caption{活动预算与实际支出（虚构教学数据，单位：元）}
+\label{tab:budget}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+项目 & 预算 & 实际 & 差异 \\
+\midrule
+印刷 & 120 & 108 & \(-12\) \\
+交通 & 80  & 90  & \(+10\) \\
+物资 & 200 & 196 & \(-4\) \\
+\midrule
+合计 & 400 & 394 & \(-6\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+由表~\ref{tab:budget}~可见，总支出比预算少 6 元，
+总差异率为
+\[
+  \frac{394-400}{400}\times100\%=-1.5\%.
+\]
+交通支出高于预算 10 元；仅凭本表不能判断各项差异的原因。
+
+\end{document}

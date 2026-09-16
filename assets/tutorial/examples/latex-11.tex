@@ -1,0 +1,65 @@
+% !TeX program = xelatex
+% 自设教学现金流；不对应任何真实投资产品。
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,siunitx}
+\sisetup{group-separator={,},group-minimum-digits=4}
+\title{金融公式：让现金流与时间对齐}
+\author{Ziyu.Peng \and 刘毅涵}
+\date{}
+\begin{document}
+\maketitle
+\section{收益率与复利}
+无分红、无中途现金流、价格均为正时，简单收益率与对数收益率为
+\[
+ R_t=\frac{P_t-P_{t-1}}{P_{t-1}},\qquad
+ r_t=\ln\!\left(\frac{P_t}{P_{t-1}}\right)
+     =\ln(1+R_t).
+\]
+价格从 100 变为 110 时，$R_t=10\%$，$r_t\approx0.09531$。
+若每期有效利率恒为 $i$，且收益在相同利率下再投资，则
+\[
+ \mathrm{FV}_n=\mathrm{PV}_0(1+i)^n.
+\]
+例如本金 1000、年有效利率 $5\%$、期限 3 年，有
+$\mathrm{FV}_3=1000(1.05)^3=1157.625$，显示到分为 1157.63。
+
+\section{净现值：明确每笔现金流的时点}
+设期初 $t=0$ 支出 1000，第 1、2、3 年末分别收到 400、450、500，
+年有效折现率取 $8\%$。金额单位统一为元，参数均为教学设定。
+\begin{align*}
+ \mathrm{NPV}
+ &=\sum_{t=0}^{3}\frac{\mathrm{CF}_t}{(1+i)^t}\\
+ &=-1000+\frac{400}{1.08}
+   +\frac{450}{1.08^2}+\frac{500}{1.08^3}\\
+ &\approx153.09.
+\end{align*}
+\begin{center}
+\begin{tabular}{c S[table-format=-4.0] S[table-format=-4.2]}
+\toprule
+{时点 $t$（年）} & {现金流（元）} & {现值（元）}\\
+\midrule
+0 & -1000 & -1000.00\\
+1 & 400 & 370.37\\
+2 & 450 & 385.80\\
+3 & 500 & 396.92\\
+\midrule
+\multicolumn{2}{r}{NPV（由未舍入值求和）} & 153.09\\
+\bottomrule
+\end{tabular}
+\end{center}
+表中单行显示值已舍入；计算 NPV 时使用未舍入值，最后统一显示到分。
+$t=0$ 表示期初；$t=1,2,3$ 分别表示第 1、2、3 年末。
+
+\section{固定息票债券的课堂估值}
+设面值 $F=1000$、年息票率 $c=4\%$，每年末付息一次，
+3 年后还本；估值时点刚付完息，年有效收益率假设为 $y=5\%$。
+忽略违约、税费与嵌入期权，则
+\[
+ B_0=\sum_{t=1}^{3}\frac{cF}{(1+y)^t}
+     +\frac{F}{(1+y)^3}
+     \approx972.77.
+\]
+最后一期收到的总额为 $40+1000=1040$，不能只计息票。
+本例仅用于演示排版与贴现计算。
+\end{document}

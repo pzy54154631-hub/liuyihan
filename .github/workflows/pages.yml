@@ -19,6 +19,7 @@ jobs:
       - uses: actions/configure-pages@v5
       - run: pip install -r requirements.txt
       - run: python build.py
+      - run: python check_site.py
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist/liuyihan

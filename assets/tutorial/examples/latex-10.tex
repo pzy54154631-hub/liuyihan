@@ -1,0 +1,58 @@
+% !TeX program = xelatex
+% 所有系数、标准误、样本量、R^2均为虚构排版占位值。
+% 本文件不对应真实数据或实际回归，不可作统计推断。
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array}
+\title{计量经济学：结果表的组织}
+\author{Ziyu.Peng \and 刘毅涵}
+\date{}
+\begin{document}
+\maketitle
+\section{先写清楚模型}
+考虑用于说明表格结构的横截面回归：
+\begin{align}
+ c_i&=\beta_0+\beta_1y_i+u_i,\label{eq:m1}\\
+ c_i&=\beta_0+\beta_1y_i+\beta_2s_i+u_i.\label{eq:m2}
+\end{align}
+其中 $c_i$ 表示月消费（千元），$y_i$ 表示月收入（千元），
+$s_i$ 表示家庭人数。每行观察值对应一个家庭。
+\textbf{以下数值全部是虚构的排版占位值；没有实际运行回归，
+也没有对应的数据集，不用于估计、检验或现实解释。}
+
+\begin{table}[htbp]
+\centering
+\caption{结果表版式练习：虚构占位值}
+\label{tab:regression}
+\begin{tabular}{lrr}
+\toprule
+ & \multicolumn{2}{c}{因变量：月消费（千元）}\\
+\cmidrule(lr){2-3}
+ & \multicolumn{1}{c}{模型（1）}
+ & \multicolumn{1}{c}{模型（2）}\\
+\midrule
+月收入（千元） & 0.620 & 0.580\\
+ & (0.080) & (0.090)\\
+家庭人数 & \multicolumn{1}{c}{—} & 0.350\\
+ & & (0.120)\\
+常数项 & 0.800 & 0.300\\
+ & (0.250) & (0.310)\\
+\midrule
+观察值数量 & 120 & 120\\
+$R^2$ & 0.410 & 0.460\\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\begin{minipage}{0.88\linewidth}
+\footnotesize
+注：系数下方括号用于展示标准误应放置的位置。
+所有系数、标准误、观察值数量和 $R^2$ 均为自设占位值；
+破折号表示未纳入该变量。示例不标显著性星号。
+实际研究须报告数据来源、样本筛选、估计方法及标准误类型；
+如使用聚类标准误，还须说明聚类层级。
+\end{minipage}
+\end{table}
+
+表~\ref{tab:regression} 练习了表头、数值、模型信息及表注的分工。
+排版程序不会替代统计软件验证表内数字。
+\end{document}

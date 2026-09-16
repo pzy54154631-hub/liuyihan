@@ -1,0 +1,51 @@
+% !TeX program = xelatex
+% 第一作者：Ziyu.Peng；第二作者：刘毅涵
+\documentclass[aspectratio=169]{beamer}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage{booktabs}
+\usetheme{Madrid}
+\definecolor{noteblue}{HTML}{385A75}
+\setbeamercolor{structure}{fg=noteblue}
+\setbeamertemplate{navigation symbols}{}
+\title{怎样把一页报告讲清楚}
+\author{Ziyu.Peng \and 刘毅涵}
+\institute{LaTeX 学习手记 · 教学示例}
+\date{}
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+\begin{frame}{先让听众知道问题}
+  \begin{block}{这一页只回答一件事}
+    怎样同时交代结果、单位和适用条件？
+  \end{block}
+  \begin{itemize}
+    \item 标题写出问题或主要信息。
+    \item 图表只保留与解释有关的内容。
+    \item 在页脚或图注中标明数据来源。
+  \end{itemize}
+\end{frame}
+\begin{frame}{用两栏建立对应关系}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.47\textwidth}
+      \textbf{左栏：说明}
+      \begin{itemize}
+        \item 右栏金额全部为虚构示例。
+        \item 明确单位，避免读者猜测。
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \begin{tabular}{lr}
+        \toprule 项目 & 金额（元）\\\midrule
+        甲 & 120\\ 乙 & 80\\ 合计 & 200\\\bottomrule
+      \end{tabular}
+    \end{column}
+  \end{columns}
+\end{frame}
+\begin{frame}[fragile]{包含原样代码的页面需要 fragile}
+\begin{verbatim}
+\section{A clear structure}
+One question, one main message.
+\end{verbatim}
+\end{frame}
+\end{document}

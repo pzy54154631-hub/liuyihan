@@ -1,0 +1,60 @@
+% !TeX program = xelatex
+% 第一作者：Ziyu.Peng；第二作者：刘毅涵
+% 编译：XeLaTeX -> Biber -> XeLaTeX -> XeLaTeX；或 latexmk -xelatex。
+% 所有文献、引文、访谈均为虚构教学示例。
+\begin{filecontents*}{latex-07-demo.bib}
+@book{sample2024,
+  author = {Sample, Alice},
+  title = {Local Memory: A Fictional Teaching Example},
+  date = {2024},
+  location = {Example City},
+  publisher = {Fictional Teaching Press}
+}
+@article{example2025,
+  author = {Example, Ben},
+  title = {Reading Interviews: A Fictional Teaching Example},
+  journaltitle = {Fictional Teaching Journal},
+  date = {2025},
+  volume = {2},
+  number = {1},
+  pages = {40--52}
+}
+\end{filecontents*}
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{csquotes,enumitem,xurl}
+\usepackage[backend=biber,style=authoryear]{biblatex}
+\addbibresource{latex-07-demo.bib}
+\usepackage[hidelinks]{hyperref}
+\title{把来源和正文一起整理好}
+\author{Ziyu.Peng \and 刘毅涵}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+\section{概念与材料}\label{sec:materials}
+本文只演示写作与排版。所有作者、文献和访谈均为虚构。
+这里的“社区”指日常交往的范围。\footnote{这是一条教学自拟的概念限定。}
+\textcite[23--25]{sample2024} 用于演示叙述式引用。
+括号式引用用于标记出处\parencite[45]{example2025}。
+\begin{quote}
+材料的缺席，不能直接说明行动没有发生。
+\end{quote}
+上面的句子由教程自拟，不是文献原话。
+\section{匿名材料整理}
+参见第~\ref{sec:materials}~节的材料范围。
+以下编号、时间与发言均为虚构。
+\begin{description}[leftmargin=2em,font=\normalfont\bfseries]
+\item[访问者，00:12] 你怎样描述这处公共空间？
+\item[P03，00:18] 我会把它叫作碰面的地方。
+\item[转写说明] 方括号用于标识删节和说明，避免与原话混淆。
+\end{description}
+\printbibliography[heading=bibintoc,title={参考文献（虚构教学示例）}]
+\appendix
+\section{访谈提纲}\label{app:guide}
+这份提纲只演示附录编号。正式写作时，应根据研究问题设计问题。
+\section*{致谢}
+\phantomsection
+\addcontentsline{toc}{section}{致谢}
+此处演示无编号标题加入目录。
+\end{document}

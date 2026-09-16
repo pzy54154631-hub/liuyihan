@@ -1,0 +1,35 @@
+% !TeX program = xelatex
+% 第一作者：Ziyu.Peng；第二作者：刘毅涵
+\documentclass{beamer}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage[orientation=portrait,size=a0,scale=1.4]{beamerposter}
+\usetheme{Madrid}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+\title{从问题到表达：一张学习海报}
+\author{Ziyu.Peng \and 刘毅涵}
+\institute{LaTeX 学习手记 · 教学示例}
+\begin{document}
+\begin{frame}[t]
+  \begin{center}
+    {\LARGE\bfseries\inserttitle\par}
+    \bigskip
+    {\large\insertauthor\par}
+    \medskip
+    \insertinstitute
+  \end{center}
+  \vspace{1cm}
+  \begin{columns}[t,totalwidth=\textwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{问题与材料}
+        本海报只演示版式，没有真实研究数据。用简短的段落交代问题和材料范围。
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{表达与解释}
+        写明图表单位、来源和适用条件，让文字与图表共同说明一个问题。
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+\end{document}

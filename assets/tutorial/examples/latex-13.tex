@@ -1,0 +1,71 @@
+% !TeX program = xelatex
+% 编译两遍以更新目录与交叉引用；所有数字均为虚构课堂示例。
+\documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,booktabs,tabularx,xcolor}
+\usepackage[expansion=false]{microtype}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,
+  pdftitle={预算方案比较：课程报告排版练习},
+  pdfauthor={Ziyu.Peng; 刘毅涵}}
+\title{预算方案比较\\[0.5em]\large 一份课程报告排版练习}
+\author{Ziyu.Peng \and 刘毅涵}
+\date{2026年9月16日}
+\begin{document}
+\maketitle
+\begin{abstract}
+本文使用虚构数据比较两种活动预算方案，演示如何组织假设、公式、表格与结论。
+在给定参与人数下，方案 B 的单位预算成本较低；人数假设改变时，比较结果可能反转。
+文中金额与人数仅用于课堂排版练习，不代表任何实际活动。
+\end{abstract}
+\tableofcontents
+\section{问题与假设}
+在总预算不超过 1,000 元的前提下，比较方案 A 与方案 B。
+暂时把各方案总支出视为固定数，不考虑活动质量差异和新增参与者的边际支出。
+\section{计算方法}
+设方案 $j$ 的预算支出为 $C_j$，预计参与人数为 $N_j>0$。
+每位预计参与者对应的预算成本定义为
+\begin{equation}
+  c_j=\frac{C_j}{N_j}.
+  \label{eq:cost}
+\end{equation}
+式~\eqref{eq:cost} 的单位为元/人。
+\section{比较结果}
+\label{sec:results}
+表~\ref{tab:plans} 列出两个方案的假设与计算值。
+在给定人数下，B 的单位预算成本比 A 低 1 元/人。
+\begin{table}[htbp]
+\centering
+\caption{预算方案比较（虚构数据）}
+\label{tab:plans}
+\begin{tabular}{lrrr}
+\toprule
+方案 & 支出（元） & 预计人数（人） & 单位成本（元/人） \\
+\midrule
+A & 650 & 50 & 13.00 \\
+B & 900 & 75 & 12.00 \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\begin{minipage}{0.9\linewidth}\small
+注：支出为预算设定，人数为情景假设；金额未实际发生。
+两位小数表示展示格式，不表示人数预测的精确程度。
+\end{minipage}
+\end{table}
+\section{敏感性与局限}
+若 B 只有 60 位参与者，单位预算成本变成 $900/60=15$ 元/人。
+在固定支出假设下，B 的单位成本低于 A 的条件为
+\begin{align}
+  \frac{900}{N_B}&<13,\\
+  N_B&>\frac{900}{13}\approx69.23.
+\end{align}
+因此至少需要 70 位参与者。此处尚未比较体验、质量与执行难度，不能仅凭一个指标认定某方案最优。
+\section{结论}
+表~\ref{tab:plans} 的比较依赖于明确的假设。可靠的报告应让读者看到这些假设，以及它们改变时结论如何变化。
+\appendix
+\section{计算核对与排版资料}
+第~\ref{sec:results}~节使用的计算为 $650/50=13$、$900/75=12$。
+假定支出固定，$900/70\approx12.86<13$，而 $900/69\approx13.04>13$。
+本文表格使用 \texttt{booktabs}；文档见\url{https://ctan.org/pkg/booktabs}。
+这个链接用于说明排版工具，不是虚构业务数据的来源。
+\end{document}
