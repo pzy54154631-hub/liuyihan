@@ -7,6 +7,7 @@ from string import Template
 from email.utils import format_datetime
 import argparse
 import json
+import hashlib
 import re
 import shutil
 import tomllib
@@ -21,6 +22,7 @@ ORIGIN = 'https://pzy54154631-hub.github.io'
 PUBLIC = ROOT / 'dist' / BASE.strip('/')
 profile = json.loads((ROOT / 'content/profile.json').read_text())
 layout = Template((ROOT / 'templates/layout.html').read_text())
+STYLE_VERSION = hashlib.sha256((ROOT / 'assets/site.css').read_bytes() + (ROOT / 'assets/tutorial.css').read_bytes()).hexdigest()[:12]
 md = MarkdownIt('commonmark', {'html': False}).enable('table').use(dollarmath_plugin, allow_labels=False)
 SERIES_URL = f'{BASE}/blog/latex/'
 SERIES_TITLE = '把想法写成漂亮的一页'
@@ -111,7 +113,7 @@ def post_data():
 def page(title, description, body, path='', active='', og_type='website', tutorial=False):
     canonical = f'{ORIGIN}{BASE}/{path}'
     return layout.substitute(title=e(title), description=e(description), canonical=e(canonical),
-        base=BASE, email=e(profile['email']), body=body, year=date.today().year, og_type=og_type,
+        base=BASE, style_version=STYLE_VERSION, email=e(profile['email']), body=body, year=date.today().year, og_type=og_type,
         extra_head=(f'<link rel="stylesheet" href="{BASE}/assets/vendor/katex/katex.min.css"><script defer src="{BASE}/assets/vendor/katex/katex.min.js"></script><script defer src="{BASE}/assets/tutorial.js"></script>' if tutorial else ''),
         home_current='aria-current="page"' if active == 'home' else '',
         blog_current='aria-current="page"' if active == 'blog' else '')
@@ -148,6 +150,13 @@ def chapter_navigation(p, chapters):
         links.append(f'<a href="{SERIES_URL}"><span>继续练习 ↗</span><strong>回到系列目录</strong></a>')
     return '<nav class="chapter-navigation" aria-label="章节导航">'+''.join(links)+'</nav>'
 
+def project_cards():
+    cards = []
+    for project in profile.get('projects', []):
+        paragraphs = ''.join(f'<p>{e(text)}</p>' for text in project['paragraphs'])
+        cards.append(f'''<article class="about-project"><div class="project-heading"><div><span class="project-role">{e(project['role'])}</span><h3>{e(project['title'])}</h3></div><span class="experience-period">{e(project['period'])}</span></div>{paragraphs}<a class="text-link project-link" href="{e(project['url'])}">{e(project['link_label'])}</a></article>''')
+    return ''.join(cards)
+
 def home(posts):
     education = ''.join(f'''<div class="education-item"><strong>{e(x['name'])}</strong><p>{e(x['detail'])}</p><time>{e(x['period'])}</time></div>''' for x in profile['education'])
     experiences = ''.join(f'''<div class="experience-row"><div class="experience-top"><h4>{e(x['title'])}</h4><span class="experience-period">{e(x['period'])}</span></div><p>{e(x['text'])}</p></div>''' for x in profile['experiences'])
@@ -155,7 +164,7 @@ def home(posts):
     return f'''<main id="main" class="wrap">
       <section class="hero" aria-labelledby="intro-title"><div><span class="hello">Hello, welcome to my little corner.</span><h1 id="intro-title">你好，我是<br><span>刘毅涵</span>。</h1><p class="school">暨南大学 · 经济学院金融专业</p><p class="hero-description">{e(profile['intro'])}</p><div class="hero-actions"><a class="button button-primary" href="{BASE}/blog/">读我的手记 <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="#about">认识一下</a></div></div><div class="hero-art"><img src="{BASE}/assets/reading-bunny.webp" alt="一只小兔坐在笔记本旁读书的手绘插画" width="800" height="800" fetchpriority="high"><span class="art-caption">a little space to learn & grow</span></div></section>
       <section class="section" aria-labelledby="writing-title"><div class="section-heading"><div><span class="section-index">Notes & little discoveries</span><h2 id="writing-title">最近的手记</h2></div><a class="text-link" href="{BASE}/blog/">全部手记 ↗</a></div>{series_card(posts)}{cards([p for p in posts if not p.get('series')][:3])}</section>
-      <section class="section" id="about" aria-labelledby="about-title"><div class="section-heading"><div><span class="section-index">A little about me</span><h2 id="about-title">关于我</h2></div><span class="small-note">学习，也参与身边的小事。</span></div><div class="about-grid"><div class="note-card tint-blue"><span class="tape" aria-hidden="true"></span><h3>我的学习足迹</h3>{education}</div><div class="note-card"><h3>课堂以外</h3>{experiences}</div></div><div class="skills-wrap"><div class="skills-heading"><h3>现在的技能工具箱</h3><span class="small-note">继续学习，也慢慢实践。</span></div><div class="skills-grid">{skills}</div></div></section>
+      <section class="section" id="about" aria-labelledby="about-title"><div class="section-heading"><div><span class="section-index">A little about me</span><h2 id="about-title">关于我</h2></div><span class="small-note">学习，也参与身边的小事。</span></div><div class="about-grid"><div class="note-card tint-blue"><span class="tape" aria-hidden="true"></span><h3>我的学习足迹</h3>{education}</div><div class="note-card"><h3>课堂以外</h3>{experiences}</div></div>{project_cards()}<div class="skills-wrap"><div class="skills-heading"><h3>现在的技能工具箱</h3><span class="small-note">继续学习，也慢慢实践。</span></div><div class="skills-grid">{skills}</div></div></section>
       <section class="contact-section" aria-labelledby="contact-title"><div class="contact-paper"><div><h2 id="contact-title">有想交流的事情吗？</h2><p>关于学习、志愿服务，或一个有意思的问题，都可以写信给我。</p></div><a class="email-link" href="mailto:{e(profile['email'])}">{e(profile['email'])} ↗</a></div></section>
     </main>'''
 
