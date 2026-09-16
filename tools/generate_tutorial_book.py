@@ -121,6 +121,8 @@ PREAMBLE = r'''% !TeX program = xelatex
 {\large CHAPTER_COUNT_ZH章完整教程 · 公式 · 表格 · 专业写作 · AI 协作\par}
 \vspace{24mm}
 {\large\textit{\href{https://github.com/pzy54154631-hub}{Ziyu Peng}, University of Colorado Boulder}\par}
+\vspace{1mm}
+{\large\textit{Boulder, CO 80309, USA}\par}
 \vspace{3mm}
 {\large\href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院\par}
 \vfill
@@ -238,6 +240,7 @@ def main():
     out += ['\n\\backmatter\n\\chapter*{继续写下去}\n',
             '从一页笔记开始，把结构、公式和资料来源逐步写清楚，再把能重复使用的部分积累成自己的工作方法。\\par\n',
             '\\noindent \\textit{\\href{'+AUTHOR_URL+'}{Ziyu Peng}, University of Colorado Boulder}\\par\n',
+            '\\noindent \\textit{Boulder, CO 80309, USA}\\par\n',
             '\\noindent \\href{'+SECOND_AUTHOR_URL+'}{刘毅涵}，暨南大学经济学院\\par\n',
             '\\noindent 在线目录：\\url{'+SITE+'/liuyihan/blog/latex/}\\par\n',
             '\\end{document}\n']

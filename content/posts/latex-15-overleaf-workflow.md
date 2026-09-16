@@ -47,7 +47,8 @@ stage = "第五阶段 · 把文档交给别人"
 \usepackage[hidelinks]{hyperref}
 
 \title{我的第一份 Overleaf 课程笔记}
-\author{\href{https://github.com/pzy54154631-hub}{\textit{Ziyu Peng}}, University of Colorado Boulder
+\author{\href{https://github.com/pzy54154631-hub}{\textit{Ziyu Peng}}, University of Colorado Boulder,
+  \\[0.1em]Boulder, CO 80309, USA
   \\[0.35em]
   \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
