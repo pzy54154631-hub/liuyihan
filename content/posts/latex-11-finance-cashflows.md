@@ -76,7 +76,7 @@ $$
 \sisetup{group-separator={,},group-minimum-digits=4}
 \usepackage[hidelinks]{hyperref}
 \title{金融公式：让现金流与时间对齐}
-\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+\author{\href{https://github.com/pzy54154631-hub}{\textit{Ziyu Peng}}, University of Colorado Boulder
   \\[0.35em]
   \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}

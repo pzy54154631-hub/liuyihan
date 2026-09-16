@@ -39,7 +39,7 @@ stage = "第五阶段 · 把文档交给别人"
 % !TeX program = xelatex
 % SPDX-License-Identifier: MIT
 % Copyright (c) 2026 Ziyu Peng and 刘毅涵
-% Author: https://pzy54154631-hub.github.io/homepage/
+% Author: https://github.com/pzy54154631-hub
 % Author: https://pzy54154631-hub.github.io/liuyihan/
 \documentclass[UTF8,a4paper,fontset=fandol]{ctexart}
 \usepackage[margin=2.5cm]{geometry}
@@ -47,7 +47,7 @@ stage = "第五阶段 · 把文档交给别人"
 \usepackage[hidelinks]{hyperref}
 
 \title{我的第一份 Overleaf 课程笔记}
-\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+\author{\href{https://github.com/pzy54154631-hub}{\textit{Ziyu Peng}}, University of Colorado Boulder
   \\[0.35em]
   \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}

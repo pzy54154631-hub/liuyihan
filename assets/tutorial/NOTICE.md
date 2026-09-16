@@ -1,6 +1,6 @@
 # 使用与许可
 
-作者：[Ziyu Peng](https://pzy54154631-hub.github.io/homepage/)，University of Colorado Boulder；[刘毅涵](https://pzy54154631-hub.github.io/liuyihan/)，暨南大学经济学院。
+作者：[Ziyu Peng](https://github.com/pzy54154631-hub)，University of Colorado Boulder；[刘毅涵](https://pzy54154631-hub.github.io/liuyihan/)，暨南大学经济学院。
 
 Copyright (c) 2026 Ziyu Peng and 刘毅涵。
 

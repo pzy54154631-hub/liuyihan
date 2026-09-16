@@ -14,7 +14,7 @@ import pypandoc
 
 HERE = Path(__file__).resolve().parent
 SITE = 'https://pzy54154631-hub.github.io'
-AUTHOR_URL = 'https://pzy54154631-hub.github.io/homepage/'
+AUTHOR_URL = 'https://github.com/pzy54154631-hub'
 SECOND_AUTHOR_URL = 'https://pzy54154631-hub.github.io/liuyihan/'
 
 LICENSE = '''MIT License
@@ -120,7 +120,7 @@ PREAMBLE = r'''% !TeX program = xelatex
 \vspace{8mm}
 {\large CHAPTER_COUNT_ZH章完整教程 · 公式 · 表格 · 专业写作 · AI 协作\par}
 \vspace{24mm}
-{\large\textit{\href{https://pzy54154631-hub.github.io/homepage/}{Ziyu Peng}, University of Colorado Boulder}\par}
+{\large\textit{\href{https://github.com/pzy54154631-hub}{Ziyu Peng}, University of Colorado Boulder}\par}
 \vspace{3mm}
 {\large\href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院\par}
 \vfill

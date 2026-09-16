@@ -26,7 +26,7 @@ STYLE_VERSION = hashlib.sha256((ROOT / 'assets/site.css').read_bytes() + (ROOT /
 md = MarkdownIt('commonmark', {'html': False}).enable('table').use(dollarmath_plugin, allow_labels=False)
 SERIES_URL = f'{BASE}/blog/latex/'
 SERIES_TITLE = '把想法写成漂亮的一页'
-AUTHOR_HOME = 'https://pzy54154631-hub.github.io/homepage/'
+AUTHOR_HOME = 'https://github.com/pzy54154631-hub'
 YIHAN_HOME = 'https://pzy54154631-hub.github.io/liuyihan/'
 TUTORIAL_ASSETS = f'{BASE}/assets/tutorial'
 
@@ -189,7 +189,7 @@ def build():
                 if example.is_file(): archive.write(example, example.name)
             archive.write(ROOT / 'assets/tutorial/LICENSE.txt', 'LICENSE.txt')
             archive.write(ROOT / 'assets/tutorial/NOTICE.md', 'NOTICE.md')
-            archive.writestr('README.txt', 'LaTeX 入门与经管专业排版手记\n作者：Ziyu Peng、刘毅涵\nZiyu Peng 主页：https://pzy54154631-hub.github.io/homepage/\n刘毅涵主页：https://pzy54154631-hub.github.io/liuyihan/\n\n网页目录：https://pzy54154631-hub.github.io/liuyihan/blog/latex/\n默认使用 XeLaTeX 编译。第07章参考文献需 Biber，详见各文件注释和网页教程。\n所有专业数据均为教学示例。\n本教程源码与原创示例采用 MIT 许可，可自由编辑、复制、再发布及商用。再发布时保留版权与许可声明；详见 LICENSE.txt 与 NOTICE.md。\n')
+            archive.writestr('README.txt', 'LaTeX 入门与经管专业排版手记\n作者：Ziyu Peng、刘毅涵\nZiyu Peng GitHub：https://github.com/pzy54154631-hub\n刘毅涵主页：https://pzy54154631-hub.github.io/liuyihan/\n\n网页目录：https://pzy54154631-hub.github.io/liuyihan/blog/latex/\n默认使用 XeLaTeX 编译。第07章参考文献需 Biber，详见各文件注释和网页教程。\n所有专业数据均为教学示例。\n本教程源码与原创示例采用 MIT 许可，可自由编辑、复制、再发布及商用。再发布时保留版权与许可声明；详见 LICENSE.txt 与 NOTICE.md。\n')
         with zipfile.ZipFile(PUBLIC / 'assets/tutorial/latex-tutorial-source.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
             source = ROOT / 'assets/tutorial'
             archive.write(source / 'latex-tutorial-complete.tex', 'main.tex')

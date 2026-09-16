@@ -30,7 +30,7 @@ stage = "第三阶段 · 整理成完整作品"
 \usetheme{Madrid}
 \setbeamertemplate{navigation symbols}{}
 \title{怎样把一页报告讲清楚}
-\author[Ziyu Peng, 刘毅涵]{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+\author[Ziyu Peng, 刘毅涵]{\href{https://github.com/pzy54154631-hub}{\textit{Ziyu Peng}}, University of Colorado Boulder
   \texorpdfstring{\\[0.35em]}{; }
   \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
@@ -108,7 +108,7 @@ One question, one main message.
 \usepackage[UTF8,fontset=fandol]{ctex}
 \usepackage[hidelinks]{hyperref}
 \title{从问题到表达：一张学习海报}
-\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+\author{\href{https://github.com/pzy54154631-hub}{\textit{Ziyu Peng}}, University of Colorado Boulder
   \\[0.35em]
   \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \institute{LaTeX 学习手记 · 教学示例}
@@ -154,7 +154,7 @@ One question, one main message.
   \begin{center}
     {\LARGE\bfseries 从问题到表达\par}
     \bigskip
-    \href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+    \href{https://github.com/pzy54154631-hub}{\textit{Ziyu Peng}}, University of Colorado Boulder
   \\[0.35em]
   \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院
   \end{center}

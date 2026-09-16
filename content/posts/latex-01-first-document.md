@@ -34,7 +34,7 @@ LaTeX 的工作方式是写下内容与结构，再由程序排版。输入 `\se
 \usepackage[hidelinks]{hyperref}
 
 \title{一页学习笔记}
-\author{\href{https://pzy54154631-hub.github.io/homepage/}{\textit{Ziyu Peng}}, University of Colorado Boulder
+\author{\href{https://github.com/pzy54154631-hub}{\textit{Ziyu Peng}}, University of Colorado Boulder
   \\[0.35em]
   \href{https://pzy54154631-hub.github.io/liuyihan/}{刘毅涵}，暨南大学经济学院}
 \date{}
