@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fcfaf7">
+  <title>$title</title>
+  <meta name="description" content="$description">
+  <link rel="canonical" href="$canonical">
+  <meta property="og:type" content="$og_type">
+  <meta property="og:title" content="$title">
+  <meta property="og:description" content="$description">
+  <meta property="og:url" content="$canonical">
+  <meta property="og:locale" content="zh_CN">
+  <link rel="icon" href="$base/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="$base/assets/site.css">
+  <link rel="alternate" type="application/rss+xml" title="毅涵的小站" href="$base/feed.xml">
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="site-header">
+    <nav class="wrap nav" aria-label="主导航">
+      <a class="brand" href="$base/" aria-label="毅涵的小站首页"><span class="brand-mark" aria-hidden="true">Y</span>毅涵的小站</a>
+      <div class="nav-links">
+        <a href="$base/" $home_current>首页</a>
+        <a href="$base/blog/" $blog_current>手记</a>
+        <a class="about-link" href="$base/#about">关于我</a>
+        <a class="contact-nav" href="mailto:$email">写信给我</a>
+      </div>
+    </nav>
+  </header>
+  $body
+  <footer class="site-footer"><div class="wrap footer-inner"><p>© $year 刘毅涵 · 毅涵的小站</p><div class="footer-links"><a href="$base/blog/">手记归档</a><a href="$base/feed.xml">RSS 订阅</a><a href="mailto:$email">邮箱联系</a></div></div></footer>
+</body>
+</html>
